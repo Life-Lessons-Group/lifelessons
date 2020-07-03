@@ -6,56 +6,66 @@ class EntryMenuScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      body: Container(
-        height: MediaQuery.of(context).size.height,
-        width: MediaQuery.of(context).size.width,
-        decoration: BoxDecoration(
-          gradient: LinearGradient(colors: [
-            Colors.green[200],
-            Colors.lightBlue[200],
-          ], begin: Alignment.bottomLeft, end: Alignment.topRight),
-        ),
-        child: ListView(
+      body: Stack(
+        children: <Widget>[
+          Container(
+            height: MediaQuery.of(context).size.height,
+            width: MediaQuery.of(context).size.width,
+            decoration: BoxDecoration(
+              gradient: LinearGradient(colors: [
+                Colors.green[200],
+                Colors.lightBlue[200],
+              ], begin: Alignment.bottomLeft, end: Alignment.topRight),
+            ),
+          ),
+            Center(
+              child: Column(
+                crossAxisAlignment: CrossAxisAlignment.center,
           children: <Widget>[
-            SizedBox(height: MediaQuery.of(context).size.height / 6),
-            Text(
-              "life lessons",
-              style: TextStyle(
+              SizedBox(height: MediaQuery.of(context).size.height / 4),
+              Text(
+                "life lessons",
+                style: TextStyle(
+                    color: Colors.white,
+                    fontWeight: FontWeight.w200,
+                    fontSize: 36),
+                textAlign: TextAlign.center,
+              ),
+              SizedBox(height: MediaQuery.of(context).size.height / 4),
+              
+              SizedBox(
+                height: 50,
+                width: 250,
+                child: FlatButton(
+                  textColor: Colors.teal[200],
                   color: Colors.white,
-                  fontWeight: FontWeight.w200,
-                  fontSize: 24),
-              textAlign: TextAlign.center,
-            ),
-            SizedBox(height: MediaQuery.of(context).size.height / 6),
-            SizedBox(
-              height: 40,
-              width: 60,
-              child: FlatButton(
-                textColor: Colors.white,
-                color: Colors.black12,
-                child: Text("Sign Up"),
-                onPressed: () {},
-                shape: new RoundedRectangleBorder(
-                  borderRadius: new BorderRadius.circular(30.0),
+                  child: Text("Sign Up", style: TextStyle(fontWeight: FontWeight.w400),),
+                  onPressed: () {},
+                  shape: new RoundedRectangleBorder(
+                    borderRadius: new BorderRadius.circular(30.0),
+                  ),
                 ),
               ),
-            ),
-                SizedBox(
-              height: 40,
-              width: 60,
-              child: FlatButton(
-                textColor: Colors.white,
-                color: Colors.black12,
-                child: Text("Sign Up"),
-                onPressed: () {},
-                shape: new RoundedRectangleBorder(
-                  borderRadius: new BorderRadius.circular(30.0),
+               SizedBox(height: MediaQuery.of(context).size.height / 30),
+                  SizedBox(
+                height: 50,
+                width: 250,
+                child: FlatButton(
+                  textColor: Colors.grey[100],
+                  color: Colors.transparent,
+                  child: Text("Login"),
+                  onPressed: () {},
+                  shape: new RoundedRectangleBorder(
+                    borderRadius: new BorderRadius.circular(30.0),
+                    side: BorderSide(color: Colors.white)
+                  ),
                 ),
               ),
-            ),
          
           ],
         ),
+            ),
+        ],
       ),
     );
   }
