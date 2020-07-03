@@ -1,0 +1,47 @@
+{
+  "project_info": {
+    "project_number": "31387122785",
+    "firebase_url": "https://life-lessons-beta-2682c.firebaseio.com",
+    "project_id": "life-lessons-beta-2682c",
+    "storage_bucket": "life-lessons-beta-2682c.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:31387122785:android:7dbf3920070ba1df3abe20",
+        "android_client_info": {
+          "package_name": "com.LifeLessonsGroup.firebase_flutter_life"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "31387122785-orucegdsfbo08908ca5nsgcndcgvpc93.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDNtTb-kAKrIEemjvuMgkQe4Zt1hUMpp5k"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "31387122785-orucegdsfbo08908ca5nsgcndcgvpc93.apps.googleusercontent.com",
+              "client_type": 3
+            },
+            {
+              "client_id": "31387122785-kqvb0vmmf3jpm1sih1mii97b13fq59s2.apps.googleusercontent.com",
+              "client_type": 2,
+              "ios_info": {
+                "bundle_id": "com.LifeLessonsGroup.Flutter"
+              }
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
