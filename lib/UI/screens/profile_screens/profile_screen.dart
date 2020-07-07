@@ -6,7 +6,7 @@ import 'package:firebase_flutter_life/Models/models.dart';
 
 import 'package:firebase_flutter_life/UI/screens/settings_screen.dart';
 
-import 'package:firebase_flutter_life/UI/widgets/book_tab.dart';
+import 'package:firebase_flutter_life/features/profile/presentation/widgets/book_tab.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
 

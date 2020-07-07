@@ -1,5 +1,5 @@
 import 'package:firebase_flutter_life/features/onboarding_walkthrough/data/models/walkthrough_model.dart';
-import 'package:firebase_flutter_life/UI/widgets/Buttons/custom_flat_button.dart';
+
 import 'package:flutter/material.dart';
 import "package:flutter_swiper/flutter_swiper.dart";
 import 'package:shared_preferences/shared_preferences.dart';
@@ -169,20 +169,20 @@ class _WalkthroughScreenState extends State<WalkthroughScreen> {
             Padding(
               padding:
                   const EdgeInsets.only(top: 20.0, right: 15.0, left: 15.0),
-              child: CustomFlatButton(
-                title: "Get Started",
-                fontSize: 22,
-                fontWeight: FontWeight.w300,
-                textColor: Colors.white,
-                onPressed: () {
-                  // widget.prefs.setBool('seen', true);
-                  Navigator.of(context).pushReplacementNamed('/register-screen');
-                },
-                splashColor: Colors.black12,
-                borderColor: Colors.white,
-                borderWidth: 1,
-                color: Colors.transparent,
-              ),
+              // child: FlatButton(
+              //   title: "Get Started",
+              //   fontSize: 22,
+              //   fontWeight: FontWeight.w300,
+              //   textColor: Colors.white,
+              //   onPressed: () {
+              //     // widget.prefs.setBool('seen', true);
+              //     Navigator.of(context).pushReplacementNamed('/register-screen');
+              //   },
+              //   splashColor: Colors.black12,
+              //   borderColor: Colors.white,
+              //   borderWidth: 1,
+              //   color: Colors.transparent,
+              // ),
             ),
           ],
         ),

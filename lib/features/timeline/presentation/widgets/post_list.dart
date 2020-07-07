@@ -1,8 +1,10 @@
 
 import 'package:firebase_flutter_life/features/timeline/data/models/post_model.dart';
-import 'package:firebase_flutter_life/UI/widgets/post_tile.dart';
+
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
+
+import 'post_tile.dart';
 
 class PostList extends StatelessWidget {
   

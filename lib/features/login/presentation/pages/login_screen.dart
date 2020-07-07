@@ -1,5 +1,5 @@
 
-import 'package:firebase_flutter_life/UI/widgets/widgets.dart';
+import 'package:firebase_flutter_life/features/login/presentation/widgets/login_form.dart';
 import 'package:flutter/material.dart';
 
 class LoginScreen extends StatelessWidget {
