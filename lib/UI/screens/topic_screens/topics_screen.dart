@@ -1,32 +1,39 @@
-
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
 
 import 'topic_search.dart';
 
 class TopicsScreen extends StatelessWidget {
-
+  static const routeName = '/topic-screen';
+  
   @override
   Widget build(BuildContext context) {
     return Container(
-          decoration: BoxDecoration(
-            gradient: LinearGradient(
-              begin: Alignment.bottomRight,
-              end: Alignment.topLeft,
-              colors: <Color>[
-                Colors.lightGreen[200],
-                Colors.lightBlue[600],
-              ],
-            ),
+      decoration: BoxDecoration(
+        gradient: LinearGradient(
+          begin: Alignment.bottomRight,
+          end: Alignment.topLeft,
+          colors: <Color>[
+            Colors.lightGreen[200],
+            Colors.lightBlue[600],
+          ],
+        ),
+      ),
+      child: Scaffold(
+        backgroundColor: Colors.transparent,
+        extendBodyBehindAppBar: true,
+        appBar: AppBar(
+          title: Text(
+            "life lessons",
+            style: TextStyle(color: Colors.white, fontSize: 24.0),
           ),
-          child: Scaffold(
-            backgroundColor: Colors.transparent,
-            extendBodyBehindAppBar: true,
-            appBar: AppBar(title: Text("life lessons", style: TextStyle(color: Colors.white, fontSize: 24.0),), backgroundColor: Colors.transparent, elevation: 0, centerTitle: true,),
-            body: TopicSearch(),
-          ),
-        );
-        
+          backgroundColor: Colors.transparent,
+          elevation: 0,
+          centerTitle: true,
+        ),
+        body: TopicSearch(),
+      ),
+    );
   }
 
   Widget getTopicScreenUI() {
