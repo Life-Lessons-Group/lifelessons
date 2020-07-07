@@ -1,11 +1,5 @@
 
-import 'package:cloud_firestore/cloud_firestore.dart';
-import 'package:firebase_auth/firebase_auth.dart';
-import 'package:firebase_flutter_life/Data/user_repository.dart';
 import 'package:firebase_flutter_life/Models/models.dart';
-
-
-import 'package:firebase_flutter_life/UI/screens/screens.dart';
 
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
