@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
 
-import 'archived_topics.dart';
+import '../widgets/archived_topics.dart';
 
 class ArchivedTopicsScreen extends StatelessWidget {
   static const routeName = '/archived';

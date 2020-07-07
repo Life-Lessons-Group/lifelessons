@@ -7,8 +7,8 @@ import 'package:provider/provider.dart';
 import 'UI/screens/profile_screens/profile_screen.dart';
 import 'UI/screens/record_screens/record_begin_screen.dart';
 import 'UI/screens/screens.dart';
-import 'UI/screens/topic_screens/archived_topic_screen.dart';
-import 'UI/screens/topic_screens/topics_screen.dart';
+import 'features/archived/presentation/pages/archived_topic_screen.dart';
+import 'features/timeline/presentation/pages/topics_screen.dart';
 import 'features/register/presentation/pages/register_screen.dart.dart';
 
 void main() => runApp(App());

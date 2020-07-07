@@ -5,7 +5,7 @@ import 'package:firebase_auth/firebase_auth.dart';
 
 import 'package:firebase_flutter_life/Models/models.dart';
 
-import 'package:firebase_flutter_life/UI/screens/settings_screen.dart';
+import 'package:firebase_flutter_life/features/settings/presentation/pages/settings_screen.dart';
 import 'package:firebase_flutter_life/UI/screens/user_profile_screens/user_book_tab.dart';
 
 

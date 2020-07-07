@@ -7,7 +7,7 @@ import 'package:provider/provider.dart';
 
 import 'profile_screens/profile_screen.dart';
 import 'record_screens/record_begin_screen.dart';
-import 'topic_screens/topics_screen.dart';
+import '../../features/timeline/presentation/pages/topics_screen.dart';
 
 
 

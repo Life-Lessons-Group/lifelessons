@@ -4,7 +4,7 @@ import 'package:firebase_flutter_life/features/timeline/data/repositories/posts_
 
 import 'package:firebase_flutter_life/Models/models.dart';
 
-import 'package:firebase_flutter_life/UI/screens/settings_screen.dart';
+import 'package:firebase_flutter_life/features/settings/presentation/pages/settings_screen.dart';
 
 import 'package:firebase_flutter_life/features/profile/presentation/widgets/book_tab.dart';
 import 'package:flutter/material.dart';

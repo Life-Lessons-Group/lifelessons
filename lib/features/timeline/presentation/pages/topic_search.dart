@@ -1,15 +1,15 @@
-import 'package:firebase_flutter_life/UI/screens/topic_screens/topic_selected_screen.dart';
+import 'package:firebase_flutter_life/features/timeline/presentation/pages/topic_selected_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
 
 
 
-class ArchivedTopics extends StatefulWidget {
+class TopicSearch extends StatefulWidget {
   @override
-  _ArchivedTopicsState createState() => _ArchivedTopicsState();
+  _TopicSearchState createState() => _TopicSearchState();
 }
 
-class _ArchivedTopicsState extends State<ArchivedTopics> {
+class _TopicSearchState extends State<TopicSearch> {
   List<String> items = List<String>();
   TextEditingController controller = new TextEditingController();
   String filter;
@@ -17,13 +17,13 @@ class _ArchivedTopicsState extends State<ArchivedTopics> {
   @override
   initState() {
     super.initState();
-    items.add("Battling Insecurity");
-    items.add("Despite The Odds...");
-    items.add("How To Love Myself");
-    items.add("Overlooked Hardships of Motherhood");
-    items.add("Forgiving Yourself");
-    items.add("Favorite Traditions");
-    items.add("So You Want A Career in Music");
+    items.add("How to Move On");
+    items.add("Road to Happiness");
+    items.add("Wrestling with GOD");
+    items.add("Making a Dream a Reality");
+    items.add("When Your Best Is Not Enough");
+    items.add("How to Trust Again");
+    items.add("So You Want A Career in Film");
     controller.addListener(() {
       setState(() {
         filter = controller.text;
@@ -85,6 +85,25 @@ class _ArchivedTopicsState extends State<ArchivedTopics> {
                       ),
                     );
                   },
+                ),
+              ),
+              SizedBox(height: 20),
+              Container(
+                decoration: BoxDecoration(
+                    borderRadius: BorderRadius.all(Radius.circular(20)),
+                    color: Colors.white70),
+                width: 250,
+                child: Row(
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  children: <Widget>[
+                    FlatButton(
+                      child: Text("Archived Lessons"),
+                      onPressed: () {
+                        Navigator.pushNamed(context, "/archived");
+                      },
+                    ),
+                    Icon(Icons.arrow_forward),
+                  ],
                 ),
               ),
             ],
