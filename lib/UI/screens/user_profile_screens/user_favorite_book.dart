@@ -1,8 +1,8 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 
-import 'package:firebase_flutter_life/Data/posts_repository.dart';
+import 'package:firebase_flutter_life/features/timeline/data/repositories/posts_repository.dart';
 
-import 'package:firebase_flutter_life/Models/post_model.dart';
+import 'package:firebase_flutter_life/features/timeline/data/models/post_model.dart';
 import 'package:flutter/material.dart';
 
 class UserFavoriteBookScreen extends StatefulWidget {
