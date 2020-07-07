@@ -1,7 +1,7 @@
 import 'dart:io';
 
 import 'package:firebase_auth/firebase_auth.dart';
-import 'package:firebase_flutter_life/Pickers/user_image_picker.dart';
+import 'package:firebase_flutter_life/core/user_image_picker.dart';
 
 import 'package:firebase_flutter_life/UI/screens/screens.dart';
 import 'package:flutter/material.dart';
