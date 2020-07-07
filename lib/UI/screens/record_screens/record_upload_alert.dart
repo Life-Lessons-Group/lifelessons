@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 
 class RecordUploadAlert extends StatelessWidget {
-  TextEditingController _textFieldController = TextEditingController();
+  final TextEditingController _textFieldController = TextEditingController();
 
   @override
   Widget build(BuildContext context) {

@@ -21,10 +21,10 @@ class App extends StatelessWidget {
       child: MaterialApp(
         home: EntryMenuScreen(),
         routes: {
-          '/root': (context) => HomeScreen(),
+          HomeScreen.routeName : (context) => HomeScreen(),
           TopicsScreen.routeName: (context) => TopicsScreen(),
-          '/record-screen': (context) => RecordBeginScreen(),
-          '/profile-screen': (context) => ProfileScreen(),
+          RecordBeginScreen.routeName: (context) => RecordBeginScreen(),
+          ProfileScreen.routeName: (context) => ProfileScreen(),
           LoginScreen.routeName: (context) => LoginScreen(),
           RegisterScreen.routeName : (context) => RegisterScreen(),
           ArchivedTopicsScreen.routeName: (context) => ArchivedTopicsScreen(),

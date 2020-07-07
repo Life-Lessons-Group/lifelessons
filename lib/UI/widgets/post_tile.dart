@@ -1,8 +1,7 @@
-import 'package:firebase_flutter_life/Data/user_repository.dart';
-import 'package:firebase_flutter_life/Models/models.dart';
+
 import 'package:firebase_flutter_life/Models/post_model.dart';
 import 'package:flutter/material.dart';
-import 'package:provider/provider.dart';
+
 
 class PostTile extends StatelessWidget {
   final Post post;
@@ -31,7 +30,7 @@ class PostTile extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return FutureBuilder(
-      future: UserRepository().usersRef.document(post.userID).get(),
+      // future: UserRepository().usersRef.document(post.userID).get(),
       builder: (context, snapshot) {
         return Padding(
           padding: EdgeInsets.only(top: 8.0),

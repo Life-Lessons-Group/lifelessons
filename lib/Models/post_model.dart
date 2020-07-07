@@ -4,7 +4,7 @@ import 'package:auto_size_text/auto_size_text.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:firebase_flutter_life/Data/posts_repository.dart';
-import 'package:firebase_flutter_life/Data/user_repository.dart';
+
 import 'package:firebase_flutter_life/Models/models.dart';
 import 'package:firebase_flutter_life/Services/audio_service.dart';
 
@@ -87,7 +87,7 @@ class _PostState extends State<Post> {
 
   buildPostHeader() {
     return FutureBuilder(
-        future: UserRepository().usersRef.document(userID).get(),
+        // future: UserRepository().usersRef.document(userID).get(),
         builder: (context, snapshot) {
           if (snapshot.connectionState == ConnectionState.waiting) {
             return CircleAvatar(

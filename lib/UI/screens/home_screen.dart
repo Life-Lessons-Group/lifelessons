@@ -17,6 +17,7 @@ User currentUser;
 
 class HomeScreen extends StatefulWidget {
   
+  static const String routeName = '/root';
 
 
   @override
@@ -25,7 +26,6 @@ class HomeScreen extends StatefulWidget {
 
 class _HomeScreenState extends State<HomeScreen> {
 
-  static String routeName = '/root';
   
  
   

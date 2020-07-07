@@ -2,7 +2,7 @@ import 'package:firebase_flutter_life/UI/screens/topic_screens/topic_selected_sc
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
 
-import 'selected_topic.dart';
+
 
 class ArchivedTopics extends StatefulWidget {
   @override

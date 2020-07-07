@@ -1,15 +1,14 @@
-import 'dart:async';
+
 
 import 'package:cloud_firestore/cloud_firestore.dart';
-import 'package:firebase_auth/firebase_auth.dart';
-import 'package:firebase_flutter_life/Data/posts_repository.dart';
-import 'package:firebase_flutter_life/Data/user_repository.dart';
+
+
 import 'package:firebase_flutter_life/Models/models.dart';
 import 'package:firebase_flutter_life/Services/audio_service.dart';
-import 'package:firebase_flutter_life/UI/screens/home_screen.dart';
+
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
-import 'package:provider/provider.dart';
+
 
 class PrivatePost extends StatefulWidget {
   final String title;
@@ -79,7 +78,7 @@ class _PrivatePostState extends State<PrivatePost> {
 
   buildPostHeader() {
     return FutureBuilder(
-        future: UserRepository().usersRef.document(userID).get(),
+        // future: UserRepository().usersRef.document(userID).get(),
         builder: (context, snapshot) {
           if (snapshot.connectionState == ConnectionState.waiting) {
             return CircleAvatar(

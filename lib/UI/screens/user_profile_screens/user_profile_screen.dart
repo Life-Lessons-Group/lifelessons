@@ -1,17 +1,17 @@
-import 'dart:io';
+
 
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
-import 'package:firebase_flutter_life/Data/user_repository.dart';
+
 import 'package:firebase_flutter_life/Models/models.dart';
-import 'package:firebase_flutter_life/Pickers/user_image_picker.dart';
+
 import 'package:firebase_flutter_life/UI/screens/settings_screen.dart';
 import 'package:firebase_flutter_life/UI/screens/user_profile_screens/user_book_tab.dart';
 
-import 'package:firebase_flutter_life/UI/widgets/book_tab.dart';
+
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
-import 'package:provider/provider.dart';
+
 
 class UserProfileScreen extends StatefulWidget {
   final String profileID;
@@ -144,7 +144,7 @@ class _UserProfileScreenState extends State<UserProfileScreen> {
 
   buildProfileHeader() {
     return FutureBuilder(
-        future: UserRepository().usersRef.document(widget.profileID).get(),
+        // future: UserRepository().usersRef.document(widget.profileID).get(),
         builder: (context, futureSnapshot) {
           if (futureSnapshot.connectionState == ConnectionState.waiting) {
             return skeletonHeader();

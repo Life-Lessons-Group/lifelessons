@@ -1,6 +1,6 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 
-import 'package:firebase_flutter_life/Models/post_model.dart';
+
 
 class PostRepository {
   

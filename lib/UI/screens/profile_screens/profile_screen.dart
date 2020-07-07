@@ -1,21 +1,18 @@
-import 'dart:io';
-
 import 'package:cloud_firestore/cloud_firestore.dart';
-import 'package:firebase_auth/firebase_auth.dart';
+
 import 'package:firebase_flutter_life/Data/posts_repository.dart';
-import 'package:firebase_flutter_life/Data/user_repository.dart';
+
 import 'package:firebase_flutter_life/Models/models.dart';
-import 'package:firebase_flutter_life/Pickers/user_image_picker.dart';
-import 'package:firebase_flutter_life/UI/screens/screens.dart';
+
 import 'package:firebase_flutter_life/UI/screens/settings_screen.dart';
 
 import 'package:firebase_flutter_life/UI/widgets/book_tab.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
-import 'package:provider/provider.dart';
 
 class ProfileScreen extends StatefulWidget {
   final User currentUser;
+  static const routeName = 'profile-screen';
 
   const ProfileScreen({Key key, this.currentUser}) : super(key: key);
 
@@ -71,154 +68,154 @@ class _ProfileScreenState extends State<ProfileScreen> {
 
   buildProfileHeader() {
     return FutureBuilder(
-        future:
-            UserRepository().usersRef.document(widget.currentUser.userID).get(),
+        // future:
+        //     UserRepository().usersRef.document(widget.currentUser.userID).get(),
         builder: (context, futureSnapshot) {
-          if (futureSnapshot.connectionState == ConnectionState.waiting) {
-            return skeletonHeader();
-          } else if (widget.currentUser.userID == null) {
-            return skeletonHeader();
-          }
-          User user = User.fromDocument(futureSnapshot.data);
-          print("USER: $user");
-          return Container(
-            height: 320,
-            width: double.infinity,
-            child: Stack(
-              children: <Widget>[
-                Container(
-                  decoration: BoxDecoration(
-                    borderRadius: BorderRadius.only(
-                      bottomLeft: Radius.circular(60),
-                      bottomRight: Radius.circular(60),
-                    ),
-                    gradient: LinearGradient(
-                      begin: Alignment.bottomRight,
-                      end: Alignment.topLeft,
-                      colors: <Color>[
-                        Colors.lightGreen[200],
-                        Colors.lightBlue[600],
-                      ],
-                    ),
-                  ),
+      if (futureSnapshot.connectionState == ConnectionState.waiting) {
+        return skeletonHeader();
+      } else if (widget.currentUser.userID == null) {
+        return skeletonHeader();
+      }
+      User user = User.fromDocument(futureSnapshot.data);
+      print("USER: $user");
+      return Container(
+        height: 320,
+        width: double.infinity,
+        child: Stack(
+          children: <Widget>[
+            Container(
+              decoration: BoxDecoration(
+                borderRadius: BorderRadius.only(
+                  bottomLeft: Radius.circular(60),
+                  bottomRight: Radius.circular(60),
                 ),
-                Padding(
-                  padding: EdgeInsets.all(8.0),
-                  child: Column(
+                gradient: LinearGradient(
+                  begin: Alignment.bottomRight,
+                  end: Alignment.topLeft,
+                  colors: <Color>[
+                    Colors.lightGreen[200],
+                    Colors.lightBlue[600],
+                  ],
+                ),
+              ),
+            ),
+            Padding(
+              padding: EdgeInsets.all(8.0),
+              child: Column(
+                children: <Widget>[
+                  SizedBox(height: 20),
+                  Row(
+                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
                     children: <Widget>[
-                      SizedBox(height: 20),
-                      Row(
-                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                      IconButton(
+                        icon: Icon(Icons.inbox),
+                        color: Colors.transparent,
+                        onPressed: () {},
+                      ),
+                      Text(
+                        "Your Book",
+                        style: TextStyle(
+                            fontSize: 20,
+                            color: Colors.white,
+                            fontWeight: FontWeight.w300),
+                      ),
+                      AppDrawerButton(),
+                    ],
+                  ),
+                  SizedBox(height: 20),
+                  CircleAvatar(
+                    radius: 40.0,
+                    backgroundColor: Colors.grey,
+                    backgroundImage: NetworkImage(user.profileImageUrl),
+                  ),
+                  SizedBox(height: 10),
+                  Text(
+                    user.username,
+                    style: TextStyle(fontSize: 16, color: Colors.white),
+                  ),
+                  SizedBox(height: 5),
+                  Row(
+                    mainAxisAlignment: MainAxisAlignment.center,
+                    children: <Widget>[
+                      Icon(
+                        Icons.location_on,
+                        color: Colors.white70,
+                        size: 12,
+                      ),
+                      Text("Washington, D.C.",
+                          style: TextStyle(
+                              fontSize: 12,
+                              color: Colors.white,
+                              fontWeight: FontWeight.w300)),
+                    ],
+                  ),
+                  SizedBox(height: 20),
+                  Row(
+                    mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                    children: <Widget>[
+                      Column(
                         children: <Widget>[
-                          IconButton(
-                            icon: Icon(Icons.inbox),
-                            color: Colors.transparent,
-                            onPressed: () {},
+                          Text(
+                            followerCount.toString(),
+                            style: TextStyle(
+                                fontSize: 14,
+                                color: Colors.white,
+                                fontWeight: FontWeight.bold),
                           ),
                           Text(
-                            "Your Book",
+                            "Audience",
                             style: TextStyle(
-                                fontSize: 20,
+                                fontSize: 14,
                                 color: Colors.white,
                                 fontWeight: FontWeight.w300),
                           ),
-                          AppDrawerButton(),
                         ],
                       ),
-                      SizedBox(height: 20),
-                      CircleAvatar(
-                        radius: 40.0,
-                        backgroundColor: Colors.grey,
-                        backgroundImage: NetworkImage(user.profileImageUrl),
-                      ),
-                      SizedBox(height: 10),
-                      Text(
-                        user.username,
-                        style: TextStyle(fontSize: 16, color: Colors.white),
-                      ),
-                      SizedBox(height: 5),
-                      Row(
-                        mainAxisAlignment: MainAxisAlignment.center,
+                      Column(
                         children: <Widget>[
-                          Icon(
-                            Icons.location_on,
-                            color: Colors.white70,
-                            size: 12,
+                          Text(
+                            followingCount.toString(),
+                            style: TextStyle(
+                                fontSize: 14,
+                                color: Colors.white,
+                                fontWeight: FontWeight.bold),
                           ),
-                          Text("Washington, D.C.",
-                              style: TextStyle(
-                                  fontSize: 12,
-                                  color: Colors.white,
-                                  fontWeight: FontWeight.w300)),
+                          Text(
+                            "Classmates",
+                            style: TextStyle(
+                                fontSize: 14,
+                                color: Colors.white,
+                                fontWeight: FontWeight.w300),
+                          ),
                         ],
                       ),
-                      SizedBox(height: 20),
-                      Row(
-                        mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                      Column(
                         children: <Widget>[
-                          Column(
-                            children: <Widget>[
-                              Text(
-                                followerCount.toString(),
-                                style: TextStyle(
-                                    fontSize: 14,
-                                    color: Colors.white,
-                                    fontWeight: FontWeight.bold),
-                              ),
-                              Text(
-                                "Audience",
-                                style: TextStyle(
-                                    fontSize: 14,
-                                    color: Colors.white,
-                                    fontWeight: FontWeight.w300),
-                              ),
-                            ],
+                          Text(
+                            postCount.toString(),
+                            style: TextStyle(
+                                fontSize: 14,
+                                color: Colors.white,
+                                fontWeight: FontWeight.bold),
                           ),
-                          Column(
-                            children: <Widget>[
-                              Text(
-                                followingCount.toString(),
-                                style: TextStyle(
-                                    fontSize: 14,
-                                    color: Colors.white,
-                                    fontWeight: FontWeight.bold),
-                              ),
-                              Text(
-                                "Classmates",
-                                style: TextStyle(
-                                    fontSize: 14,
-                                    color: Colors.white,
-                                    fontWeight: FontWeight.w300),
-                              ),
-                            ],
-                          ),
-                          Column(
-                            children: <Widget>[
-                              Text(
-                                postCount.toString(),
-                                style: TextStyle(
-                                    fontSize: 14,
-                                    color: Colors.white,
-                                    fontWeight: FontWeight.bold),
-                              ),
-                              Text(
-                                "Lessons",
-                                style: TextStyle(
-                                    fontSize: 14,
-                                    color: Colors.white,
-                                    fontWeight: FontWeight.w300),
-                              )
-                            ],
-                          ),
+                          Text(
+                            "Lessons",
+                            style: TextStyle(
+                                fontSize: 14,
+                                color: Colors.white,
+                                fontWeight: FontWeight.w300),
+                          )
                         ],
                       ),
                     ],
                   ),
-                ),
-              ],
+                ],
+              ),
             ),
-          );
-        });
+          ],
+        ),
+      );
+    });
   }
 
   skeletonHeader() {

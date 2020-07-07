@@ -1,11 +1,11 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:firebase_flutter_life/Data/posts_repository.dart';
-import 'package:firebase_flutter_life/Data/user_repository.dart';
+
 import 'package:firebase_flutter_life/Models/models.dart';
 import 'package:firebase_flutter_life/Models/post_model.dart';
 import 'package:flutter/material.dart';
-import 'package:provider/provider.dart';
+
 
 class MyPublicBookScreen extends StatefulWidget {
  final User currentUser;
