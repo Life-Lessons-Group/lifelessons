@@ -1,4 +1,4 @@
-import 'package:firebase_flutter_life/Models/walkthrough_model.dart';
+import 'package:firebase_flutter_life/features/onboarding_walkthrough/data/models/walkthrough_model.dart';
 import 'package:firebase_flutter_life/UI/widgets/Buttons/custom_flat_button.dart';
 import 'package:flutter/material.dart';
 import "package:flutter_swiper/flutter_swiper.dart";

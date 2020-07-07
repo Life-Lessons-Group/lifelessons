@@ -7,7 +7,7 @@ import 'package:firebase_flutter_life/Data/posts_repository.dart';
 import 'package:firebase_flutter_life/Data/user_repository.dart';
 import 'package:firebase_flutter_life/Models/models.dart';
 import 'package:firebase_flutter_life/Services/audio_service.dart';
-import 'package:firebase_flutter_life/UI/screens/home_screen.dart';
+
 import 'package:firebase_flutter_life/UI/screens/user_profile_screens/user_profile_screen.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';

@@ -4,7 +4,7 @@ import 'package:flutter/material.dart';
 
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 
-import 'login_screen.dart';
+import '../../features/login/presentation/pages/login_screen.dart';
 
 class AppDrawer extends StatelessWidget {
   @override
