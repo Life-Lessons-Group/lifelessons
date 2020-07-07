@@ -3,7 +3,8 @@ import 'package:firebase_flutter_life/UI/widgets/widgets.dart';
 import 'package:flutter/material.dart';
 
 class LoginScreen extends StatelessWidget {
-  static const routeName = "/login-screen";
+  static const routeName = '/login-screen';
+  
   @override
   Widget build(BuildContext context) {
     return Scaffold(

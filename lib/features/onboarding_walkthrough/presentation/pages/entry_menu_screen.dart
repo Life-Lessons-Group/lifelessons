@@ -1,3 +1,4 @@
+import 'package:firebase_flutter_life/features/register/presentation/pages/register_screen.dart.dart';
 import 'package:flutter/material.dart';
 
 class EntryMenuScreen extends StatelessWidget {
@@ -18,53 +19,55 @@ class EntryMenuScreen extends StatelessWidget {
               ], begin: Alignment.bottomLeft, end: Alignment.topRight),
             ),
           ),
-            Center(
-              child: Column(
-                crossAxisAlignment: CrossAxisAlignment.center,
-          children: <Widget>[
-              SizedBox(height: MediaQuery.of(context).size.height / 4),
-              Text(
-                "life lessons",
-                style: TextStyle(
+          Center(
+            child: Column(
+              crossAxisAlignment: CrossAxisAlignment.center,
+              children: <Widget>[
+                SizedBox(height: MediaQuery.of(context).size.height / 4),
+                Text(
+                  "life lessons",
+                  style: TextStyle(
+                      color: Colors.white,
+                      fontWeight: FontWeight.w200,
+                      fontSize: 36),
+                  textAlign: TextAlign.center,
+                ),
+                SizedBox(height: MediaQuery.of(context).size.height / 4),
+                SizedBox(
+                  height: 50,
+                  width: 250,
+                  child: FlatButton(
+                    textColor: Colors.teal[200],
                     color: Colors.white,
-                    fontWeight: FontWeight.w200,
-                    fontSize: 36),
-                textAlign: TextAlign.center,
-              ),
-              SizedBox(height: MediaQuery.of(context).size.height / 4),
-              
-              SizedBox(
-                height: 50,
-                width: 250,
-                child: FlatButton(
-                  textColor: Colors.teal[200],
-                  color: Colors.white,
-                  child: Text("Sign Up", style: TextStyle(fontWeight: FontWeight.w400),),
-                  onPressed: () {},
-                  shape: new RoundedRectangleBorder(
-                    borderRadius: new BorderRadius.circular(30.0),
+                    child: Text(
+                      "Sign Up",
+                      style: TextStyle(fontWeight: FontWeight.w400),
+                    ),
+                    onPressed: () {
+                      Navigator.pushNamed(context, RegisterScreen.routeName);
+                    },
+                    shape: new RoundedRectangleBorder(
+                      borderRadius: new BorderRadius.circular(30.0),
+                    ),
                   ),
                 ),
-              ),
-               SizedBox(height: MediaQuery.of(context).size.height / 30),
-                  SizedBox(
-                height: 50,
-                width: 250,
-                child: FlatButton(
-                  textColor: Colors.grey[100],
-                  color: Colors.transparent,
-                  child: Text("Login"),
-                  onPressed: () {},
-                  shape: new RoundedRectangleBorder(
-                    borderRadius: new BorderRadius.circular(30.0),
-                    side: BorderSide(color: Colors.white)
+                SizedBox(height: MediaQuery.of(context).size.height / 30),
+                SizedBox(
+                  height: 50,
+                  width: 250,
+                  child: FlatButton(
+                    textColor: Colors.grey[100],
+                    color: Colors.transparent,
+                    child: Text("Login"),
+                    onPressed: () {},
+                    shape: new RoundedRectangleBorder(
+                        borderRadius: new BorderRadius.circular(30.0),
+                        side: BorderSide(color: Colors.white)),
                   ),
                 ),
-              ),
-         
-          ],
-        ),
+              ],
             ),
+          ),
         ],
       ),
     );

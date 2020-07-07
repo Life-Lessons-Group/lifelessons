@@ -1,14 +1,9 @@
-import 'package:firebase_auth/firebase_auth.dart';
-import 'package:firebase_flutter_life/Models/models.dart';
-import 'package:firebase_flutter_life/Services/auth_service.dart';
-import 'package:firebase_flutter_life/UI/screens/topic_screens/archived_topics.dart';
-import 'package:firebase_flutter_life/features/onboarding_walkthrough/presentation/pages/entry_menu_screen.dart';
-import 'package:firebase_flutter_life/wrapper.dart';
 
+import 'package:firebase_flutter_life/Services/auth_service.dart';
+import 'package:firebase_flutter_life/features/onboarding_walkthrough/presentation/pages/entry_menu_screen.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
-
 import 'UI/screens/profile_screens/profile_screen.dart';
 import 'UI/screens/record_screens/record_begin_screen.dart';
 import 'UI/screens/screens.dart';
@@ -27,12 +22,12 @@ class App extends StatelessWidget {
         home: EntryMenuScreen(),
         routes: {
           '/root': (context) => HomeScreen(),
-          '/topic-screen': (context) => TopicsScreen(),
+          TopicsScreen.routeName: (context) => TopicsScreen(),
           '/record-screen': (context) => RecordBeginScreen(),
           '/profile-screen': (context) => ProfileScreen(),
-          '/login-screen': (context) => LoginScreen(),
-          '/register-screen': (context) => RegisterScreen(),
-          '/archived': (context) => ArchivedTopicsScreen(),
+          LoginScreen.routeName: (context) => LoginScreen(),
+          RegisterScreen.routeName : (context) => RegisterScreen(),
+          ArchivedTopicsScreen.routeName: (context) => ArchivedTopicsScreen(),
         },
       ),
     );
