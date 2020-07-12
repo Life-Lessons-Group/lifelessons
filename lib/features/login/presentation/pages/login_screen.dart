@@ -1,13 +1,15 @@
-
+import 'package:firebase_flutter_life/core/AppColors.dart';
 import 'package:firebase_flutter_life/features/login/presentation/widgets/login_form.dart';
+import 'package:firebase_flutter_life/features/register/presentation/pages/register_screen.dart.dart';
 import 'package:flutter/material.dart';
 
 class LoginScreen extends StatelessWidget {
   static const routeName = '/login-screen';
-  
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      backgroundColor: Colors.white,
       appBar: AppBar(
         backgroundColor: Colors.transparent,
         elevation: 0.0,
@@ -21,24 +23,48 @@ class LoginScreen extends StatelessWidget {
       body: SingleChildScrollView(
         child: Column(
           children: <Widget>[
-            Text(
-              "life lessons",
-              style: TextStyle(
-                  color: Colors.blue,
-                  fontSize: 28.0,
-                  fontWeight: FontWeight.w500),
+            SizedBox(
+              height: MediaQuery.of(context).size.height / 20,
+            ),
+            Padding(
+              padding: EdgeInsets.only(left: 20),
+              child: Text(
+                "Welcome,",
+                style: TextStyle(
+                    color: Colors.black,
+                    fontSize: 30,
+                    fontWeight: FontWeight.w800),
+              ),
+            ),
+            Padding(
+              padding: EdgeInsets.only(left: 20),
+              child: Text(
+                "Sign in to continue!",
+                style: TextStyle(color: Colors.grey[400], fontSize: 24),
+              ),
             ),
             LoginForm(),
+             SizedBox(
+              height: MediaQuery.of(context).size.height / 20,
+            ),
             Row(
               mainAxisAlignment: MainAxisAlignment.center,
               children: <Widget>[
-                Text("Don't have an account?"),
+                Text("I already have an account.",
+                    style: TextStyle(
+                        color: Colors.black,
+                        fontSize: 14,
+                        fontWeight: FontWeight.w600)),
                 FlatButton(
-                  textColor: Colors.blue,
                   onPressed: () {
-                    // Navigator.pushReplacementNamed(context, RegisterScreen.routeName);
+                    Navigator.pushNamed(context, RegisterScreen.routeName);
                   },
-                  child: Text("Sign Up"),
+                  child: Text(
+                    "Sign Up",
+                    style: TextStyle(
+                        color: AppColors.accessoryColor,
+                        fontWeight: FontWeight.bold),
+                  ),
                 ),
               ],
             ),

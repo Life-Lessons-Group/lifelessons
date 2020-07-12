@@ -1,4 +1,5 @@
 import 'package:firebase_flutter_life/features/onboarding_walkthrough/data/models/walkthrough_model.dart';
+import 'package:firebase_flutter_life/features/onboarding_walkthrough/presentation/pages/entry_menu_screen.dart';
 
 import 'package:flutter/material.dart';
 import "package:flutter_swiper/flutter_swiper.dart";
@@ -127,67 +128,7 @@ class _WalkthroughScreenState extends State<WalkthroughScreen> {
         ),
       );
     }
-    widgets.add(
-      Container(
-        decoration: BoxDecoration(
-          gradient: LinearGradient(
-            begin: Alignment.bottomRight,
-            end: Alignment.topLeft,
-            colors: <Color>[
-              Colors.lightGreen[200],
-              Colors.lightBlue[600],
-            ],
-          ),
-        ),
-        child: Column(
-          mainAxisAlignment: MainAxisAlignment.center,
-          crossAxisAlignment: CrossAxisAlignment.center,
-          children: <Widget>[
-            Container(
-              height: 250,
-              width: 250,
-              child: Center(
-                child: Text(
-                  "life lessons",
-                  softWrap: true,
-                  textAlign: TextAlign.center,
-                  style: TextStyle(
-                    color: Colors.white,
-                    decoration: TextDecoration.none,
-                    fontSize: 24.0,
-                    fontWeight: FontWeight.w600,
-                    // fontFamily: "OpenSans",
-                  ),
-                ),
-              ),
-            ),
-            //life lessons logo section
-
-            SizedBox(
-              height: 60,
-            ),
-            Padding(
-              padding:
-                  const EdgeInsets.only(top: 20.0, right: 15.0, left: 15.0),
-              // child: FlatButton(
-              //   title: "Get Started",
-              //   fontSize: 22,
-              //   fontWeight: FontWeight.w300,
-              //   textColor: Colors.white,
-              //   onPressed: () {
-              //     // widget.prefs.setBool('seen', true);
-              //     Navigator.of(context).pushReplacementNamed('/register-screen');
-              //   },
-              //   splashColor: Colors.black12,
-              //   borderColor: Colors.white,
-              //   borderWidth: 1,
-              //   color: Colors.transparent,
-              // ),
-            ),
-          ],
-        ),
-      ),
-    );
+    widgets.add(EntryMenuScreen());
     return widgets;
   }
 }

@@ -8,7 +8,9 @@ class RegisterButton extends StatelessWidget {
       height: 50.0,
       width: MediaQuery.of(context).size.width / 1.25,
       child: RaisedButton(
-        onPressed: () {},
+        onPressed: () async {
+      
+        },
         shape:
             RoundedRectangleBorder(borderRadius: BorderRadius.circular(80.0)),
         padding: EdgeInsets.all(0.0),
@@ -21,10 +23,10 @@ class RegisterButton extends StatelessWidget {
               ),
               borderRadius: BorderRadius.circular(30.0)),
           child: Container(
-            constraints: BoxConstraints(maxWidth: 300.0, minHeight: 50.0),
+            constraints: BoxConstraints(maxWidth: MediaQuery.of(context).size.width / 1.25, minHeight: 50.0),
             alignment: Alignment.center,
             child: Text(
-              "Login",
+              "Sign Up",
               textAlign: TextAlign.center,
               style: TextStyle(color: Colors.white),
             ),

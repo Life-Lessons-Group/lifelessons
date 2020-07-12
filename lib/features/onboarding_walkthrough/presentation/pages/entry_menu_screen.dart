@@ -1,3 +1,4 @@
+import 'package:firebase_flutter_life/UI/screens/screens.dart';
 import 'package:firebase_flutter_life/features/register/presentation/pages/register_screen.dart.dart';
 import 'package:flutter/material.dart';
 
@@ -59,7 +60,9 @@ class EntryMenuScreen extends StatelessWidget {
                     textColor: Colors.grey[100],
                     color: Colors.transparent,
                     child: Text("Login"),
-                    onPressed: () {},
+                    onPressed: () {
+                      Navigator.pushNamed(context, LoginScreen.routeName);
+                    },
                     shape: new RoundedRectangleBorder(
                         borderRadius: new BorderRadius.circular(30.0),
                         side: BorderSide(color: Colors.white)),

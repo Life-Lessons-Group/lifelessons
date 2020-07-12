@@ -1,3 +1,4 @@
+import 'package:firebase_flutter_life/UI/screens/screens.dart';
 import 'package:firebase_flutter_life/core/AppColors.dart';
 import 'package:flutter/material.dart';
 
@@ -8,7 +9,7 @@ class AlreadyAccountButton extends StatelessWidget {
       width: MediaQuery.of(context).size.width / 1.5,
       child: Center(
         child: FlatButton(
-          onPressed: () {},
+          onPressed: () {Navigator.pushNamed(context, LoginScreen.routeName);},
           child: Row(
             children: <Widget>[
               Text(
