@@ -36,9 +36,9 @@ dependencies:
   shared_preferences: ^0.5.7
   flutter_swiper: ^1.1.6
   flutter_sound: ^4.0.4
-  equatable: ^1.1.1
-  bloc: ^4.0.0
-  flutter_bloc: ^4.0.0
+  equatable: ^1.2.0
+  bloc: ^5.0.1
+  flutter_bloc: ^5.0.1
   dartz: ^0.8.6
   
   
