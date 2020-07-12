@@ -12,7 +12,6 @@ class RegisterForm extends StatefulWidget {
 }
 
 class _RegisterFormState extends State<RegisterForm> {
-  final FirebaseAuth _auth = FirebaseAuth.instance;
   final _formKey = GlobalKey<FormState>();
 
   String username = "";
@@ -22,9 +21,9 @@ class _RegisterFormState extends State<RegisterForm> {
   File _userImageFile;
   bool isLoading = false;
 
-  void _pickedImage(File image) {
-    _userImageFile = image;
-  }
+  // void _pickedImage(File image) {
+  //   _userImageFile = image;
+  // }
 
   @override
   Widget build(BuildContext context) {
@@ -36,7 +35,7 @@ class _RegisterFormState extends State<RegisterForm> {
             key: _formKey,
             child: Column(
               children: <Widget>[
-                UserImagePicker(_pickedImage),
+                // UserImagePicker(_pickedImage),
                 TextFormField(
                   validator: (val) => val.isEmpty || val.length < 6
                       ? "Username must be 6 or more characters."
@@ -47,7 +46,7 @@ class _RegisterFormState extends State<RegisterForm> {
                   ),
                   keyboardType: TextInputType.emailAddress,
                   onSaved: (val) {
-                    username = val;
+                    setState(() => username = val);
                   },
                 ),
                 TextFormField(
@@ -60,7 +59,7 @@ class _RegisterFormState extends State<RegisterForm> {
                   ),
                   keyboardType: TextInputType.emailAddress,
                   onSaved: (val) {
-                    email = val;
+                    setState(() => email = val);
                   },
                 ),
                 TextFormField(
@@ -73,7 +72,7 @@ class _RegisterFormState extends State<RegisterForm> {
                   ),
                   obscureText: true,
                   onSaved: (val) {
-                    password = val;
+                    setState(() => password = val);
                   },
                 ),
                 SizedBox(
@@ -85,27 +84,27 @@ class _RegisterFormState extends State<RegisterForm> {
                   child: RaisedButton(
                     onPressed: () async {
                       if (_formKey.currentState.validate()) {
-                        if (_userImageFile == null) {
-                          Scaffold.of(context).showSnackBar(
-                            SnackBar(
-                              content: Text('Please pick an image.'),
-                              backgroundColor: Theme.of(context).errorColor,
-                            ),
-                          );
-                        }
-                        setState(() => isLoading = true);
-                        dynamic result =
-                            await _auth.createUserWithEmailAndPassword(
-                                email: email, password: password);
-                        if (result == null) {
-                          setState(() => isLoading = false);
-                          Scaffold.of(context).showSnackBar(
-                            SnackBar(
-                              content: Text("Uh oh, something went wrong."),
-                              backgroundColor: Colors.red,
-                            ),
-                          );
-                        }
+                        // if (_userImageFile == null) {
+                        //   Scaffold.of(context).showSnackBar(
+                        //     SnackBar(
+                        //       content: Text('Please pick an image.'),
+                        //       backgroundColor: Theme.of(context).errorColor,
+                        //     ),
+                        //   );
+                        // }
+                        // setState(() => isLoading = true);
+                        // dynamic result =
+                        //     await _auth.createUserWithEmailAndPassword(
+                        //         email: email, password: password);
+                        // if (result == null) {
+                        //   setState(() => isLoading = false);
+                        //   Scaffold.of(context).showSnackBar(
+                        //     SnackBar(
+                        //       content: Text("Uh oh, something went wrong."),
+                        //       backgroundColor: Colors.red,
+                        //     ),
+                        //   );
+                        // }
                       }
                     },
                     child: Text("Register"),

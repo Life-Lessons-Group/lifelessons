@@ -1,4 +1,4 @@
-import 'package:firebase_flutter_life/Services/auth_service.dart';
+import 'package:firebase_flutter_life/features/authentication/data/repositories/firebase_auth_service.dart';
 import 'package:flutter/material.dart';
 
 class LoginForm extends StatefulWidget {

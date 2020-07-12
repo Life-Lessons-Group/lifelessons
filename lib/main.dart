@@ -1,6 +1,6 @@
 
-import 'package:firebase_flutter_life/Services/auth_service.dart';
-import 'package:firebase_flutter_life/features/onboarding_walkthrough/presentation/pages/entry_menu_screen.dart';
+import 'package:firebase_flutter_life/features/authentication/data/repositories/firebase_auth_service.dart';
+import 'package:firebase_flutter_life/wrapper.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
@@ -19,7 +19,7 @@ class App extends StatelessWidget {
     return StreamProvider.value(
       value: AuthService().user,
       child: MaterialApp(
-        home: EntryMenuScreen(),
+        home: Wrapper(),
         routes: {
           HomeScreen.routeName : (context) => HomeScreen(),
           TopicsScreen.routeName: (context) => TopicsScreen(),

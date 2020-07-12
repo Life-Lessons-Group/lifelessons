@@ -11,7 +11,7 @@ import 'package:meta/meta.dart';
 
 import 'package:uuid/uuid.dart';
 
-import 'auth_service.dart';
+import '../features/authentication/data/repositories/firebase_auth_service.dart';
 
 class FirebaseService {
   var postID = Uuid().v4();

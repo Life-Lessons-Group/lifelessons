@@ -1,8 +1,8 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:firebase_flutter_life/Models/models.dart';
+import 'package:firebase_flutter_life/Services/database_service.dart';
 
-import 'database_service.dart';
 
 class AuthService {
 
