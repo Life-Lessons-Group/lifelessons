@@ -7,6 +7,7 @@ import 'package:firebase_flutter_life/Services/firebase_service.dart';
 
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
+import 'package:flutter_spinkit/flutter_spinkit.dart';
 
 import 'package:flutter_svg/svg.dart';
 import 'package:path_provider/path_provider.dart';
@@ -107,6 +108,7 @@ class _TestRecordState extends State<TestRecord> with TickerProviderStateMixin {
     bool s = RecordMp3.instance.stop();
     if (s) {
       statusText = "Record complete";
+      isRecording = false;
       isComplete = true;
       setState(() {});
     }
@@ -198,7 +200,7 @@ class _TestRecordState extends State<TestRecord> with TickerProviderStateMixin {
                     ),
                     onPressed: () {
                       _trySubmit();
-                     Navigator.pushReplacementNamed(context, "/root");
+                      Navigator.pushReplacementNamed(context, "/root");
                       index = random.nextInt(4);
                       final snackBar = SnackBar(
                         content: Text(
@@ -271,11 +273,10 @@ class _TestRecordState extends State<TestRecord> with TickerProviderStateMixin {
     }
     try {
       if (isPrivate) {
-         FirebaseService().privateUpload(
+        FirebaseService().privateUpload(
             file: File(recordFilePath),
             topic: widget.topic,
             title: recordingTitle);
-
       } else {
         FirebaseService().publicUpload(
             file: File(recordFilePath),
@@ -429,8 +430,10 @@ class _TestRecordState extends State<TestRecord> with TickerProviderStateMixin {
               ),
               Padding(
                   padding: EdgeInsets.only(top: 30),
-                  child: SvgPicture.asset('assets/images/purpleMic.svg',
-                      height: 300.0, color: Colors.black12)),
+                  child: isRecording
+                      ? SpinKitWave(color: Colors.black12, size: 150)
+                      : SvgPicture.asset('assets/images/purpleMic.svg',
+                          height: 300.0, color: Colors.black12)),
               Padding(
                   padding: EdgeInsets.only(top: 20.0),
                   child: isComplete
