@@ -1,4 +1,3 @@
-
 import 'package:firebase_flutter_life/UI/screens/screens.dart';
 import 'package:firebase_flutter_life/core/AppColors.dart';
 
@@ -45,10 +44,11 @@ class _RegisterFormState extends State<RegisterForm> {
           backgroundColor: Colors.red,
         ),
       );
+    } else {
+      Future.delayed(const Duration(seconds: 2), () {
+        Navigator.pushNamed(context, HomeScreen.routeName);
+      });
     }
-    // else {
-    //     Navigator.pushNamed(context, HomeScreen.routeName);
-    // }
   }
 
   @override
