@@ -1,4 +1,5 @@
 
+import 'package:firebase_flutter_life/UI/screens/screens.dart';
 import 'package:firebase_flutter_life/core/AppColors.dart';
 
 import 'package:firebase_flutter_life/features/authentication/data/repositories/firebase_auth_service.dart';
@@ -45,6 +46,9 @@ class _RegisterFormState extends State<RegisterForm> {
         ),
       );
     }
+    // else {
+    //     Navigator.pushNamed(context, HomeScreen.routeName);
+    // }
   }
 
   @override

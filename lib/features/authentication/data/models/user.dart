@@ -1,11 +1,10 @@
-
 class User {
   final String userID;
   final String username;
   final String firstName;
   final String lastName;
   final String email;
-  final String profileImageUrl;
+  String profileImageUrl;
   final String bio;
   final String location;
 
@@ -19,5 +18,4 @@ class User {
     this.bio,
     this.location,
   });
-  
 }

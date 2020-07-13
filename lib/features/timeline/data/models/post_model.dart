@@ -3,6 +3,9 @@ import 'dart:async';
 import 'package:auto_size_text/auto_size_text.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
+import 'package:firebase_flutter_life/Services/firebase_service.dart';
+import 'package:firebase_flutter_life/features/authentication/data/models/user.dart';
+import 'package:firebase_flutter_life/features/authentication/data/repositories/firebase_user_data_service.dart';
 import 'package:firebase_flutter_life/features/timeline/data/repositories/posts_repository.dart';
 
 import 'package:firebase_flutter_life/Models/models.dart';
@@ -85,17 +88,17 @@ class _PostState extends State<Post> {
     this.likes,
   });
 
-  buildPostHeader() {
-    return FutureBuilder(
-        // future: UserRepository().usersRef.document(userID).get(),
+  buildPostHeader(BuildContext context) {
+    return StreamBuilder<User>(
+        stream: UserDatabaseService(uid: userID).userData,
         builder: (context, snapshot) {
           if (snapshot.connectionState == ConnectionState.waiting) {
             return CircleAvatar(
               backgroundColor: Colors.grey,
             );
           }
-          User user = User.fromDocument(snapshot.data);
-
+          User user = snapshot.data;
+          
           return GestureDetector(
             onTap: () {
               showProfile(context, userID);
@@ -189,7 +192,7 @@ class _PostState extends State<Post> {
           color: Colors.white,
           elevation: isPlaying ? 10 : 1,
           child: ListTile(
-            leading: buildPostHeader(),
+            leading: buildPostHeader(context),
             title: AutoSizeText(
               title,
               style: TextStyle(fontWeight: FontWeight.w300, fontSize: 13),

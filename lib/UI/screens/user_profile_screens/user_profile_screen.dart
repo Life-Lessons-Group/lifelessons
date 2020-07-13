@@ -1,17 +1,16 @@
-
-
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 
 import 'package:firebase_flutter_life/Models/models.dart';
+import 'package:firebase_flutter_life/features/authentication/data/models/user.dart';
+import 'package:firebase_flutter_life/features/authentication/data/repositories/firebase_user_data_service.dart';
 
 import 'package:firebase_flutter_life/features/settings/presentation/pages/settings_screen.dart';
 import 'package:firebase_flutter_life/UI/screens/user_profile_screens/user_book_tab.dart';
 
-
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
-
+import 'package:provider/provider.dart';
 
 class UserProfileScreen extends StatefulWidget {
   final String profileID;
@@ -28,7 +27,6 @@ class _UserProfileScreenState extends State<UserProfileScreen> {
 
   bool acessGranted = false;
   bool isLoading = false;
-
 
   @override
   void initState() {
@@ -127,8 +125,7 @@ class _UserProfileScreenState extends State<UserProfileScreen> {
     );
   }
 
-  buildProfileButton()  {
-   
+  buildProfileButton() {
     if (acessGranted) {
       return buildButton(
         text: "Block From Private Book",
@@ -139,17 +136,17 @@ class _UserProfileScreenState extends State<UserProfileScreen> {
         text: "Give Private Book Access",
         function: handleAcessGranted,
       );
-    } 
+    }
   }
 
-  buildProfileHeader() {
-    return FutureBuilder(
-        // future: UserRepository().usersRef.document(widget.profileID).get(),
+  buildProfileHeader(BuildContext context) {
+    final user = Provider.of<User>(context);
+    return StreamBuilder(
+        stream: UserDatabaseService(uid: user.userID).userData,
         builder: (context, futureSnapshot) {
           if (futureSnapshot.connectionState == ConnectionState.waiting) {
             return skeletonHeader();
           }
-          User user = User.fromDocument(futureSnapshot.data);
           print("USER: $user");
           return Container(
             height: 320,
@@ -330,13 +327,13 @@ class _UserProfileScreenState extends State<UserProfileScreen> {
     );
   }
 
-  buildProfileScreen() {
+  buildProfileScreen(BuildContext context) {
     return Material(
       child: Container(
         color: Colors.white24,
         child: Column(
           children: <Widget>[
-            buildProfileHeader(),
+            buildProfileHeader(context),
             SizedBox(height: 10),
             toggleBookView()
           ],
@@ -347,7 +344,7 @@ class _UserProfileScreenState extends State<UserProfileScreen> {
 
   @override
   Widget build(BuildContext context) {
-    return buildProfileScreen();
+    return buildProfileScreen(context);
   }
 }
 

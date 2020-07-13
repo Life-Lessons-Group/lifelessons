@@ -1,8 +1,8 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:firebase_flutter_life/features/authentication/data/models/user.dart';
+import 'package:firebase_flutter_life/features/authentication/data/repositories/firebase_user_data_service.dart';
 
 import 'package:firebase_flutter_life/features/timeline/data/repositories/posts_repository.dart';
-
-import 'package:firebase_flutter_life/Models/models.dart';
 
 import 'package:firebase_flutter_life/features/settings/presentation/pages/settings_screen.dart';
 
@@ -32,6 +32,8 @@ class _ProfileScreenState extends State<ProfileScreen> {
   @override
   void initState() {
     super.initState();
+    print('CURRENT USER:');
+    print(widget.currentUser.username);
     getPostCount();
     getFollowers();
     getFollowing();
@@ -68,7 +70,6 @@ class _ProfileScreenState extends State<ProfileScreen> {
   }
 
   buildProfileHeader() {
-    final user = Provider.of<User>(context);
     return Container(
       height: 320,
       width: double.infinity,
@@ -116,12 +117,13 @@ class _ProfileScreenState extends State<ProfileScreen> {
                 SizedBox(height: 20),
                 CircleAvatar(
                   radius: 40.0,
-                  backgroundColor: Colors.grey,
-                  // backgroundImage: (user.profileImageUrl),
+                   backgroundImage: widget.currentUser.profileImageUrl != null
+                ? Image.network(widget.currentUser.profileImageUrl)
+                : AssetImage('assets/images/placeholder-user.png'),
                 ),
                 SizedBox(height: 10),
                 Text(
-                  user.username,
+                  widget.currentUser.username,
                   style: TextStyle(fontSize: 16, color: Colors.white),
                 ),
                 SizedBox(height: 5),

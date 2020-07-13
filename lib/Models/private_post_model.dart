@@ -1,14 +1,12 @@
-
-
 import 'package:cloud_firestore/cloud_firestore.dart';
-
 
 import 'package:firebase_flutter_life/Models/models.dart';
 import 'package:firebase_flutter_life/Services/audio_service.dart';
+import 'package:firebase_flutter_life/features/authentication/data/models/user.dart';
+import 'package:firebase_flutter_life/features/authentication/data/repositories/firebase_user_data_service.dart';
 
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
-
 
 class PrivatePost extends StatefulWidget {
   final String title;
@@ -61,7 +59,7 @@ class _PrivatePostState extends State<PrivatePost> {
   final String username;
   final String userImage;
   bool showHeart = false;
-  bool isLiked;
+  bool isLiked = false;
   int likeCount;
   bool isPlaying = false;
 
@@ -77,18 +75,19 @@ class _PrivatePostState extends State<PrivatePost> {
   });
 
   buildPostHeader() {
-    return FutureBuilder(
-        // future: UserRepository().usersRef.document(userID).get(),
+    return StreamBuilder(
+        stream: UserDatabaseService(uid: userID).userData,
         builder: (context, snapshot) {
           if (snapshot.connectionState == ConnectionState.waiting) {
             return CircleAvatar(
               backgroundColor: Colors.grey,
             );
           }
-          User user = User.fromDocument(snapshot.data);
-
+          User user = snapshot.data;
           return CircleAvatar(
-            backgroundImage: NetworkImage(user.profileImageUrl),
+            backgroundImage: user.profileImageUrl != null
+                ? Image.network(user.profileImageUrl)
+                : AssetImage('assets/images/placeholder-user.png'),
           );
         });
   }

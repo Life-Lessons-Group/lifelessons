@@ -1,5 +1,6 @@
 
 import 'package:firebase_flutter_life/Models/models.dart';
+import 'package:firebase_flutter_life/features/authentication/data/models/user.dart';
 
 import 'package:firebase_flutter_life/features/timeline/presentation/widgets/post_list.dart';
 import 'package:flutter/material.dart';

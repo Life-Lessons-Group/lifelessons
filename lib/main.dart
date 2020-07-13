@@ -1,4 +1,5 @@
 
+import 'package:firebase_flutter_life/features/authentication/data/models/user.dart';
 import 'package:firebase_flutter_life/features/authentication/data/repositories/firebase_auth_service.dart';
 import 'package:firebase_flutter_life/wrapper.dart';
 import 'package:flutter/cupertino.dart';
@@ -16,10 +17,10 @@ void main() => runApp(App());
 class App extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
-    return StreamProvider.value(
+    return StreamProvider<User>.value(
       value: AuthService().user,
       child: MaterialApp(
-        home: Wrapper(),
+        home:Wrapper(),
         routes: {
           HomeScreen.routeName : (context) => HomeScreen(),
           TopicsScreen.routeName: (context) => TopicsScreen(),
