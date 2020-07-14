@@ -41,7 +41,7 @@ class _LoginFormState extends State<LoginForm> {
         ),
       );
     } else {
-      Navigator.pushNamed(context, HomeScreen.routeName);
+      Navigator.pushReplacementNamed(context, HomeScreen.routeName);
     }
   }
 

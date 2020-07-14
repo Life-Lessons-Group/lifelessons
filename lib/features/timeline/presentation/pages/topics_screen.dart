@@ -23,6 +23,7 @@ class TopicsScreen extends StatelessWidget {
         backgroundColor: Colors.transparent,
         extendBodyBehindAppBar: true,
         appBar: AppBar(
+          leading: Container(),
           title: Text(
             "life lessons",
             style: TextStyle(color: Colors.white, fontSize: 24.0),

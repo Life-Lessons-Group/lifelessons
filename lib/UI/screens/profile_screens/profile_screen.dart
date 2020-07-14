@@ -1,4 +1,7 @@
+import 'dart:io';
+
 import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:firebase_flutter_life/Services/firebase_service.dart';
 import 'package:firebase_flutter_life/features/authentication/data/models/user.dart';
 import 'package:firebase_flutter_life/features/authentication/data/repositories/firebase_user_data_service.dart';
 
@@ -9,6 +12,7 @@ import 'package:firebase_flutter_life/features/settings/presentation/pages/setti
 import 'package:firebase_flutter_life/features/profile/presentation/widgets/book_tab.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
+import 'package:image_picker/image_picker.dart';
 import 'package:provider/provider.dart';
 
 class ProfileScreen extends StatefulWidget {
@@ -28,6 +32,20 @@ class _ProfileScreenState extends State<ProfileScreen> {
   int postCount = 0;
   int followerCount = 0;
   int followingCount = 0;
+
+  File _image;
+  final picker = ImagePicker();
+  final fire = FirebaseService();
+
+  Future getImage() async {
+    final pickedFile = await picker.getImage(source: ImageSource.gallery);
+
+    setState(() {
+      _image = File(pickedFile.path);
+      fire.photoUpload(
+      file: _image, path: pickedFile.path, contentType: 'image/jpeg', userID: widget.currentUser.userID);
+    });
+  }
 
   @override
   void initState() {
@@ -115,11 +133,27 @@ class _ProfileScreenState extends State<ProfileScreen> {
                   ],
                 ),
                 SizedBox(height: 20),
-                CircleAvatar(
-                  radius: 40.0,
-                   backgroundImage: widget.currentUser.profileImageUrl != null
-                ? Image.network(widget.currentUser.profileImageUrl)
-                : AssetImage('assets/images/placeholder-user.png'),
+                GestureDetector(
+                  onTap: () => getImage(),
+                  child: Stack(
+                    children: <Widget>[
+                      CircleAvatar(
+                        radius: 40.0,
+                        backgroundImage: widget.currentUser.profileImageUrl !=
+                                null
+                            ? NetworkImage(widget.currentUser.profileImageUrl)
+                            : AssetImage('assets/images/placeholder-user.png'),
+                      ),
+                      Positioned(
+                        child: Icon(
+                          Icons.add_a_photo,
+                          color: Colors.grey[600],
+                        ),
+                        bottom: 1,
+                        right: 1,
+                      ),
+                    ],
+                  ),
                 ),
                 SizedBox(height: 10),
                 Text(

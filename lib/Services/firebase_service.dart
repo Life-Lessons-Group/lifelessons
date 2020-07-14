@@ -105,14 +105,15 @@ class FirebaseService {
   }
 
   /// Generic file upload for any [path] and [contentType]
-  Future<String> photoUpload({
+  Future photoUpload({
     @required File file,
     @required String path,
     @required String contentType,
+    @required String userID,
   }) async {
     print('uploading to: $path');
     final storageReference =
-        FirebaseStorage.instance.ref().child("recordings").child(path);
+        FirebaseStorage.instance.ref().child("profile_image").child(path);
     final uploadTask = storageReference.putFile(
         file, StorageMetadata(contentType: contentType));
     final snapshot = await uploadTask.onComplete;
@@ -125,7 +126,11 @@ class FirebaseService {
     // Url used to download file/image
     final downloadUrl = await snapshot.ref.getDownloadURL();
     print('downloadUrl: $downloadUrl');
-    return downloadUrl;
+
+    await Firestore.instance
+        .collection('users')
+        .document(userID)
+        .updateData({'profileImageUrl': downloadUrl});
   }
 
   Future submitAuthForm(
