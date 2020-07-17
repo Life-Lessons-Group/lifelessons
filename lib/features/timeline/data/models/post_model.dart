@@ -98,14 +98,11 @@ class _PostState extends State<Post> {
             );
           }
           User user = snapshot.data;
-          
-          return GestureDetector(
-            onTap: () {
-              showProfile(context, userID);
-            },
-            child: CircleAvatar(
-              backgroundImage: NetworkImage(user.profileImageUrl),
-            ),
+
+          return CircleAvatar(
+            backgroundImage: user.profileImageUrl != null
+                ? Image.network(user.profileImageUrl)
+                : AssetImage('assets/images/logo.jpeg'),
           );
         });
   }

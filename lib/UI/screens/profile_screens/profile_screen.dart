@@ -3,7 +3,7 @@ import 'dart:io';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_flutter_life/Services/firebase_service.dart';
 import 'package:firebase_flutter_life/features/authentication/data/models/user.dart';
-import 'package:firebase_flutter_life/features/authentication/data/repositories/firebase_user_data_service.dart';
+
 
 import 'package:firebase_flutter_life/features/timeline/data/repositories/posts_repository.dart';
 
@@ -13,7 +13,7 @@ import 'package:firebase_flutter_life/features/profile/presentation/widgets/book
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
 import 'package:image_picker/image_picker.dart';
-import 'package:provider/provider.dart';
+
 
 class ProfileScreen extends StatefulWidget {
   final User currentUser;
@@ -142,7 +142,7 @@ class _ProfileScreenState extends State<ProfileScreen> {
                         backgroundImage: widget.currentUser.profileImageUrl !=
                                 null
                             ? NetworkImage(widget.currentUser.profileImageUrl)
-                            : AssetImage('assets/images/placeholder-user.png'),
+                            : AssetImage('assets/images/logo.jpeg'),
                       ),
                       Positioned(
                         child: Icon(

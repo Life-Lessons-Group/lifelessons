@@ -87,7 +87,7 @@ class _PrivatePostState extends State<PrivatePost> {
           return CircleAvatar(
             backgroundImage: user.profileImageUrl != null
                 ? Image.network(user.profileImageUrl)
-                : AssetImage('assets/images/placeholder-user.png'),
+                : AssetImage('assets/images/logo.jpeg'),
           );
         });
   }
