@@ -2,6 +2,7 @@ import 'dart:async';
 import 'dart:io';
 import 'dart:math';
 
+import 'package:audioplayers/audio_cache.dart';
 import 'package:audioplayers/audioplayers.dart';
 import 'package:firebase_flutter_life/Services/firebase_service.dart';
 
@@ -40,6 +41,7 @@ class _TestRecordState extends State<TestRecord> with TickerProviderStateMixin {
       vsync: this,
       duration: Duration(seconds: 180),
     );
+     assetPlayer.load('note4.wav');
   }
 
   String recordingTitle = "";
@@ -60,6 +62,7 @@ class _TestRecordState extends State<TestRecord> with TickerProviderStateMixin {
   int index = 0;
 
   AudioPlayer audioPlayer = AudioPlayer();
+  AudioCache assetPlayer = AudioCache(prefix: 'sounds/');
 
   Future<bool> checkPermission() async {
     if (!await Permission.microphone.isGranted) {
@@ -74,6 +77,7 @@ class _TestRecordState extends State<TestRecord> with TickerProviderStateMixin {
   void startRecord() async {
     bool hasPermission = await checkPermission();
     if (hasPermission) {
+      assetPlayer.play('note4.wav');
       statusText = "Recording...";
       recordFilePath = await getFilePath();
       isComplete = false;

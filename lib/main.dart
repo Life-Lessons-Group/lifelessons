@@ -1,4 +1,5 @@
 
+import 'package:firebase_flutter_life/core/AppColors.dart';
 import 'package:firebase_flutter_life/features/authentication/data/models/user.dart';
 import 'package:firebase_flutter_life/features/authentication/data/repositories/firebase_auth_service.dart';
 import 'package:firebase_flutter_life/wrapper.dart';
@@ -9,6 +10,7 @@ import 'UI/screens/profile_screens/profile_screen.dart';
 import 'UI/screens/record_screens/record_begin_screen.dart';
 import 'UI/screens/screens.dart';
 import 'features/archived/presentation/pages/archived_topic_screen.dart';
+import 'features/settings/presentation/pages/report_bug_screen.dart';
 import 'features/timeline/presentation/pages/topics_screen.dart';
 import 'features/register/presentation/pages/register_screen.dart.dart';
 
@@ -20,6 +22,9 @@ class App extends StatelessWidget {
     return StreamProvider<User>.value(
       value: AuthService().user,
       child: MaterialApp(
+        theme: ThemeData(
+          primaryColor: AppColors.accessoryColor
+        ),
         home:Wrapper(),
         routes: {
           HomeScreen.routeName : (context) => HomeScreen(),
@@ -29,6 +34,7 @@ class App extends StatelessWidget {
           LoginScreen.routeName: (context) => LoginScreen(),
           RegisterScreen.routeName : (context) => RegisterScreen(),
           ArchivedTopicsScreen.routeName: (context) => ArchivedTopicsScreen(),
+          
         },
       ),
     );

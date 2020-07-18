@@ -1,21 +1,19 @@
-
 import 'package:firebase_auth/firebase_auth.dart';
+import 'package:firebase_flutter_life/core/AppColors.dart';
+import 'package:firebase_flutter_life/features/settings/presentation/pages/report_bug_screen.dart';
 import 'package:flutter/material.dart';
-
-
 
 import '../../../login/presentation/pages/login_screen.dart';
 
 class AppDrawer extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
-     
-
     return Scaffold(
       appBar: AppBar(
         title: Text(
           "Settings",
-          style: TextStyle(color: Colors.black, fontSize: 18.0, fontWeight: FontWeight.w400),
+          style: TextStyle(
+              color: Colors.black, fontSize: 18.0, fontWeight: FontWeight.w400),
         ),
         backgroundColor: Colors.white,
         elevation: 0.0,
@@ -104,8 +102,8 @@ class AppDrawer extends StatelessWidget {
                     begin: Alignment.bottomRight,
                     end: Alignment.topLeft,
                     colors: <Color>[
-                      Colors.lightGreen[200],
-                      Colors.lightBlue[600],
+                      AppColors.gradientGreen,
+                      AppColors.gradientBlue,
                     ],
                   ),
                 ),
@@ -117,8 +115,12 @@ class AppDrawer extends StatelessWidget {
                           fontSize: 16.0,
                           color: Colors.white)),
                 )),
-            _createTile(
-                context, "Report a Bug", Icons.arrow_forward_ios, () {}),
+            _createTile(context, "Report a Bug", Icons.arrow_forward_ios, () {
+              Navigator.push(
+                context,
+                MaterialPageRoute(builder: (context) => ReportBug()),
+              );
+            }),
             Divider(height: 0),
             _createTile(context, "Suggestions", Icons.arrow_forward_ios, () {}),
             // Container(
@@ -152,18 +154,23 @@ class AppDrawer extends StatelessWidget {
             SizedBox(
               width: double.infinity,
               height: 40,
-                          child: RaisedButton(
-                
+              child: RaisedButton(
                 color: Colors.red,
-                child: Text("Log Out", style: TextStyle(color: Colors.white, fontSize: 18.0, fontWeight: FontWeight.w400),),
+                child: Text(
+                  "Log Out",
+                  style: TextStyle(
+                      color: Colors.white,
+                      fontSize: 18.0,
+                      fontWeight: FontWeight.w400),
+                ),
                 shape: RoundedRectangleBorder(
-                  //borderRadius: BorderRadius.circular(20.0),
-                ), 
+                    //borderRadius: BorderRadius.circular(20.0),
+                    ),
                 onPressed: () {
-                Navigator.pushReplacementNamed(context, LoginScreen.routeName);
-               FirebaseAuth.instance.signOut();
-               
-               
+                  Navigator.pushReplacementNamed(
+                      context, LoginScreen.routeName);
+                  FirebaseAuth.instance.signOut();
+
                   print("user logged out");
                 },
               ),
@@ -183,9 +190,11 @@ class AppDrawer extends StatelessWidget {
         size: 13.0,
         color: Colors.black26,
       ),
-      title: Text(name, style: TextStyle(fontSize: 14.0),),
+      title: Text(
+        name,
+        style: TextStyle(fontSize: 14.0),
+      ),
       onTap: () {
-        Navigator.pop(context);
         action();
       },
     );

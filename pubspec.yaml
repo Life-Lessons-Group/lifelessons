@@ -14,7 +14,7 @@ description: A new Flutter project.
 version: 1.0.0+2
 
 environment:
-  sdk: ">=2.2.0 <3.0.0"
+  sdk: ">=2.2.2 <3.0.0"
 
 dependencies:
   flutter:
@@ -40,6 +40,7 @@ dependencies:
   bloc: ^5.0.1
   flutter_bloc: ^5.0.1
   dartz: ^0.8.6
+  flutter_email_sender: ^3.0.1
   
   
 
@@ -93,6 +94,7 @@ flutter:
     - assets/images/
     - assets/icons/
     - assets/launcher/
+    - assets/sounds/
 
   # An image asset can refer to one or more resolution-specific "variants", see
   # https://flutter.dev/assets-and-images/#resolution-aware.
