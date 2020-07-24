@@ -200,7 +200,7 @@ class _UserProfileScreenState extends State<UserProfileScreen> {
                       CircleAvatar(
                         radius: 40.0,
                         backgroundColor: Colors.grey,
-                        backgroundImage: NetworkImage(user.profileImageUrl),
+                        backgroundImage: NetworkImage(user.profileImageURL),
                       ),
                       SizedBox(height: 10),
                       Text(

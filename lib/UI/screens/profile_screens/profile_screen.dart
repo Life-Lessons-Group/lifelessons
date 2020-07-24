@@ -139,9 +139,9 @@ class _ProfileScreenState extends State<ProfileScreen> {
                     children: <Widget>[
                       CircleAvatar(
                         radius: 40.0,
-                        backgroundImage: widget.currentUser.profileImageUrl !=
+                        backgroundImage: widget.currentUser.profileImageURL !=
                                 null
-                            ? NetworkImage(widget.currentUser.profileImageUrl)
+                            ? NetworkImage(widget.currentUser.profileImageURL)
                             : AssetImage('assets/images/logo.jpeg'),
                       ),
                       Positioned(

@@ -4,7 +4,7 @@ class User {
   final String firstName;
   final String lastName;
   final String email;
-  String profileImageUrl;
+  String profileImageURL;
   final String bio;
   final String location;
 
@@ -14,7 +14,7 @@ class User {
     this.firstName,
     this.lastName,
     this.email,
-    this.profileImageUrl,
+    this.profileImageURL,
     this.bio,
     this.location,
   });

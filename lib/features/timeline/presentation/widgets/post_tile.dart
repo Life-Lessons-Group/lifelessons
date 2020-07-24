@@ -38,7 +38,7 @@ class PostTile extends StatelessWidget {
             margin: EdgeInsets.fromLTRB(20, 6, 20, 0),
             child: ListTile(
               leading: CircleAvatar(radius: 25.0, backgroundColor: Colors.red),
-              title: Text(post.title),
+              title: Text(post.lessonTitle),
               subtitle: Text(snapshot.data['username']),
               trailing: IconButton(
                 icon: Icon(Icons.more_vert),

@@ -17,47 +17,43 @@ import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
 class Post extends StatefulWidget {
-  final String title;
-  final String topic;
+  final String lessonTitle;
+  final String lessonTopic;
   final String postID;
-  final String userID;
+  final String uid;
   final String recordingURL;
   final String username;
-  final String userImage;
   final dynamic likes;
 
   Post({
-    @required this.title,
-    @required this.topic,
+    @required this.lessonTitle,
+    @required this.lessonTopic,
     @required this.postID,
-    @required this.userID,
+    @required this.uid,
     @required this.recordingURL,
     @required this.username,
-    @required this.userImage,
     this.likes,
   });
 
   factory Post.fromDocument(DocumentSnapshot doc) {
     return Post(
-      title: doc["title"],
-      topic: doc["topic"],
+      lessonTitle: doc["title"],
+      lessonTopic: doc["topic"],
       postID: doc["postID"],
-      userID: doc["userID"],
+      uid: doc["userID"],
       recordingURL: doc["recordingURL"],
       username: doc["username"],
-      userImage: doc["userImage"],
       likes: doc['likes'],
     );
   }
   @override
   _PostState createState() => _PostState(
-        title: this.title,
-        topic: this.topic,
+        title: this.lessonTitle,
+        topic: this.lessonTopic,
         postID: this.postID,
-        userID: this.userID,
+        userID: this.uid,
         recordingURL: this.recordingURL,
         username: this.username,
-        userImage: this.userImage,
         likes: this.likes,
       );
 }
@@ -100,8 +96,8 @@ class _PostState extends State<Post> {
           User user = snapshot.data;
 
           return CircleAvatar(
-            backgroundImage: user.profileImageUrl != null
-                ? Image.network(user.profileImageUrl)
+            backgroundImage: user.profileImageURL != null
+                ? Image.network(user.profileImageURL)
                 : AssetImage('assets/images/logo.jpeg'),
           );
         });

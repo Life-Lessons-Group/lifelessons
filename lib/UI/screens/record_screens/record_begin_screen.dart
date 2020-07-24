@@ -1,4 +1,4 @@
-import 'package:firebase_flutter_life/Models/topics.dart.dart';
+import 'package:firebase_flutter_life/Models/topics.dart';
 
 import 'package:flutter/material.dart';
 

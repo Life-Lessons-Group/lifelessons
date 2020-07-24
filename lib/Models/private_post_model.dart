@@ -85,8 +85,8 @@ class _PrivatePostState extends State<PrivatePost> {
           }
           User user = snapshot.data;
           return CircleAvatar(
-            backgroundImage: user.profileImageUrl != null
-                ? Image.network(user.profileImageUrl)
+            backgroundImage: user.profileImageURL != null
+                ? Image.network(user.profileImageURL)
                 : AssetImage('assets/images/logo.jpeg'),
           );
         });

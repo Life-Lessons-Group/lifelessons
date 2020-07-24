@@ -20,7 +20,7 @@ class UserDatabaseService {
 
   Future updateUserPhoto(String photoUrl) async {
     usersCollection.document(uid).setData({
-    "profileImageUrl": photoUrl
+    "profileImageURL": photoUrl
     });
   }
 
@@ -31,7 +31,7 @@ class UserDatabaseService {
       userID: snapshot['userID'],
       email: snapshot['email'],
       username: snapshot['username'],
-      profileImageUrl: snapshot['profileImageUrl'],
+      profileImageURL: snapshot['profileImageURL'],
       bio: snapshot['bio'],
       location: snapshot['location'],
     );
