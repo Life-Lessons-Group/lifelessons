@@ -37,10 +37,10 @@ class Post extends StatefulWidget {
 
   factory Post.fromDocument(DocumentSnapshot doc) {
     return Post(
-      lessonTitle: doc["title"],
-      lessonTopic: doc["topic"],
+      lessonTitle: doc["lessonTitle"],
+      lessonTopic: doc["lessonTopic"],
       postID: doc["postID"],
-      uid: doc["userID"],
+      uid: doc["uid"],
       recordingURL: doc["recordingURL"],
       username: doc["username"],
       likes: doc['likes'],
@@ -48,10 +48,10 @@ class Post extends StatefulWidget {
   }
   @override
   _PostState createState() => _PostState(
-        title: this.lessonTitle,
-        topic: this.lessonTopic,
+       lessonTitle: this.lessonTitle,
+        lessonTopic: this.lessonTopic,
         postID: this.postID,
-        userID: this.uid,
+        uid: this.uid,
         recordingURL: this.recordingURL,
         username: this.username,
         likes: this.likes,
@@ -59,13 +59,12 @@ class Post extends StatefulWidget {
 }
 
 class _PostState extends State<Post> {
-  final String title;
-  final String topic;
+  final String lessonTitle;
+  final String lessonTopic;
   final String postID;
-  final String userID;
+  final String uid;
   final String recordingURL;
   final String username;
-  final String userImage;
   bool showHeart = false;
   bool isLiked;
   int likeCount;
@@ -73,20 +72,19 @@ class _PostState extends State<Post> {
   bool isPlaying = false;
 
   _PostState({
-    this.title,
-    this.topic,
+    this.lessonTitle,
+    this.lessonTopic,
     this.postID,
-    this.userID,
+    this.uid,
     this.recordingURL,
     this.username,
-    this.userImage,
     this.likeCount,
     this.likes,
   });
 
   buildPostHeader(BuildContext context) {
     return StreamBuilder<User>(
-        stream: UserDatabaseService(uid: userID).userData,
+        stream: UserDatabaseService(uid: uid).userData,
         builder: (context, snapshot) {
           if (snapshot.connectionState == ConnectionState.waiting) {
             return CircleAvatar(
@@ -147,13 +145,12 @@ class _PostState extends State<Post> {
         .collection("userFavorites")
         .document(postID)
         .setData({
-      "title": title,
-      "topic": topic,
+      "lessonTitle": lessonTitle,
+      "lessonTopic": lessonTopic,
       "postID": postID,
-      "userID": userID,
+      "uid": uid,
       "recordingURL": recordingURL,
       "username": username,
-      "userImage": userImage,
       "likes": {},
     });
   }
@@ -187,12 +184,12 @@ class _PostState extends State<Post> {
           child: ListTile(
             leading: buildPostHeader(context),
             title: AutoSizeText(
-              title,
+              lessonTitle,
               style: TextStyle(fontWeight: FontWeight.w300, fontSize: 13),
               maxLines: 1,
             ),
             subtitle: AutoSizeText(
-              topic,
+             lessonTopic,
               style: TextStyle(fontWeight: FontWeight.w600, fontSize: 12),
               maxLines: 1,
             ),
