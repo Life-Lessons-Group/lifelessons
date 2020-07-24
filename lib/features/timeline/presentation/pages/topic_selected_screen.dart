@@ -52,14 +52,25 @@ class _TopicSelectedScreenState extends State<TopicSelectedScreen> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: AutoSizeText(widget.topic, maxLines: 1,),
+        leading: IconButton(
+            icon: Icon(Icons.arrow_back),
+            onPressed: () {
+              
+              Navigator.pop(context);
+            }),
+        title: AutoSizeText(
+          widget.topic,
+          maxLines: 1,
+        ),
         flexibleSpace: Container(
           decoration: BoxDecoration(
             gradient: LinearGradient(
                 begin: Alignment.topLeft,
                 end: Alignment.bottomRight,
-                colors: <Color>[ Colors.lightGreen[200],
-                  Colors.lightBlue[600],]),
+                colors: <Color>[
+                  Colors.lightGreen[200],
+                  Colors.lightBlue[600],
+                ]),
           ),
         ),
       ),

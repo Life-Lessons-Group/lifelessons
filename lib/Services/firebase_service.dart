@@ -48,13 +48,12 @@ class FirebaseService {
     final userData =
         await Firestore.instance.collection("users").document(user.uid).get();
     await Firestore.instance.collection("posts").document(postID).setData({
-      "title": title,
-      "topic": topic,
+      "lessonTitle": title,
+      "lessonTopic": topic,
       "postID": postID,
-      "userID": user.uid,
+      "uid": user.uid,
       "recordingURL": downloadUrl.toString(),
       "username": userData["username"],
-      "userImage": userData["userImage"],
       "likes": {},
     });
   }

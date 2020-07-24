@@ -65,6 +65,7 @@ class _PostState extends State<Post> {
   final String uid;
   final String recordingURL;
   final String username;
+ 
   bool showHeart = false;
   bool isLiked;
   int likeCount;
@@ -94,8 +95,9 @@ class _PostState extends State<Post> {
           User user = snapshot.data;
 
           return CircleAvatar(
+            radius: 30,
             backgroundImage: user.profileImageURL != null
-                ? Image.network(user.profileImageURL)
+                ? NetworkImage(user.profileImageURL)
                 : AssetImage('assets/images/logo.jpeg'),
           );
         });

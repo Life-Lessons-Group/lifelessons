@@ -169,7 +169,8 @@ class _ProfileScreenState extends State<ProfileScreen> {
                       color: Colors.white70,
                       size: 12,
                     ),
-                    Text("Washington, D.C.",
+                    
+                    Text("United States",
                         style: TextStyle(
                             fontSize: 12,
                             color: Colors.white,
