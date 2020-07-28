@@ -15,21 +15,11 @@ class LoginScreen extends StatelessWidget {
     String email;
     return Scaffold(
       backgroundColor: Colors.white,
-      appBar: AppBar(
-        backgroundColor: Colors.transparent,
-        elevation: 0.0,
-        actions: <Widget>[
-          IconButton(
-            icon: Icon(Icons.arrow_back),
-            onPressed: () {},
-          )
-        ],
-      ),
       body: SingleChildScrollView(
         child: Column(
           children: <Widget>[
             SizedBox(
-              height: MediaQuery.of(context).size.height / 20,
+              height: MediaQuery.of(context).size.height / 10,
             ),
             Padding(
               padding: EdgeInsets.only(left: 20),
@@ -85,7 +75,10 @@ class LoginScreen extends StatelessWidget {
                     DialogButton(
                       child: Text(
                         "Send Reset Link",
-                        style: TextStyle(color: Colors.white, fontSize: 16, fontWeight: FontWeight.w300),
+                        style: TextStyle(
+                            color: Colors.white,
+                            fontSize: 16,
+                            fontWeight: FontWeight.w300),
                       ),
                       onPressed: () {
                         auth.resetPassword(email);

@@ -1,3 +1,7 @@
+import 'package:auto_size_text/auto_size_text.dart';
+import 'package:firebase_flutter_life/UI/screens/record_screens/record_begin_screen.dart';
+import 'package:firebase_flutter_life/UI/screens/record_screens/test_record_screen.dart';
+import 'package:firebase_flutter_life/core/AppColors.dart';
 import 'package:firebase_flutter_life/features/timeline/presentation/pages/topic_selected_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
@@ -58,7 +62,7 @@ class _TopicSearchState extends State<TopicSearch> {
                   itemCount: items.length,
                   itemBuilder: (context, index) {
                     return Padding(
-                      padding: EdgeInsets.all(15.0),
+                      padding: EdgeInsets.all(10.0),
                       child: Card(
                         shape: RoundedRectangleBorder(
                           borderRadius: BorderRadius.circular(15.0),
@@ -75,43 +79,151 @@ class _TopicSearchState extends State<TopicSearch> {
                                             20.0)), //this right here
                                     child: Container(
                                       height: 200,
-                                      child: Padding(
-                                        padding: const EdgeInsets.all(12.0),
-                                        child: Column(
-                                          mainAxisAlignment:
-                                              MainAxisAlignment.center,
-                                          crossAxisAlignment:
-                                              CrossAxisAlignment.start,
-                                          children: [
-                                            TextField(
-                                              decoration: InputDecoration(
-                                                  border: InputBorder.none,
-                                                  hintText:
-                                                      'What do you want to remember?'),
-                                            ),
-                                            SizedBox(
-                                              width: 320.0,
-                                              child: RaisedButton(
-                                                onPressed: () {},
-                                                child: Text(
-                                                  "Save",
-                                                  style: TextStyle(
-                                                      color: Colors.white),
-                                                ),
-                                                color: const Color(0xFF1BC0C5),
+                                      child: Column(
+                                        children: [
+                                          Container(
+                                            height: 100,
+                                            width: double.infinity,
+                                            padding: EdgeInsets.all(10),
+                                            child: Center(
+                                              child: AutoSizeText(
+                                                items[index],
+                                                style: TextStyle(
+                                                    color: Colors.white,
+                                                    fontSize: 24,
+                                                    ),
+                                                maxLines: 1,
                                               ),
-                                            )
-                                          ],
-                                        ),
+                                            ),
+                                            decoration: BoxDecoration(
+                                              gradient: LinearGradient(
+                                                begin: Alignment.bottomRight,
+                                                end: Alignment.topLeft,
+                                                colors: <Color>[
+                                                  AppColors.gradientGreen,
+                                                  AppColors.gradientBlue,
+                                                ],
+                                              ),
+                                            ),
+                                          ),
+                                          SizedBox(
+                                            height: 40,
+                                          ),
+                                          Row(
+                                              mainAxisSize: MainAxisSize.max,
+                                              mainAxisAlignment:
+                                                  MainAxisAlignment.spaceEvenly,
+                                              children: [
+                                                SizedBox(
+                                                  width: 125,
+                                                  height: 40,
+                                                  child: RaisedButton(
+                                                    onPressed: () {
+                                                      var learnRoute =
+                                                          MaterialPageRoute(
+                                                        builder: (BuildContext
+                                                                context) =>
+                                                            TopicSelectedScreen(
+                                                                topic: items[
+                                                                    index]),
+                                                      );
+                                                      Navigator.of(context)
+                                                          .push(learnRoute);
+                                                    },
+                                                    shape:
+                                                        RoundedRectangleBorder(
+                                                            borderRadius:
+                                                                BorderRadius
+                                                                    .circular(
+                                                                        80.0)),
+                                                    padding:
+                                                        EdgeInsets.all(0.0),
+                                                    child: Ink(
+                                                      decoration: BoxDecoration(
+                                                          gradient:
+                                                              LinearGradient(
+                                                            colors: [
+                                                              AppColors
+                                                                  .gradientGreen,
+                                                              AppColors
+                                                                  .gradientBlue
+                                                            ],
+                                                            begin: Alignment
+                                                                .bottomLeft,
+                                                            end: Alignment
+                                                                .topRight,
+                                                          ),
+                                                          borderRadius:
+                                                              BorderRadius
+                                                                  .circular(
+                                                                      30.0)),
+                                                      child: Container(
+                                                        constraints: BoxConstraints(
+                                                            maxWidth: MediaQuery.of(
+                                                                        context)
+                                                                    .size
+                                                                    .width /
+                                                                1.25,
+                                                            minHeight: 50.0),
+                                                        alignment:
+                                                            Alignment.center,
+                                                        child: Text(
+                                                          "Learn",
+                                                          textAlign:
+                                                              TextAlign.center,
+                                                          style: TextStyle(
+                                                            color: Colors.white,
+                                                            fontSize: 18,
+                                                          ),
+                                                        ),
+                                                      ),
+                                                    ),
+                                                  ),
+                                                ),
+                                                SizedBox(
+                                                  width: 125,
+                                                  height: 40,
+                                                  child: RaisedButton(
+                                                    color: Colors.white,
+                                                    onPressed: () {
+                                                      var contributeRoute =
+                                                          MaterialPageRoute(
+                                                        builder: (BuildContext
+                                                                context) =>
+                                                            TestRecord(
+                                                                topic: items[
+                                                                    index]),
+                                                      );
+                                                      Navigator.of(context)
+                                                          .push(
+                                                              contributeRoute);
+                                                    },
+                                                    shape: RoundedRectangleBorder(
+                                                        borderRadius:
+                                                            BorderRadius.circular(
+                                                                80.0),
+                                                        side: BorderSide(
+                                                            color: AppColors
+                                                                .accessoryColor,
+                                                            width: 2,
+                                                            style: BorderStyle
+                                                                .solid)),
+                                                    child: Text(
+                                                      "Contribute",
+                                                      style: TextStyle(
+                                                        color: AppColors
+                                                            .accessoryColor,
+                                                        fontSize: 18,
+                                                      ),
+                                                    ),
+                                                  ),
+                                                ),
+                                              ])
+                                        ],
                                       ),
                                     ),
                                   );
                                 });
-                            // var learnRoute = MaterialPageRoute(
-                            //   builder: (BuildContext context) =>
-                            //       TopicSelectedScreen(topic: items[index]),
-                            // );
-                            // Navigator.of(context).push(learnRoute);
                           },
                           title: Text(
                             items[index],
@@ -128,22 +240,21 @@ class _TopicSearchState extends State<TopicSearch> {
                 ),
               ),
               SizedBox(height: 20),
-              Container(
-                decoration: BoxDecoration(
-                    borderRadius: BorderRadius.all(Radius.circular(20)),
-                    color: Colors.white70),
-                width: 250,
-                child: Row(
-                  mainAxisAlignment: MainAxisAlignment.center,
-                  children: <Widget>[
-                    FlatButton(
-                      child: Text("Archived Lessons"),
-                      onPressed: () {
-                        Navigator.pushNamed(context, "/archived");
-                      },
-                    ),
-                    Icon(Icons.arrow_forward),
-                  ],
+              GestureDetector(
+                onTap: () => (Navigator.pushNamed(context, "/archived")),
+                child: Container(
+                  decoration: BoxDecoration(
+                      borderRadius: BorderRadius.all(Radius.circular(20)),
+                      color: Colors.white70),
+                  width: 250,
+                  height: 50,
+                  child: Row(
+                    mainAxisAlignment: MainAxisAlignment.center,
+                    children: <Widget>[
+                      Text("Archived Lessons"),
+                      Icon(Icons.arrow_forward),
+                    ],
+                  ),
                 ),
               ),
             ],

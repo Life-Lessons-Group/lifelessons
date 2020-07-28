@@ -59,7 +59,7 @@ class _MyFavoriteBookScreenState extends State<MyFavoriteBookScreen> {
             ),
             SizedBox(height: 20),
             Text(
-              "To favorite a lesson, tap on a lesson you enjoy and select the option 'Add to Favorites'",
+              "To favorite a lesson, tap on the heart icon",
               style: TextStyle(color: Colors.black26, fontSize: 16.0),
               textAlign: TextAlign.center,
             ),

@@ -1,11 +1,15 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
+import 'package:firebase_flutter_life/UI/screens/record_screens/record_begin_screen.dart';
+import 'package:firebase_flutter_life/UI/screens/record_screens/test_record_screen.dart';
 import 'package:firebase_flutter_life/features/authentication/data/models/user.dart';
 import 'package:firebase_flutter_life/features/timeline/data/repositories/posts_repository.dart';
 
 import 'package:firebase_flutter_life/Models/models.dart';
 import 'package:firebase_flutter_life/features/timeline/data/models/post_model.dart';
 import 'package:flutter/material.dart';
+
+import '../home_screen.dart';
 
 
 class MyPublicBookScreen extends StatefulWidget {
@@ -73,7 +77,8 @@ class _MyPublicBookScreenState extends State<MyPublicBookScreen> {
             //       borderRadius: BorderRadius.circular(20),
             //     ),
             //     color: Colors.indigo[300],
-            //     onPressed: () { Navigator.pushNamed(context, '/record-screen');},
+            //          onPressed: () {
+            //     },
             //     child: Text(
             //       "Record your first lesson!",
             //       style: TextStyle(color: Colors.white),

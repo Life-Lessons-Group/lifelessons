@@ -134,7 +134,7 @@ class _LoginFormState extends State<LoginForm> {
                                   minHeight: 50.0),
                               alignment: Alignment.center,
                               child: Text(
-                                "Sign Up",
+                                "Sign In",
                                 textAlign: TextAlign.center,
                                 style: TextStyle(color: Colors.white),
                               ),
