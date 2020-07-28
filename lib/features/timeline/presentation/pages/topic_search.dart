@@ -1,8 +1,7 @@
 import 'package:firebase_flutter_life/features/timeline/presentation/pages/topic_selected_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
-
-
+import 'package:rflutter_alert/rflutter_alert.dart';
 
 class TopicSearch extends StatefulWidget {
   @override
@@ -67,11 +66,52 @@ class _TopicSearchState extends State<TopicSearch> {
                         color: Colors.blueGrey,
                         child: ListTile(
                           onTap: () {
-                            var learnRoute = MaterialPageRoute(
-                              builder: (BuildContext context) =>
-                                  TopicSelectedScreen(topic: items[index]),
-                            );
-                            Navigator.of(context).push(learnRoute);
+                            showDialog(
+                                context: context,
+                                builder: (BuildContext context) {
+                                  return Dialog(
+                                    shape: RoundedRectangleBorder(
+                                        borderRadius: BorderRadius.circular(
+                                            20.0)), //this right here
+                                    child: Container(
+                                      height: 200,
+                                      child: Padding(
+                                        padding: const EdgeInsets.all(12.0),
+                                        child: Column(
+                                          mainAxisAlignment:
+                                              MainAxisAlignment.center,
+                                          crossAxisAlignment:
+                                              CrossAxisAlignment.start,
+                                          children: [
+                                            TextField(
+                                              decoration: InputDecoration(
+                                                  border: InputBorder.none,
+                                                  hintText:
+                                                      'What do you want to remember?'),
+                                            ),
+                                            SizedBox(
+                                              width: 320.0,
+                                              child: RaisedButton(
+                                                onPressed: () {},
+                                                child: Text(
+                                                  "Save",
+                                                  style: TextStyle(
+                                                      color: Colors.white),
+                                                ),
+                                                color: const Color(0xFF1BC0C5),
+                                              ),
+                                            )
+                                          ],
+                                        ),
+                                      ),
+                                    ),
+                                  );
+                                });
+                            // var learnRoute = MaterialPageRoute(
+                            //   builder: (BuildContext context) =>
+                            //       TopicSelectedScreen(topic: items[index]),
+                            // );
+                            // Navigator.of(context).push(learnRoute);
                           },
                           title: Text(
                             items[index],
