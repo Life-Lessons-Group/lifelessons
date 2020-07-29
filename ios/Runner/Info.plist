@@ -15,21 +15,33 @@
 	<key>CFBundlePackageType</key>
 	<string>APPL</string>
 	<key>CFBundleShortVersionString</key>
-	<string>$(FLUTTER_BUILD_NAME)</string>
+	<string>$(MARKETING_VERSION)</string>
 	<key>CFBundleSignature</key>
 	<string>????</string>
 	<key>CFBundleVersion</key>
-	<string>$(FLUTTER_BUILD_NUMBER)</string>
+	<string>$(CURRENT_PROJECT_VERSION)</string>
 	<key>LSApplicationCategoryType</key>
 	<string></string>
 	<key>LSRequiresIPhoneOS</key>
 	<true/>
+	<key>NSAppleMusicUsageDescription</key>
+	<string>In case a user wants to save their audio recordings.</string>
+	<key>NSCalendarsUsageDescription</key>
+	<string>Uses time and dates a user makes their posts.</string>
 	<key>NSCameraUsageDescription</key>
 	<string>Your camera can be used to take pictures or you can upload from library.</string>
+	<key>NSContactsUsageDescription</key>
+	<string>A plugin uses this to find other users you may know.</string>
+	<key>NSLocationWhenInUseUsageDescription</key>
+	<string>Gives the user the option of adding their location to their recordings.</string>
 	<key>NSMicrophoneUsageDescription</key>
 	<string>Your microphone is needed to record lessons.</string>
+	<key>NSMotionUsageDescription</key>
+	<string>User should never see this.</string>
 	<key>NSPhotoLibraryUsageDescription</key>
 	<string>Your photo library is needed to upload profile pictures.</string>
+	<key>NSSpeechRecognitionUsageDescription</key>
+	<string>Recognize when user starts recording.</string>
 	<key>UIBackgroundModes</key>
 	<array>
 		<string>fetch</string>
