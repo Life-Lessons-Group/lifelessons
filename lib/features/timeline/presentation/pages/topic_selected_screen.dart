@@ -3,9 +3,11 @@ import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_flutter_life/UI/screens/record_screens/test_record_screen.dart';
 import 'package:firebase_flutter_life/features/timeline/data/repositories/posts_repository.dart';
 import 'package:firebase_flutter_life/features/timeline/data/models/post_model.dart';
+import 'package:firebase_flutter_life/features/timeline/presentation/providers/posts.dart';
 import 'package:firebase_messaging/firebase_messaging.dart';
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
+import 'package:provider/provider.dart';
 
 class TopicSelectedScreen extends StatefulWidget {
   final String topic;
@@ -19,22 +21,8 @@ class TopicSelectedScreen extends StatefulWidget {
 class _TopicSelectedScreenState extends State<TopicSelectedScreen> {
   List<Post> posts;
 
-  @override
-  void initState() {
-    final fbm = FirebaseMessaging();
-    fbm.requestNotificationPermissions();
-    fbm.configure();
-    super.initState();
-    getTimeline();
-  }
-
-  getTimeline() async {
-    QuerySnapshot snapshot = await PostRepository()
-        .postsRef
-        .where("lessonTopic", isEqualTo: widget.topic)
-        .getDocuments();
-    List<Post> posts =
-        snapshot.documents.map((doc) => Post.fromDocument(doc)).toList();
+  getTimeline(BuildContext ctx) {
+    final posts = Provider.of<Posts>(ctx).findByTopic(widget.topic);
     setState(() {
       this.posts = posts;
     });
@@ -98,7 +86,10 @@ class _TopicSelectedScreenState extends State<TopicSelectedScreen> {
     return Scaffold(
       appBar: AppBar(
         leading: IconButton(
-            icon: Icon(Icons.arrow_back, color: Colors.white,),
+            icon: Icon(
+              Icons.arrow_back,
+              color: Colors.white,
+            ),
             onPressed: () {
               Navigator.pop(context);
             }),
@@ -120,7 +111,7 @@ class _TopicSelectedScreenState extends State<TopicSelectedScreen> {
         ),
       ),
       body: RefreshIndicator(
-        onRefresh: () => getTimeline(),
+        onRefresh: () => getTimeline(context),
         child: buildTimeline(),
       ),
     );

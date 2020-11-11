@@ -1,5 +1,6 @@
-import 'package:firebase_flutter_life/UI/screens/screens.dart';
+
 import 'package:firebase_flutter_life/features/register/presentation/pages/register_screen.dart.dart';
+import 'package:firebase_flutter_life/routing/route_names.dart';
 import 'package:flutter/material.dart';
 
 class EntryMenuScreen extends StatelessWidget {
@@ -45,7 +46,7 @@ class EntryMenuScreen extends StatelessWidget {
                       style: TextStyle(fontWeight: FontWeight.w400),
                     ),
                     onPressed: () {
-                      Navigator.pushNamed(context, RegisterScreen.routeName);
+                      Navigator.pushNamed(context, RegisterRoute);
                     },
                     shape: new RoundedRectangleBorder(
                       borderRadius: new BorderRadius.circular(30.0),
@@ -61,7 +62,7 @@ class EntryMenuScreen extends StatelessWidget {
                     color: Colors.transparent,
                     child: Text("Login"),
                     onPressed: () {
-                      Navigator.pushNamed(context, LoginScreen.routeName);
+                      Navigator.pushNamed(context, LoginRoute);
                     },
                     shape: new RoundedRectangleBorder(
                         borderRadius: new BorderRadius.circular(30.0),

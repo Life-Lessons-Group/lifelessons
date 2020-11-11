@@ -11,8 +11,7 @@ class ArchivedTopics extends StatefulWidget {
 
 class _ArchivedTopicsState extends State<ArchivedTopics> {
   List<String> items = List<String>();
-  TextEditingController controller = new TextEditingController();
-  String filter;
+ 
 
   @override
   initState() {
@@ -24,18 +23,8 @@ class _ArchivedTopicsState extends State<ArchivedTopics> {
     items.add("Forgiving Yourself");
     items.add("Favorite Traditions");
     items.add("So You Want A Career in Music");
-    controller.addListener(() {
-      setState(() {
-        filter = controller.text;
-      });
-    });
   }
 
-  @override
-  void dispose() {
-    controller.dispose();
-    super.dispose();
-  }
 
   @override
   Widget build(BuildContext context) {

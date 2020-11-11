@@ -1,11 +1,13 @@
-import 'package:firebase_flutter_life/UI/screens/screens.dart';
+
 import 'package:firebase_flutter_life/core/AppColors.dart';
 
 import 'package:firebase_flutter_life/features/authentication/data/repositories/firebase_auth_service.dart';
+import 'package:firebase_flutter_life/routing/route_names.dart';
 
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_spinkit/flutter_spinkit.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 
 class RegisterForm extends StatefulWidget {
   State<RegisterForm> createState() => _RegisterFormState();
@@ -45,8 +47,11 @@ class _RegisterFormState extends State<RegisterForm> {
         ),
       );
     } else {
+      SharedPreferences prefs = await SharedPreferences.getInstance();
+      prefs.setString("email", email);
+      prefs.setBool('first_time', true);
       Future.delayed(const Duration(seconds: 2), () {
-        Navigator.pushNamed(context, HomeScreen.routeName);
+        Navigator.pushNamed(context, HomeRoute);
       });
     }
   }

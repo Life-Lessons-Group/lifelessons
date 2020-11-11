@@ -9,7 +9,7 @@ import 'package:firebase_flutter_life/Models/models.dart';
 import 'package:firebase_flutter_life/features/timeline/data/models/post_model.dart';
 import 'package:flutter/material.dart';
 
-import '../home_screen.dart';
+
 
 
 class MyPublicBookScreen extends StatefulWidget {

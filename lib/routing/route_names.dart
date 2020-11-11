@@ -1,0 +1,9 @@
+const String HomeRoute = 'home-screen';
+const String ProfileRoute = 'profile-screen';
+const String RecordRoute = 'record-screen';
+const String ArchiveRoute = 'archive-screen';
+const String LoginRoute = 'login-screen';
+const String RegisterRoute = 'register-screen';
+const String TopicsRoute = 'topics-screen';
+const String WalkThroughRoute = 'walkthrough-screen';
+const String SplashRoute = 'splash-screen';

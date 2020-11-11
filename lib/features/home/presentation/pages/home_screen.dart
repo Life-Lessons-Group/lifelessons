@@ -1,15 +1,20 @@
+import 'package:firebase_flutter_life/UI/screens/profile_screens/profile_screen.dart';
+import 'package:firebase_flutter_life/UI/screens/record_screens/record_begin_screen.dart';
 import 'package:firebase_flutter_life/features/authentication/data/models/user.dart';
 import 'package:firebase_flutter_life/features/authentication/data/repositories/firebase_user_data_service.dart';
+import 'package:firebase_flutter_life/features/discover/presentation/pages/discover_screen.dart';
+import 'package:firebase_flutter_life/features/hot_topic/presentation/pages/hot_topic_screen.dart';
+import 'package:firebase_flutter_life/features/notifications/presentation/pages/notifications_screen.dart';
+import 'package:firebase_flutter_life/features/timeline/presentation/pages/topics_screen.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:provider/provider.dart';
 
-import 'profile_screens/profile_screen.dart';
-import 'record_screens/record_begin_screen.dart';
-import '../../features/timeline/presentation/pages/topics_screen.dart';
+
 
 class HomeScreen extends StatefulWidget {
-  static const String routeName = '/root';
+  static const String routeName = '/home';
 
   @override
   _HomeScreenState createState() => _HomeScreenState();
@@ -39,10 +44,8 @@ class _HomeScreenState extends State<HomeScreen> {
   }
 
   onTap(int pageIndex) {
-    pageController.animateToPage(
+    pageController.jumpToPage(
       pageIndex,
-      duration: Duration(milliseconds: 300),
-      curve: Curves.easeInOut,
     );
   }
 
@@ -58,7 +61,9 @@ class _HomeScreenState extends State<HomeScreen> {
             body: PageView(
               children: <Widget>[
                 TopicsScreen(),
+                HotTopicScreen(),
                 RecordBeginScreen(),
+                DiscoverScreen(),
                 ProfileScreen(currentUser: userData),
               ],
               controller: pageController,
@@ -66,23 +71,43 @@ class _HomeScreenState extends State<HomeScreen> {
               physics: NeverScrollableScrollPhysics(),
             ),
             bottomNavigationBar: BottomNavigationBar(
+              elevation: 10,
               currentIndex: pageIndex,
+              type: BottomNavigationBarType.fixed,
               onTap: onTap,
               selectedItemColor: Colors.grey[800],
+              unselectedItemColor: Colors.grey[400],
+              showSelectedLabels: false,
+              showUnselectedLabels: false,
+              selectedFontSize: 12,
+              selectedIconTheme: IconThemeData(size: 30),
               items: [
                 BottomNavigationBarItem(
-                    icon: Icon(
-                      Icons.home,
-                    ),
-                    title: Text("Home")),
+                  icon: Icon(
+                    Icons.home,
+                  ),
+                  title: Text("Home"),
+                ),
                 BottomNavigationBarItem(
-                    icon: Icon(
-                      Icons.mic,
-                      size: 35.0,
-                    ),
-                    title: Text("Record")),
+                  icon: FaIcon(
+                    FontAwesomeIcons.fire,
+                  ),
+                  title: Text("Hot Topic"),
+                ),
                 BottomNavigationBarItem(
-                    icon: Icon(Icons.book), title: Text("My Book")),
+                  icon: FaIcon(
+                    FontAwesomeIcons.microphone,
+                  ),
+                  title: Text("Record"),
+                ),
+                BottomNavigationBarItem(
+                  icon: FaIcon(FontAwesomeIcons.globeAmericas),
+                  title: Text("Discover"),
+                ),
+                BottomNavigationBarItem(
+                  icon: Icon(Icons.book),
+                  title: Text("My Book"),
+                ),
               ],
             ),
           );

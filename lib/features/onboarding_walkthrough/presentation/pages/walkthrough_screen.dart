@@ -3,10 +3,9 @@ import 'package:firebase_flutter_life/features/onboarding_walkthrough/presentati
 
 import 'package:flutter/material.dart';
 import "package:flutter_swiper/flutter_swiper.dart";
-import 'package:shared_preferences/shared_preferences.dart';
 
 class WalkthroughScreen extends StatefulWidget {
-  final SharedPreferences prefs;
+  
   final List<Walkthrough> pages = [
     Walkthrough(
       icon: Icons.headset,
@@ -27,8 +26,6 @@ class WalkthroughScreen extends StatefulWidget {
           "Learn from others like yourself, who’ve turned pain into power, by sharing their trials and tribulations with the Life Lessons Community. Now you too, by empowering others, can free yourself from the burdens of the past, in just a few seconds…",
     ),
   ];
-
-  WalkthroughScreen({this.prefs});
 
   @override
   _WalkthroughScreenState createState() => _WalkthroughScreenState();

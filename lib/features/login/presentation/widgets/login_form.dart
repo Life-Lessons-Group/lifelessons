@@ -1,9 +1,11 @@
-import 'package:firebase_flutter_life/UI/screens/screens.dart';
+
 import 'package:firebase_flutter_life/core/AppColors.dart';
 import 'package:firebase_flutter_life/features/authentication/data/repositories/firebase_auth_service.dart';
+import 'package:firebase_flutter_life/routing/route_names.dart';
 
 import 'package:flutter/material.dart';
 import 'package:flutter_spinkit/flutter_spinkit.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 
 class LoginForm extends StatefulWidget {
   State<LoginForm> createState() => _LoginFormState();
@@ -41,7 +43,9 @@ class _LoginFormState extends State<LoginForm> {
         ),
       );
     } else {
-      Navigator.pushReplacementNamed(context, HomeScreen.routeName);
+      SharedPreferences prefs = await SharedPreferences.getInstance();
+      prefs.setString("email", email);
+      Navigator.pushReplacementNamed(context, HomeRoute);
     }
   }
 

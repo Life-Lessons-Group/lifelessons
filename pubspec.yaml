@@ -11,7 +11,7 @@ description: A new Flutter project.
 # In iOS, build-name is used as CFBundleShortVersionString while build-number used as CFBundleVersion.
 # Read more about iOS versioning at
 # https://developer.apple.com/library/archive/documentation/General/Reference/InfoPlistKeyReference/Articles/CoreFoundationKeys.html
-version: 1.0.3+3
+version: 1.0.3+6
 
 environment:
   sdk: ">=2.2.2 <3.0.0"
@@ -37,10 +37,12 @@ dependencies:
   flutter_swiper: ^1.1.6
   flutter_sound: ^4.0.4
   equatable: ^1.2.0
-  bloc: ^5.0.1
-  flutter_bloc: ^5.0.1
+  bloc: ^6.0.0
+  flutter_bloc: ^6.0.0
   dartz: ^0.8.6
   flutter_email_sender: ^3.0.1
+  animations: ^1.1.2
+
   
   
 
@@ -58,12 +60,13 @@ dependencies:
   
 
   #UI Packages
-  flutter_svg: ^0.17.3
+  flutter_svg: ^0.18.1
   font_awesome_flutter: ^8.8.1
   rflutter_alert: ^1.0.3
   wave: ^0.0.8
   flutter_spinkit: ^4.1.2+1
   auto_size_text: ^2.1.0
+
 
 dev_dependencies:
   flutter_launcher_icons: ^0.7.5

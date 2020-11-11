@@ -1,4 +1,4 @@
-package com.LifeLessonsGroup.firebase_flutter_life
+package com.TheLifeLessonsGroup.firebase_flutter_life
 
 import androidx.annotation.NonNull;
 import io.flutter.embedding.android.FlutterActivity
