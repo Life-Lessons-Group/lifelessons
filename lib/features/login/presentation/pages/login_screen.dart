@@ -2,6 +2,7 @@ import 'package:firebase_flutter_life/core/AppColors.dart';
 import 'package:firebase_flutter_life/features/authentication/data/repositories/firebase_auth_service.dart';
 import 'package:firebase_flutter_life/features/login/presentation/widgets/login_form.dart';
 import 'package:firebase_flutter_life/features/register/presentation/pages/register_screen.dart.dart';
+import 'package:firebase_flutter_life/routing/route_names.dart';
 import 'package:flutter/material.dart';
 import 'package:rflutter_alert/rflutter_alert.dart';
 
@@ -52,7 +53,7 @@ class LoginScreen extends StatelessWidget {
                         fontWeight: FontWeight.w600)),
                 FlatButton(
                   onPressed: () {
-                    Navigator.pushNamed(context, RegisterScreen.routeName);
+                    Navigator.pushNamed(context, RegisterRoute);
                   },
                   child: Text(
                     "Sign Up",

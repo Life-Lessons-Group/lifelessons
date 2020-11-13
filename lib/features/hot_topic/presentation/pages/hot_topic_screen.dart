@@ -10,7 +10,7 @@ class HotTopicScreen extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        backgroundColor: Colors.white,
+        backgroundColor: Colors.blueGrey[50],
         flexibleSpace: Container(
           decoration: BoxDecoration(
             gradient: LinearGradient(
@@ -112,7 +112,7 @@ class HotTopicScreen extends StatelessWidget {
                       leading: CircleAvatar(
                           radius: 25.0, backgroundColor: Colors.red),
                       title: Text("Lesson Title"),
-                      subtitle: Text("John Doe"),
+                      subtitle: Text("John Doe", style: TextStyle(fontWeight: FontWeight.bold),),
                       trailing: IconButton(
                         icon: Icon(Icons.more_vert),
                         onPressed: () {},
@@ -128,7 +128,7 @@ class HotTopicScreen extends StatelessWidget {
                       leading: CircleAvatar(
                           radius: 25.0, backgroundColor: Colors.red),
                       title: Text("Lesson Title"),
-                      subtitle: Text("John Doe"),
+                      subtitle: Text("John Doe", style: TextStyle(fontWeight: FontWeight.bold),),
                       trailing: IconButton(
                         icon: Icon(Icons.more_vert),
                         onPressed: () {},
@@ -144,7 +144,7 @@ class HotTopicScreen extends StatelessWidget {
                       leading: CircleAvatar(
                           radius: 25.0, backgroundColor: Colors.red),
                       title: Text("Lesson Title"),
-                      subtitle: Text("John Doe"),
+                      subtitle: Text("John Doe", style: TextStyle(fontWeight: FontWeight.bold),),
                       trailing: IconButton(
                         icon: Icon(Icons.more_vert),
                         onPressed: () {},
