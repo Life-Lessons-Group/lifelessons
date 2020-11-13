@@ -3,7 +3,6 @@ import 'package:firebase_flutter_life/features/discover/presentation/widgets/arc
 import 'package:firebase_flutter_life/features/discover/presentation/widgets/discover_category_list.dart';
 import 'package:flutter/material.dart';
 
-
 class DiscoverScreen extends StatefulWidget {
   @override
   _DiscoverScreenState createState() => _DiscoverScreenState();
@@ -82,10 +81,11 @@ class _DiscoverScreenState extends State<DiscoverScreen> {
                   decoration: InputDecoration(
                     prefixIcon: Icon(
                       Icons.search,
-                      color: Colors.black.withOpacity(0.2),
+                      color: Colors.black.withOpacity(0.4),
                     ),
                     hintText: "Search for Topics",
-                    hintStyle: TextStyle(color: Colors.black.withOpacity(0.2)),
+                    hintStyle:
+                        TextStyle(color: Colors.black12.withOpacity(0.6)),
                     filled: true,
                     fillColor: Colors.black.withOpacity(0.1),
                     border: OutlineInputBorder(
@@ -123,7 +123,7 @@ class _DiscoverScreenState extends State<DiscoverScreen> {
                     style: TextStyle(
                         color: Colors.white,
                         fontSize: 18,
-                        fontWeight: FontWeight.w700),
+                        fontWeight: FontWeight.w800),
                   ),
                 ),
               ),
@@ -145,7 +145,7 @@ class _DiscoverScreenState extends State<DiscoverScreen> {
                     style: TextStyle(
                         color: Colors.white,
                         fontSize: 18,
-                        fontWeight: FontWeight.w700),
+                        fontWeight: FontWeight.w800),
                   ),
                 ),
               ),

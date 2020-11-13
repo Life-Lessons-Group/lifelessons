@@ -27,7 +27,7 @@ class ArchivedTopicsList extends StatelessWidget {
                   "Volume 1",
                   style: TextStyle(
                       color: Colors.white,
-                      fontWeight: FontWeight.w300,
+                      fontWeight: FontWeight.w400,
                       fontSize: 18),
                 ),
               ),
@@ -36,7 +36,7 @@ class ArchivedTopicsList extends StatelessWidget {
                   "Volume 2",
                   style: TextStyle(
                       color: Colors.white,
-                      fontWeight: FontWeight.w300,
+                      fontWeight: FontWeight.w400,
                       fontSize: 18),
                 ),
               ),
@@ -45,7 +45,7 @@ class ArchivedTopicsList extends StatelessWidget {
                   "Pandemic",
                   style: TextStyle(
                       color: Colors.white,
-                      fontWeight: FontWeight.w300,
+                      fontWeight: FontWeight.w400,
                       fontSize: 18),
                 ),
               ),
