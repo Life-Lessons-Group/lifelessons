@@ -14,7 +14,7 @@ class HotTopicCountDownTimer extends StatelessWidget {
     final TextStyle countDownTextStyle = TextStyle(
         color: Colors.white, fontSize: 24, fontWeight: FontWeight.bold);
     final TextStyle indicatorTextStyle = TextStyle(
-        color: Colors.white, fontSize: 16, fontWeight: FontWeight.w100);
+        color: Colors.black, fontSize: 16, fontWeight: FontWeight.w300);
     return Row(
       mainAxisAlignment: MainAxisAlignment.spaceEvenly,
       crossAxisAlignment: CrossAxisAlignment.center,

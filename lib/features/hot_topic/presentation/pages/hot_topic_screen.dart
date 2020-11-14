@@ -10,7 +10,7 @@ class HotTopicScreen extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        backgroundColor: Colors.blueGrey[50],
+        backgroundColor: Colors.blueGrey,
         flexibleSpace: Container(
           decoration: BoxDecoration(
             gradient: LinearGradient(
@@ -50,112 +50,117 @@ class HotTopicScreen extends StatelessWidget {
         ),
         onPressed: () {},
       ),
-      body: Column(
-        children: [
-          Container(
-            height: 200,
-            width: SizeConfig.screenWidth,
-            decoration: BoxDecoration(
-              image: DecorationImage(
-                fit: BoxFit.cover,
-                colorFilter: ColorFilter.mode(
-                    Colors.black.withOpacity(0.8), BlendMode.darken),
-                image: AssetImage('assets/images/hot_topic_leadership.jpg'),
+      body: Container(
+        decoration: BoxDecoration(
+            gradient: LinearGradient(
+                colors: [Colors.blueGrey, Colors.lightBlueAccent])),
+        child: Column(
+          children: [
+            Container(
+              height: 200,
+              width: SizeConfig.screenWidth,
+              decoration: BoxDecoration(
+                image: DecorationImage(
+                  fit: BoxFit.cover,
+                  colorFilter: ColorFilter.mode(
+                      Colors.black.withOpacity(0.8), BlendMode.darken),
+                  image: AssetImage('assets/images/hot_topic_leadership.jpg'),
+                ),
+                // gradient: LinearGradient(
+                //   begin: Alignment.bottomRight,
+                //   end: Alignment.topLeft,
+                //   colors: <Color>[
+                //     Colors.lightGreen[200],
+                //     Colors.lightBlue[600],
+                //   ],
+                // ),
+              ), //custom hot topic design theme background
+              child: Center(
+                child: Padding(
+                  padding: const EdgeInsets.all(8.0),
+                  child: Text(
+                    "In a great leader, have you seen more honesty or bravery?",
+                    style: TextStyle(
+                        color: Colors.white,
+                        fontSize: 20,
+                        fontWeight: FontWeight.normal),
+                    textAlign: TextAlign.center,
+                  ),
+                ),
               ),
-              // gradient: LinearGradient(
-              //   begin: Alignment.bottomRight,
-              //   end: Alignment.topLeft,
-              //   colors: <Color>[
-              //     Colors.lightGreen[200],
-              //     Colors.lightBlue[600],
-              //   ],
-              // ),
-            ), //custom hot topic design theme background
-            child: Center(
-              child: Padding(
-                padding: const EdgeInsets.all(8.0),
-                child: Text(
-                  "In a great leader, have you seen more honesty or bravery?",
-                  style: TextStyle(
-                      color: Colors.white,
-                      fontSize: 20,
-                      fontWeight: FontWeight.normal),
-                  textAlign: TextAlign.center,
-                ),
+            ),
+            Container(
+              height: 100,
+              width: SizeConfig.screenWidth,
+              decoration: BoxDecoration(
+                gradient: LinearGradient(
+                    begin: Alignment.topLeft,
+                    end: Alignment.bottomRight,
+                    colors: <Color>[
+                      Colors.lightGreen[200],
+                      Colors.lightBlue[600],
+                    ]),
+              ),
+              child: HotTopicCountDownTimer(),
+            ),
+            SizedBox(height: 10),
+            Expanded(
+              child: ListView(
+                scrollDirection: Axis.vertical,
+                children: [
+                  Padding(
+                    padding: EdgeInsets.only(top: 8.0),
+                    child: Card(
+                      margin: EdgeInsets.fromLTRB(20, 6, 20, 0),
+                      child: ListTile(
+                        leading: CircleAvatar(
+                            radius: 25.0, backgroundColor: Colors.blueAccent),
+                        title: Text("Lesson Title"),
+                        subtitle: Text("John Doe"),
+                        trailing: IconButton(
+                          icon: Icon(Icons.more_vert),
+                          onPressed: () {},
+                        ),
+                      ),
+                    ),
+                  ),
+                  Padding(
+                    padding: EdgeInsets.only(top: 8.0),
+                    child: Card(
+                      margin: EdgeInsets.fromLTRB(20, 6, 20, 0),
+                      child: ListTile(
+                        leading: CircleAvatar(
+                            radius: 25.0, backgroundColor: Colors.blueAccent),
+                        title: Text("Lesson Title"),
+                        subtitle: Text("Mary Joe"),
+                        trailing: IconButton(
+                          icon: Icon(Icons.more_vert),
+                          onPressed: () {},
+                        ),
+                      ),
+                    ),
+                  ),
+                  Padding(
+                    padding: EdgeInsets.only(top: 8.0),
+                    child: Card(
+                      margin: EdgeInsets.fromLTRB(20, 6, 20, 0),
+                      child: ListTile(
+                        leading: CircleAvatar(
+                            radius: 25.0, backgroundColor: Colors.blueAccent),
+                        title: Text("Lesson Title"),
+                        subtitle: Text("Nancy Doe"),
+                        trailing: IconButton(
+                          icon: Icon(Icons.more_vert),
+                          onPressed: () {},
+                        ),
+                      ),
+                    ),
+                  ),
+                ],
               ),
             ),
-          ),
-          Container(
-            height: 100,
-            width: SizeConfig.screenWidth,
-            decoration: BoxDecoration(
-              gradient: LinearGradient(
-                  begin: Alignment.topLeft,
-                  end: Alignment.bottomRight,
-                  colors: <Color>[
-                    Colors.lightGreen[200],
-                    Colors.lightBlue[600],
-                  ]),
-            ),
-            child: HotTopicCountDownTimer(),
-          ),
-          SizedBox(height: 10),
-          Expanded(
-            child: ListView(
-              scrollDirection: Axis.vertical,
-              children: [
-                Padding(
-                  padding: EdgeInsets.only(top: 8.0),
-                  child: Card(
-                    margin: EdgeInsets.fromLTRB(20, 6, 20, 0),
-                    child: ListTile(
-                      leading: CircleAvatar(
-                          radius: 25.0, backgroundColor: Colors.red),
-                      title: Text("Lesson Title"),
-                      subtitle: Text("John Doe", style: TextStyle(fontWeight: FontWeight.bold),),
-                      trailing: IconButton(
-                        icon: Icon(Icons.more_vert),
-                        onPressed: () {},
-                      ),
-                    ),
-                  ),
-                ),
-                Padding(
-                  padding: EdgeInsets.only(top: 8.0),
-                  child: Card(
-                    margin: EdgeInsets.fromLTRB(20, 6, 20, 0),
-                    child: ListTile(
-                      leading: CircleAvatar(
-                          radius: 25.0, backgroundColor: Colors.red),
-                      title: Text("Lesson Title"),
-                      subtitle: Text("John Doe", style: TextStyle(fontWeight: FontWeight.bold),),
-                      trailing: IconButton(
-                        icon: Icon(Icons.more_vert),
-                        onPressed: () {},
-                      ),
-                    ),
-                  ),
-                ),
-                Padding(
-                  padding: EdgeInsets.only(top: 8.0),
-                  child: Card(
-                    margin: EdgeInsets.fromLTRB(20, 6, 20, 0),
-                    child: ListTile(
-                      leading: CircleAvatar(
-                          radius: 25.0, backgroundColor: Colors.red),
-                      title: Text("Lesson Title"),
-                      subtitle: Text("John Doe", style: TextStyle(fontWeight: FontWeight.bold),),
-                      trailing: IconButton(
-                        icon: Icon(Icons.more_vert),
-                        onPressed: () {},
-                      ),
-                    ),
-                  ),
-                ),
-              ],
-            ),
-          ),
-        ],
+          ],
+        ),
       ),
     );
   }

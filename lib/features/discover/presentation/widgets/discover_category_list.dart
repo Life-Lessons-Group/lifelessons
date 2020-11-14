@@ -18,53 +18,56 @@ class DiscoverCategoryList extends StatelessWidget {
         //     ]),
       ),
       child: ListView(
-        children: ListTile.divideTiles(context: context, color: Colors.white.withOpacity(0.6), tiles: [
-          ListTile(
-            title: Text(
-              "Business & Career",
-              style: TextStyle(
-                  color: Colors.white,
-                  fontWeight: FontWeight.w300,
-                  fontSize: 18),
-            ),
-          ),
-          ListTile(
-            title: Text(
-              "Religion & Spirituality",
-              style: TextStyle(
-                  color: Colors.white,
-                  fontWeight: FontWeight.w300,
-                  fontSize: 18),
-            ),
-          ),
-          ListTile(
-            title: Text(
-              "Family & Friends",
-              style: TextStyle(
-                  color: Colors.white,
-                  fontWeight: FontWeight.w300,
-                  fontSize: 18),
-            ),
-          ),
-          ListTile(
-            title: Text(
-              "Love & Relationships",
-              style: TextStyle(
-                  color: Colors.white,
-                  fontWeight: FontWeight.w300,
-                  fontSize: 18),
-            ),
-          ),
-          ListTile(
-            title: Text(
-              "Health & Wellness",
-              style: TextStyle(
-                  color: Colors.white,
-                  fontWeight: FontWeight.w300,
-                  fontSize: 18),
-            ),
-          ),
-        ]).toList(),
+        children: ListTile.divideTiles(
+            context: context,
+            color: Colors.white.withOpacity(0.6),
+            tiles: [
+              ListTile(
+                title: Text(
+                  "Business & Career",
+                  style: TextStyle(
+                      color: Colors.white,
+                      fontWeight: FontWeight.w400,
+                      fontSize: 18),
+                ),
+              ),
+              ListTile(
+                title: Text(
+                  "Religion & Spirituality",
+                  style: TextStyle(
+                      color: Colors.white,
+                      fontWeight: FontWeight.w400,
+                      fontSize: 18),
+                ),
+              ),
+              ListTile(
+                title: Text(
+                  "Family & Friends",
+                  style: TextStyle(
+                      color: Colors.white,
+                      fontWeight: FontWeight.w400,
+                      fontSize: 18),
+                ),
+              ),
+              ListTile(
+                title: Text(
+                  "Love & Relationships",
+                  style: TextStyle(
+                      color: Colors.white,
+                      fontWeight: FontWeight.w400,
+                      fontSize: 18),
+                ),
+              ),
+              ListTile(
+                title: Text(
+                  "Health & Wellness",
+                  style: TextStyle(
+                      color: Colors.white,
+                      fontWeight: FontWeight.w400,
+                      fontSize: 18),
+                ),
+              ),
+            ]).toList(),
       ),
     );
   }
