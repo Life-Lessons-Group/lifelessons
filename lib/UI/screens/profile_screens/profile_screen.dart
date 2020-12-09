@@ -5,11 +5,12 @@ import 'package:firebase_flutter_life/Services/firebase_service.dart';
 import 'package:firebase_flutter_life/features/authentication/data/models/user.dart';
 
 
-import 'package:firebase_flutter_life/features/timeline/data/repositories/posts_repository.dart';
+
 
 import 'package:firebase_flutter_life/features/settings/presentation/pages/settings_screen.dart';
 
 import 'package:firebase_flutter_life/features/profile/presentation/widgets/book_tab.dart';
+import 'package:firebase_flutter_life/features/topics/data/datasources/firebase_collections.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
 import 'package:image_picker/image_picker.dart';
@@ -78,8 +79,7 @@ class _ProfileScreenState extends State<ProfileScreen> {
   }
 
   getPostCount() async {
-    QuerySnapshot snapshot = await PostRepository()
-        .postsRef
+    QuerySnapshot snapshot = await FirebaseCollections.postsCollectionReference
         .where("userID", isEqualTo: widget.currentUser.userID)
         .getDocuments();
     setState(() {
@@ -122,12 +122,13 @@ class _ProfileScreenState extends State<ProfileScreen> {
                       color: Colors.transparent,
                       onPressed: () {},
                     ),
+                    
                     Text(
-                      "Your Book",
+                      "your book",
                       style: TextStyle(
                           fontSize: 20,
                           color: Colors.white,
-                          fontWeight: FontWeight.w300),
+                          fontWeight: FontWeight.w800),
                     ),
                     AppDrawerButton(),
                   ],
@@ -281,12 +282,13 @@ class _ProfileScreenState extends State<ProfileScreen> {
                       color: Colors.transparent,
                       onPressed: () {},
                     ),
+                    SizedBox(height: 5),
                     Text(
-                      "Your Book",
+                      "your book",
                       style: TextStyle(
                           fontSize: 20,
                           color: Colors.white,
-                          fontWeight: FontWeight.w300),
+                          fontWeight: FontWeight.w800),
                     ),
                     AppDrawerButton(),
                   ],
@@ -333,7 +335,7 @@ class _ProfileScreenState extends State<ProfileScreen> {
   }
 
   toggleBookView() {
-    return ToggleLessonView();
+    return ToggleLessonView(currentUser: widget.currentUser);
   }
 
   buildProfileScreen() {

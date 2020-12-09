@@ -83,10 +83,7 @@ class LoginScreen extends StatelessWidget {
                       ),
                       onPressed: () {
                         auth.resetPassword(email);
-
-                        Scaffold.of(context).showSnackBar(SnackBar(
-                            content: Text(
-                                "A password link has been sent to your email.")));
+                        Navigator.pushNamed(context, WalkThroughRoute);
                       },
                       gradient: LinearGradient(
                         colors: <Color>[
@@ -103,6 +100,9 @@ class LoginScreen extends StatelessWidget {
                         // Text("Private or Public Lesson?", style: TextStyle(fontWeight: FontWeight.w300, fontSize: 12),),
 
                         TextFormField(
+                          keyboardType: TextInputType.emailAddress,
+                          autocorrect: false,
+                          enableSuggestions: false,
                           decoration: InputDecoration(labelText: "Email"),
                           onSaved: (val) {
                             email = val;

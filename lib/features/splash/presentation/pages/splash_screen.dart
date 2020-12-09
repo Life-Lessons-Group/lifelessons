@@ -17,13 +17,15 @@ class _SplashScreenState extends State<SplashScreen> {
     // bool firstTime = prefs.getBool('firstTime');
     Duration _duration = Duration(milliseconds: 1500);
 
-    if (email == null) {
-      // Not first time
-      return Timer(_duration, navigationPageWalkthrough);
-    } else {
-      // First time
-      return Timer(_duration, navigationPageHome);
-    }
+    // if (email == null) {
+    //   // Not first time
+    //   return Timer(_duration, navigationPageWalkthrough);
+    // } else {
+    //   // First time
+    //   return Timer(_duration, navigationPageHome);
+    // }
+return Timer(_duration, navigationPageWalkthrough);
+    
   }
 
   void navigationPageHome() {

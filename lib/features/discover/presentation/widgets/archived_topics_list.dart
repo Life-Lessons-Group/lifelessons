@@ -1,4 +1,6 @@
 import 'package:firebase_flutter_life/core/screen_dimensions.dart';
+import 'package:firebase_flutter_life/features/discover/presentation/pages/selected_book_screen.dart';
+import 'package:firebase_flutter_life/routing/route_names.dart';
 import 'package:flutter/material.dart';
 
 class ArchivedTopicsList extends StatelessWidget {
@@ -23,6 +25,13 @@ class ArchivedTopicsList extends StatelessWidget {
             color: Colors.white.withOpacity(0.6),
             tiles: [
               ListTile(
+                onTap: () {
+                  var bookRoute = MaterialPageRoute(
+                    builder: (BuildContext context) =>
+                        BookScreen(book: "Volume One"),
+                  );
+                  Navigator.of(context).push(bookRoute);
+                },
                 title: Text(
                   "Volume 1",
                   style: TextStyle(
@@ -32,6 +41,13 @@ class ArchivedTopicsList extends StatelessWidget {
                 ),
               ),
               ListTile(
+                onTap: () {
+                  var bookRoute = MaterialPageRoute(
+                    builder: (BuildContext context) =>
+                        BookScreen(book: "Volume Two"),
+                  );
+                  Navigator.of(context).push(bookRoute);
+                },
                 title: Text(
                   "Volume 2",
                   style: TextStyle(
@@ -41,6 +57,13 @@ class ArchivedTopicsList extends StatelessWidget {
                 ),
               ),
               ListTile(
+                onTap: () {
+                  var bookRoute = MaterialPageRoute(
+                    builder: (BuildContext context) =>
+                        BookScreen(book: "Pandemic"),
+                  );
+                  Navigator.of(context).push(bookRoute);
+                },
                 title: Text(
                   "Pandemic",
                   style: TextStyle(

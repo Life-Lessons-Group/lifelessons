@@ -1,10 +1,10 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:firebase_flutter_life/features/authentication/data/models/user.dart';
-import 'package:firebase_flutter_life/features/timeline/data/repositories/posts_repository.dart';
 import 'package:firebase_flutter_life/Models/models.dart';
 
 import 'package:firebase_flutter_life/Models/private_post_model.dart';
+import 'package:firebase_flutter_life/features/topics/data/datasources/firebase_collections.dart';
 import 'package:flutter/material.dart';
 
 class MyPrivateBookScreen extends StatefulWidget {
@@ -28,8 +28,7 @@ class _MyPrivateBookScreenState extends State<MyPrivateBookScreen> {
 
     getTimeline() async {
     final FirebaseUser user = await FirebaseAuth.instance.currentUser();
-    QuerySnapshot snapshot = await PostRepository()
-        .privatePostsRef
+    QuerySnapshot snapshot = await FirebaseCollections.privateCollectionReference
         .document(user.uid)
         .collection("privateUserPosts")
         .getDocuments();

@@ -1,7 +1,6 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_flutter_life/features/authentication/data/models/user.dart';
 
-
 class UserDatabaseService {
   final String uid;
   UserDatabaseService({this.uid});
@@ -11,23 +10,20 @@ class UserDatabaseService {
 
   Future registerUserInFirestore(
       String userID, String username, String email) async {
-      usersCollection.document(uid).setData({
+    usersCollection.document(uid).setData({
       "username": username,
       "email": email,
-      "userID": userID, 
+      "userID": userID,
     });
   }
 
   Future updateUserPhoto(String photoUrl) async {
-    usersCollection.document(uid).setData({
-    "profileImageURL": photoUrl
-    });
+    usersCollection.document(uid).setData({"profileImageURL": photoUrl});
   }
 
-   // user data from snapshots
+  // user data from snapshots
   User _userDataFromSnapshot(DocumentSnapshot snapshot) {
     return User(
-      
       userID: snapshot['userID'],
       email: snapshot['email'],
       username: snapshot['username'],
@@ -37,10 +33,13 @@ class UserDatabaseService {
     );
   }
 
-    // get user doc stream
+  // get user doc stream
   Stream<User> get userData {
-    return usersCollection.document(uid).snapshots()
-      .map(_userDataFromSnapshot);
+    return usersCollection.document(uid).snapshots().map(_userDataFromSnapshot);
   }
 
+  Future<User> getUserByID(String userID) async {
+    var snapshot = await usersCollection.document(userID).get();
+    return User.fromMap(snapshot.data);
+  }
 }

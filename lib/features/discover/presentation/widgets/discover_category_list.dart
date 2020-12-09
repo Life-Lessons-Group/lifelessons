@@ -1,4 +1,5 @@
 import 'package:firebase_flutter_life/core/screen_dimensions.dart';
+import 'package:firebase_flutter_life/features/discover/presentation/pages/selected_category_screen.dart';
 import 'package:flutter/material.dart';
 
 class DiscoverCategoryList extends StatelessWidget {
@@ -23,6 +24,13 @@ class DiscoverCategoryList extends StatelessWidget {
             color: Colors.white.withOpacity(0.6),
             tiles: [
               ListTile(
+                // onTap: () {
+                //   var categoryRoute = MaterialPageRoute(
+                //     builder: (BuildContext context) =>
+                //         CategoryScreen(category: "Business & Career"),
+                //   );
+                //   Navigator.of(context).push(categoryRoute);
+                // },
                 title: Text(
                   "Business & Career",
                   style: TextStyle(
@@ -32,6 +40,13 @@ class DiscoverCategoryList extends StatelessWidget {
                 ),
               ),
               ListTile(
+                // onTap: () {
+                //   var categoryRoute = MaterialPageRoute(
+                //     builder: (BuildContext context) =>
+                //         CategoryScreen(category: "Religion & Spirituality"),
+                //   );
+                //   Navigator.of(context).push(categoryRoute);
+                // },
                 title: Text(
                   "Religion & Spirituality",
                   style: TextStyle(
@@ -41,6 +56,13 @@ class DiscoverCategoryList extends StatelessWidget {
                 ),
               ),
               ListTile(
+                // onTap: () {
+                //   var categoryRoute = MaterialPageRoute(
+                //     builder: (BuildContext context) =>
+                //         CategoryScreen(category: "Family & Friends"),
+                //   );
+                //   Navigator.of(context).push(categoryRoute);
+                // },
                 title: Text(
                   "Family & Friends",
                   style: TextStyle(
@@ -50,6 +72,13 @@ class DiscoverCategoryList extends StatelessWidget {
                 ),
               ),
               ListTile(
+                // onTap: () {
+                //   var categoryRoute = MaterialPageRoute(
+                //     builder: (BuildContext context) =>
+                //         CategoryScreen(category: "Love & Relationships"),
+                //   );
+                //   Navigator.of(context).push(categoryRoute);
+                // },
                 title: Text(
                   "Love & Relationships",
                   style: TextStyle(
@@ -59,6 +88,13 @@ class DiscoverCategoryList extends StatelessWidget {
                 ),
               ),
               ListTile(
+                // onTap: () {
+                //   var categoryRoute = MaterialPageRoute(
+                //     builder: (BuildContext context) =>
+                //         CategoryScreen(category: "Health & Wellness"),
+                //   );
+                //   Navigator.of(context).push(categoryRoute);
+                // },
                 title: Text(
                   "Health & Wellness",
                   style: TextStyle(

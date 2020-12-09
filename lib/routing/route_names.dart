@@ -7,3 +7,5 @@ const String RegisterRoute = 'register-screen';
 const String TopicsRoute = 'topics-screen';
 const String WalkThroughRoute = 'walkthrough-screen';
 const String SplashRoute = 'splash-screen';
+const String CategoryRoute = 'category-screen';
+const String BookRoute = 'book-screen';

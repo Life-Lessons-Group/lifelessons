@@ -5,7 +5,8 @@ import 'package:firebase_flutter_life/features/authentication/data/repositories/
 import 'package:firebase_flutter_life/features/discover/presentation/pages/discover_screen.dart';
 import 'package:firebase_flutter_life/features/hot_topic/presentation/pages/hot_topic_screen.dart';
 import 'package:firebase_flutter_life/features/notifications/presentation/pages/notifications_screen.dart';
-import 'package:firebase_flutter_life/features/timeline/presentation/pages/topics_screen.dart';
+
+import 'package:firebase_flutter_life/features/topics/presentation/pages/topics_screen.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';

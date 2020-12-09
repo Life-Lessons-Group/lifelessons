@@ -98,7 +98,7 @@ class _PrivatePostState extends State<PrivatePost> {
       padding: const EdgeInsets.all(8.0),
       child: GestureDetector(
         onTap: () {
-          AudioService().play(recordingURL);
+          // AudioService().play(recordingURL);
           setState(() {
             isPlaying = true;
           });

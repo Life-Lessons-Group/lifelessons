@@ -1,5 +1,7 @@
+import 'package:firebase_flutter_life/UI/screens/record_screens/test_record_screen.dart';
 import 'package:firebase_flutter_life/core/size_config.dart';
 import 'package:firebase_flutter_life/features/hot_topic/presentation/widgets/hot_topic_countdown_timer.dart';
+import 'package:firebase_flutter_life/features/hot_topic/presentation/widgets/hot_topic_post_list.dart';
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 
@@ -48,7 +50,12 @@ class HotTopicScreen extends StatelessWidget {
                     Colors.lightBlue[600],
                   ])),
         ),
-        onPressed: () {},
+        onPressed: () {
+          var learnRoute = MaterialPageRoute(
+            builder: (BuildContext context) => TestRecord(topic: "Hot Topic"),
+          );
+          Navigator.of(context).push(learnRoute);
+        },
       ),
       body: Container(
         decoration: BoxDecoration(
@@ -105,59 +112,7 @@ class HotTopicScreen extends StatelessWidget {
             ),
             SizedBox(height: 10),
             Expanded(
-              child: ListView(
-                scrollDirection: Axis.vertical,
-                children: [
-                  Padding(
-                    padding: EdgeInsets.only(top: 8.0),
-                    child: Card(
-                      margin: EdgeInsets.fromLTRB(20, 6, 20, 0),
-                      child: ListTile(
-                        leading: CircleAvatar(
-                            radius: 25.0, backgroundColor: Colors.blueAccent),
-                        title: Text("Lesson Title"),
-                        subtitle: Text("John Doe"),
-                        trailing: IconButton(
-                          icon: Icon(Icons.more_vert),
-                          onPressed: () {},
-                        ),
-                      ),
-                    ),
-                  ),
-                  Padding(
-                    padding: EdgeInsets.only(top: 8.0),
-                    child: Card(
-                      margin: EdgeInsets.fromLTRB(20, 6, 20, 0),
-                      child: ListTile(
-                        leading: CircleAvatar(
-                            radius: 25.0, backgroundColor: Colors.blueAccent),
-                        title: Text("Lesson Title"),
-                        subtitle: Text("Mary Joe"),
-                        trailing: IconButton(
-                          icon: Icon(Icons.more_vert),
-                          onPressed: () {},
-                        ),
-                      ),
-                    ),
-                  ),
-                  Padding(
-                    padding: EdgeInsets.only(top: 8.0),
-                    child: Card(
-                      margin: EdgeInsets.fromLTRB(20, 6, 20, 0),
-                      child: ListTile(
-                        leading: CircleAvatar(
-                            radius: 25.0, backgroundColor: Colors.blueAccent),
-                        title: Text("Lesson Title"),
-                        subtitle: Text("Nancy Doe"),
-                        trailing: IconButton(
-                          icon: Icon(Icons.more_vert),
-                          onPressed: () {},
-                        ),
-                      ),
-                    ),
-                  ),
-                ],
-              ),
+              child: HotTopicPostList(),
             ),
           ],
         ),

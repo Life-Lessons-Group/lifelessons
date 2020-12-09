@@ -1,4 +1,6 @@
-import 'package:firebase_flutter_life/features/timeline/presentation/pages/topic_selected_screen.dart';
+
+
+import 'package:firebase_flutter_life/features/topics/presentation/pages/selected_topic.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
 
@@ -58,7 +60,7 @@ class _ArchivedTopicsState extends State<ArchivedTopics> {
                           onTap: () {
                             var learnRoute = MaterialPageRoute(
                               builder: (BuildContext context) =>
-                                  TopicSelectedScreen(topic: items[index]),
+                                  SelectedTopicScreen(topic: items[index]),
                             );
                             Navigator.of(context).push(learnRoute);
                           },

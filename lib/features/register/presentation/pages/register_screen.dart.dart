@@ -5,7 +5,7 @@ import 'package:firebase_flutter_life/features/register/presentation/widgets/reg
 import 'package:flutter/material.dart';
 
 class RegisterScreen extends StatelessWidget {
-  static const routeName = "/register-screen";
+  
 
   @override
   Widget build(BuildContext context) {

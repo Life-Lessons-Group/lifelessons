@@ -73,44 +73,44 @@ class _DiscoverScreenState extends State<DiscoverScreen> {
             scrollDirection: Axis.vertical,
             controller: _controller,
             children: [
-              Padding(
-                padding: const EdgeInsets.all(8.0),
-                child: TextField(
-                  cursorColor: Colors.black,
-                  cursorWidth: 1,
-                  decoration: InputDecoration(
-                    prefixIcon: Icon(
-                      Icons.search,
-                      color: Colors.black.withOpacity(0.4),
-                    ),
-                    hintText: "Search for Topics",
-                    hintStyle:
-                        TextStyle(color: Colors.black12.withOpacity(0.6)),
-                    filled: true,
-                    fillColor: Colors.black.withOpacity(0.1),
-                    border: OutlineInputBorder(
-                      borderRadius: const BorderRadius.all(
-                        Radius.circular(20),
-                      ),
-                      borderSide: BorderSide(color: Colors.transparent),
-                    ),
-                    focusedBorder: OutlineInputBorder(
-                      borderRadius: const BorderRadius.all(
-                        Radius.circular(20),
-                      ),
-                      borderSide: BorderSide(color: Colors.transparent),
-                    ),
-                    errorBorder: InputBorder.none,
-                    enabledBorder: OutlineInputBorder(
-                      borderRadius: const BorderRadius.all(
-                        Radius.circular(20),
-                      ),
-                      borderSide: BorderSide(color: Colors.transparent),
-                    ),
-                    disabledBorder: InputBorder.none,
-                  ),
-                ),
-              ),
+              // Padding(
+              //   padding: const EdgeInsets.all(8.0),
+              //   child: TextField(
+              //     cursorColor: Colors.black,
+              //     cursorWidth: 1,
+              //     decoration: InputDecoration(
+              //       prefixIcon: Icon(
+              //         Icons.search,
+              //         color: Colors.black.withOpacity(0.4),
+              //       ),
+              //       hintText: "Search for Topics",
+              //       hintStyle:
+              //           TextStyle(color: Colors.black12.withOpacity(0.6)),
+              //       filled: true,
+              //       fillColor: Colors.black.withOpacity(0.1),
+              //       border: OutlineInputBorder(
+              //         borderRadius: const BorderRadius.all(
+              //           Radius.circular(20),
+              //         ),
+              //         borderSide: BorderSide(color: Colors.transparent),
+              //       ),
+              //       focusedBorder: OutlineInputBorder(
+              //         borderRadius: const BorderRadius.all(
+              //           Radius.circular(20),
+              //         ),
+              //         borderSide: BorderSide(color: Colors.transparent),
+              //       ),
+              //       errorBorder: InputBorder.none,
+              //       enabledBorder: OutlineInputBorder(
+              //         borderRadius: const BorderRadius.all(
+              //           Radius.circular(20),
+              //         ),
+              //         borderSide: BorderSide(color: Colors.transparent),
+              //       ),
+              //       disabledBorder: InputBorder.none,
+              //     ),
+              //   ),
+              // ),
               SizedBox(height: 20),
               Container(
                 padding: EdgeInsets.symmetric(horizontal: 8),
@@ -141,7 +141,7 @@ class _DiscoverScreenState extends State<DiscoverScreen> {
                 child: Align(
                   alignment: Alignment.centerLeft,
                   child: Text(
-                    "Topics by Category",
+                    "Topics by Category(Coming Soon)",
                     style: TextStyle(
                         color: Colors.white,
                         fontSize: 18,

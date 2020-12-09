@@ -1,109 +1,109 @@
-import 'package:cloud_firestore/cloud_firestore.dart';
-import 'package:firebase_auth/firebase_auth.dart';
-import 'package:firebase_flutter_life/features/timeline/data/repositories/posts_repository.dart';
+// import 'package:cloud_firestore/cloud_firestore.dart';
+// import 'package:firebase_auth/firebase_auth.dart';
 
-import 'package:firebase_flutter_life/Models/private_post_model.dart';
 
-import 'package:flutter/material.dart';
+// import 'package:firebase_flutter_life/Models/private_post_model.dart';
+// import 'package:firebase_flutter_life/features/timeline/data/datasources/firebase_collections.dart';
 
-class UserPrivateBookScreen extends StatefulWidget {
-  final String profileID;
+// import 'package:flutter/material.dart';
 
-  const UserPrivateBookScreen({Key key, this.profileID}) : super(key: key);
+// class UserPrivateBookScreen extends StatefulWidget {
+//   final String profileID;
 
-  @override
-  _UserPrivateBookScreenState createState() => _UserPrivateBookScreenState();
-}
+//   const UserPrivateBookScreen({Key key, this.profileID}) : super(key: key);
 
-class _UserPrivateBookScreenState extends State<UserPrivateBookScreen> {
-  final followersRef = Firestore.instance.collection('followers');
-  final followingRef = Firestore.instance.collection('following');
+//   @override
+//   _UserPrivateBookScreenState createState() => _UserPrivateBookScreenState();
+// }
 
-  bool accessGranted = false;
+// class _UserPrivateBookScreenState extends State<UserPrivateBookScreen> {
+//   final followersRef = Firestore.instance.collection('followers');
+//   final followingRef = Firestore.instance.collection('following');
 
-  List<PrivatePost> posts;
+//   bool accessGranted = false;
 
-  @override
-  void initState() {
-    super.initState();
-    getTimeline();
-    checkIfAccessGranted();
-  }
+//   List<PrivatePost> posts;
 
-  checkIfAccessGranted() async {
-    var currentUser = await FirebaseAuth.instance.currentUser();
-    String currentUserId = currentUser.uid;
-    DocumentSnapshot doc = await followingRef
-        .document(currentUserId)
-        .collection('userFollowers')
-        .document(widget.profileID)
-        .get();
-    setState(() {
-      accessGranted = doc.exists;
-    });
-  }
+//   @override
+//   void initState() {
+//     super.initState();
+//     getTimeline();
+//     checkIfAccessGranted();
+//   }
 
-  getTimeline() async {
-    QuerySnapshot snapshot = await PostRepository()
-        .privatePostsRef
-        .document(widget.profileID)
-        .collection("privateUserPosts")
-        .getDocuments();
-    List<PrivatePost> posts =
-        snapshot.documents.map((doc) => PrivatePost.fromDocument(doc)).toList();
-    setState(() {
-      this.posts = posts;
-    });
-  }
+//   checkIfAccessGranted() async {
+//     var currentUser = await FirebaseAuth.instance.currentUser();
+//     String currentUserId = currentUser.uid;
+//     DocumentSnapshot doc = await followingRef
+//         .document(currentUserId)
+//         .collection('userFollowers')
+//         .document(widget.profileID)
+//         .get();
+//     setState(() {
+//       accessGranted = doc.exists;
+//     });
+//   }
 
-  buildTimeline() {
-    if (posts == null) {
-      return Center(
-        child: CircularProgressIndicator(),
-      );
-    } else if (posts.isEmpty) {
-      return SingleChildScrollView(
-        child: Column(
-          children: <Widget>[
-            SizedBox(height: 70),
-            Icon(
-              Icons.filter_none,
-              color: Colors.black26,
-            ),
-            SizedBox(height: 20),
-            Text(
-              "It looks like you this user hasn't started a private book yet.",
-              style: TextStyle(color: Colors.black26, fontSize: 16.0),
-            ),
-            SizedBox(height: 20),
-          ],
-        ),
-      );
-    } else if (accessGranted != true) {
-      return SingleChildScrollView(
-        child: Column(
-          children: <Widget>[
-            SizedBox(height: 70),
-            Icon(
-              Icons.block,
-              color: Colors.black26,
-            ),
-            SizedBox(height: 20),
-            Text(
-              "You don't have access to this user's private book",
-              style: TextStyle(color: Colors.black26, fontSize: 16.0),
-            ),
-            SizedBox(height: 20),
-          ],
-        ),
-      );
-    } else {
-      return ListView(children: posts);
-    }
-  }
+//   getTimeline() async {
+//     QuerySnapshot snapshot = await FirebaseCollections.privateCollectionReference
+//         .document(widget.profileID)
+//         .collection("privateUserPosts")
+//         .getDocuments();
+//     List<PrivatePost> posts =
+//         snapshot.documents.map((doc) => PrivatePost.fromDocument(doc)).toList();
+//     setState(() {
+//       this.posts = posts;
+//     });
+//   }
 
-  @override
-  Widget build(BuildContext context) {
-    return buildTimeline();
-  }
-}
+//   buildTimeline() {
+//     if (posts == null) {
+//       return Center(
+//         child: CircularProgressIndicator(),
+//       );
+//     } else if (posts.isEmpty) {
+//       return SingleChildScrollView(
+//         child: Column(
+//           children: <Widget>[
+//             SizedBox(height: 70),
+//             Icon(
+//               Icons.filter_none,
+//               color: Colors.black26,
+//             ),
+//             SizedBox(height: 20),
+//             Text(
+//               "It looks like you this user hasn't started a private book yet.",
+//               style: TextStyle(color: Colors.black26, fontSize: 16.0),
+//             ),
+//             SizedBox(height: 20),
+//           ],
+//         ),
+//       );
+//     } else if (accessGranted != true) {
+//       return SingleChildScrollView(
+//         child: Column(
+//           children: <Widget>[
+//             SizedBox(height: 70),
+//             Icon(
+//               Icons.block,
+//               color: Colors.black26,
+//             ),
+//             SizedBox(height: 20),
+//             Text(
+//               "You don't have access to this user's private book",
+//               style: TextStyle(color: Colors.black26, fontSize: 16.0),
+//             ),
+//             SizedBox(height: 20),
+//           ],
+//         ),
+//       );
+//     } else {
+//       return ListView(children: posts);
+//     }
+//   }
+
+//   @override
+//   Widget build(BuildContext context) {
+//     return buildTimeline();
+//   }
+// }

@@ -1,10 +1,12 @@
-import 'package:cloud_firestore/cloud_firestore.dart';
-import 'package:firebase_auth/firebase_auth.dart';
 import 'package:firebase_flutter_life/features/authentication/data/models/user.dart';
-import 'package:firebase_flutter_life/features/timeline/data/repositories/posts_repository.dart';
-import 'package:firebase_flutter_life/Models/models.dart';
-import 'package:firebase_flutter_life/features/timeline/data/models/post_model.dart';
+import 'package:firebase_flutter_life/features/posts/data/models/post_model.dart';
+
+import 'package:firebase_flutter_life/features/posts/presentation/provider/posts.dart';
+
+import 'package:firebase_flutter_life/features/posts/presentation/widgets/post_tile.dart';
+
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
 
 class MyFavoriteBookScreen extends StatefulWidget {
   final User currentUser;
@@ -16,81 +18,79 @@ class MyFavoriteBookScreen extends StatefulWidget {
 }
 
 class _MyFavoriteBookScreenState extends State<MyFavoriteBookScreen> {
-  List<Post> posts;
+  Future _getPosts;
 
   @override
   void initState() {
+    _getPosts = Posts().getPostsByUser(widget.currentUser.userID);
     super.initState();
-    getTimeline();
-  }
-
-  getTimeline() async {
-    final FirebaseUser user = await FirebaseAuth.instance.currentUser();
-    QuerySnapshot snapshot = await PostRepository()
-        .favoritesRef
-        .document(user.uid)
-        .collection("userFavorites")
-        .getDocuments();
-    List<Post> posts =
-        snapshot.documents.map((doc) => Post.fromDocument(doc)).toList();
-    setState(() {
-      this.posts = posts;
-    });
-  }
-
-  buildTimeline() {
-    if (posts == null) {
-      return Center(
-        child: CircularProgressIndicator(),
-      );
-    } else if (posts.isEmpty) {
-      return SingleChildScrollView(
-              child: Column(
-          children: <Widget>[
-            SizedBox(height: 70),
-            Icon(
-              Icons.filter_none,
-              color: Colors.black26,
-            ),
-            SizedBox(height: 20),
-            Text(
-              "Uh oh, don't have any favorited lessons!",
-              style: TextStyle(color: Colors.black26, fontSize: 16.0),
-            ),
-            SizedBox(height: 20),
-            Text(
-              "To favorite a lesson, tap on the heart icon",
-              style: TextStyle(color: Colors.black26, fontSize: 16.0),
-              textAlign: TextAlign.center,
-            ),
-            SizedBox(height: 30),
-            // SizedBox(
-            //   height: 50,
-            //   width: 250,
-            //   child: FlatButton(
-            //     shape: RoundedRectangleBorder(
-            //       borderRadius: BorderRadius.circular(20),
-            //     ),
-            //     color: Colors.indigo[300],
-            //     onPressed: () {
-            //        Navigator.pushReplacementNamed(context, '/record-screen');
-            //     },
-            //     child: Text(
-            //       "Listen and favorite a lesson!",
-            //       style: TextStyle(color: Colors.white),
-            //     ),
-            //   ),
-            // ),
-          ],
-        ),
-      );
-    } else {
-      return ListView(children: posts);
-    }
   }
 
   @override
   Widget build(BuildContext context) {
-    return buildTimeline();
+    return FutureBuilder(
+      future: _getPosts,
+      builder: (BuildContext context, AsyncSnapshot<dynamic> snapshot) {
+        List<Post> posts = snapshot.data;
+        Widget child;
+
+        if (snapshot.connectionState == ConnectionState.waiting) {
+          child = Container(
+            key: ValueKey(0),
+          );
+        } else if (posts.isEmpty) {
+          return SingleChildScrollView(
+            child: Column(
+              children: <Widget>[
+                SizedBox(height: 70),
+                Icon(
+                  Icons.filter_none,
+                  color: Colors.black26,
+                ),
+                SizedBox(height: 20),
+                Text(
+                  "Uh oh, you don't have any lessons!",
+                  style: TextStyle(color: Colors.black26, fontSize: 16.0),
+                ),
+                SizedBox(height: 20),
+                Text("Get started and record a new lesson today!",
+                    style: TextStyle(color: Colors.black26, fontSize: 16.0)),
+                SizedBox(height: 20),
+                // SizedBox(
+                //   height: 50,
+                //   width: 250,
+                //   child: FlatButton(
+                //     shape: RoundedRectangleBorder(
+                //       borderRadius: BorderRadius.circular(20),
+                //     ),
+                //     color: Colors.indigo[300],
+                //          onPressed: () {
+                //     },
+                //     child: Text(
+                //       "Record your first lesson!",
+                //       style: TextStyle(color: Colors.white),
+                //     ),
+                //   ),
+                // ),
+              ],
+            ),
+          );
+        } else {
+          child = ListView.builder(
+            key: ValueKey(1),
+            itemCount: posts.length,
+            itemBuilder: (ctx, i) => PostTile(
+              lessonTitle: posts[i].lessonTitle,
+              uid: posts[i].uid,
+              lessonTopic: posts[i].lessonTopic,
+            ),
+          );
+        }
+        return AnimatedSwitcher(
+          duration: Duration(milliseconds: 500),
+          child: child,
+        );
+      },
+    );
   }
 }

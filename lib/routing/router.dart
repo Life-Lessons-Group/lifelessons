@@ -7,7 +7,8 @@ import 'package:firebase_flutter_life/features/login/presentation/pages/login_sc
 import 'package:firebase_flutter_life/features/onboarding_walkthrough/presentation/pages/walkthrough_screen.dart';
 import 'package:firebase_flutter_life/features/register/presentation/pages/register_screen.dart.dart';
 import 'package:firebase_flutter_life/features/splash/presentation/pages/splash_screen.dart';
-import 'package:firebase_flutter_life/features/timeline/presentation/pages/topics_screen.dart';
+import 'package:firebase_flutter_life/features/topics/presentation/pages/topics_screen.dart';
+
 import 'package:flutter/material.dart';
 
 import 'route_names.dart';

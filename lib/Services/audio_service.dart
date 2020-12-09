@@ -1,13 +1,19 @@
-import 'package:audioplayers/audioplayers.dart';
+// import 'package:assets_audio_player/assets_audio_player.dart';
+// import 'package:audioplayers/audioplayers.dart';
 
-class AudioService {
-  AudioPlayer audioPlayer = AudioPlayer();
+// class AudioService {
+//   final assetsAudioPlayer = AssetsAudioPlayer();
 
-  void play(url) {
-    audioPlayer.play(url);
-  }
+//   void play(url) {
+//     try {assetsAudioPlayer.open(
+//       Audio.network(url)
+//     );}
+//     catch (t) {
 
-  void stop() {
-    audioPlayer.stop();
-  }
-}
+//     }
+//   }
+
+//   void stop() {
+//     audioPlayer.stop();
+//   }
+// }
