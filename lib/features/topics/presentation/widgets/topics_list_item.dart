@@ -98,13 +98,15 @@ class TopicsListItem extends StatelessWidget {
                                                 1.25,
                                             minHeight: 50.0),
                                         alignment: Alignment.center,
-                                        child: Text(
+                                        child: AutoSizeText(
                                           "Learn",
                                           textAlign: TextAlign.center,
                                           style: TextStyle(
                                             color: Colors.white,
-                                            fontSize: 18,
                                           ),
+                                          maxFontSize: 18,
+                                          minFontSize: 12,
+                                          maxLines: 1,
                                         ),
                                       ),
                                     ),
@@ -130,12 +132,14 @@ class TopicsListItem extends StatelessWidget {
                                             color: AppColors.accessoryColor,
                                             width: 2,
                                             style: BorderStyle.solid)),
-                                    child: Text(
+                                    child: AutoSizeText(
                                       "Contribute",
                                       style: TextStyle(
                                         color: AppColors.accessoryColor,
-                                        fontSize: 18,
                                       ),
+                                      maxFontSize: 18,
+                                      minFontSize: 12,
+                                      maxLines: 1,
                                     ),
                                   ),
                                 ),
@@ -146,10 +150,13 @@ class TopicsListItem extends StatelessWidget {
                   );
                 });
           },
-          title: Text(
+          title: AutoSizeText(
             title,
             style: TextStyle(
-                color: Colors.white, fontSize: 18.0, fontFamily: "Montserrat"),
+                color: Colors.white, fontFamily: "Montserrat"),
+            maxFontSize: 18,
+            minFontSize: 12,
+            maxLines: 1,
             textAlign: TextAlign.center,
           ),
         ),

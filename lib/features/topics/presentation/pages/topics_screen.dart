@@ -54,7 +54,7 @@ class _TopicsScreenState extends State<TopicsScreen> {
           appBar: AppBar(
             leading: Container(),
             title: Text(
-              "life lessons",
+              "COVID life lessons",
               style: TextStyle(
                   color: Colors.white,
                   fontSize: 18.0,

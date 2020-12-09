@@ -227,7 +227,7 @@ class _PostTileState extends State<PostTile> {
             // trailing: GestureDetector(
             //   onTap: () {},
             //   child: Icon(
-            //    widget.isFavorite ? Icons.favorite : Icons.favorite_border,
+            //     widget.isFavorite ? Icons.favorite : Icons.favorite_border,
             //     size: 28.0,
             //     color: Colors.lightGreen[100],
             //   ),
