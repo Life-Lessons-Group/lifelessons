@@ -11,7 +11,7 @@
     <application
         android:name="io.flutter.app.FlutterApplication"
         android:label="The Life Lessons App"
-        android:icon="@drawable/logo.jpeg">
+        android:icon="@drawable/ic_launcher_round.xml">
         <activity
             android:name=".MainActivity"
             android:launchMode="singleTop"
