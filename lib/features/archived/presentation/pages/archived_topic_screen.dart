@@ -19,19 +19,39 @@ class ArchivedTopicsScreen extends StatelessWidget {
           ],
         ),
       ),
-      child: Scaffold(
-        backgroundColor: Colors.transparent,
-        extendBodyBehindAppBar: true,
-        appBar: AppBar(
-          title: Text(
-            "life lessons",
-            style: TextStyle(color: Colors.white, fontSize: 24.0),
+      child: Column(
+        children: <Widget>[
+          Scaffold(
+            backgroundColor: Colors.transparent,
+            extendBodyBehindAppBar: true,
+            appBar: AppBar(
+              title: Text(
+                "pandemic life lessons",
+                style: TextStyle(color: Colors.white, fontSize: 24.0),
+              ),
+              backgroundColor: Colors.transparent,
+              elevation: 0,
+              centerTitle: true,
+            ),
+            body: ArchivedTopics(),
           ),
-          backgroundColor: Colors.transparent,
-          elevation: 0,
-          centerTitle: true,
-        ),
-        body: ArchivedTopics(),
+          Spacer(),
+          Align(
+            alignment: Alignment.bottomCenter,
+            child: Container(
+              padding: EdgeInsets.all(10.0),
+              height: 350,
+              decoration: BoxDecoration(
+                image: DecorationImage(
+                  fit: BoxFit.cover,
+                  colorFilter: ColorFilter.mode(
+                      Colors.greenAccent.withOpacity(0.4), BlendMode.darken),
+                  image: AssetImage('images/logo_screen_shot.png'),
+                ),
+              ),
+            ),
+          ),
+        ],
       ),
     );
   }
@@ -46,4 +66,3 @@ class ArchivedTopicsScreen extends StatelessWidget {
     );
   }
 }
- 
