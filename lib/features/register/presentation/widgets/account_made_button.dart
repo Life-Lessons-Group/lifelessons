@@ -1,4 +1,3 @@
-
 import 'package:firebase_flutter_life/core/AppColors.dart';
 import 'package:firebase_flutter_life/routing/route_names.dart';
 import 'package:flutter/material.dart';
@@ -10,7 +9,10 @@ class AlreadyAccountButton extends StatelessWidget {
       width: MediaQuery.of(context).size.width / 1.5,
       child: Center(
         child: FlatButton(
-          onPressed: () {Navigator.pushNamed(context, LoginRoute);},
+          onPressed: () {
+            Navigator.of(context).pushNamedAndRemoveUntil(
+                LoginRoute, (Route<dynamic> route) => false);
+          },
           child: Row(
             children: <Widget>[
               Text(

@@ -51,7 +51,8 @@ class _RegisterFormState extends State<RegisterForm> {
       prefs.setString("email", email);
       prefs.setBool('first_time', true);
       Future.delayed(const Duration(seconds: 2), () {
-        Navigator.pushNamed(context, HomeRoute);
+        Navigator.of(context)
+          .pushNamedAndRemoveUntil(HomeRoute, (Route<dynamic> route) => false);
       });
     }
   }

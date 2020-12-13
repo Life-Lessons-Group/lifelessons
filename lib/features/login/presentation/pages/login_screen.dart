@@ -53,7 +53,8 @@ class LoginScreen extends StatelessWidget {
                         fontWeight: FontWeight.w600)),
                 FlatButton(
                   onPressed: () {
-                    Navigator.pushNamed(context, RegisterRoute);
+                    Navigator.of(context)
+          .pushNamedAndRemoveUntil(RegisterRoute, (Route<dynamic> route) => false);
                   },
                   child: Text(
                     "Sign Up",
@@ -83,7 +84,8 @@ class LoginScreen extends StatelessWidget {
                       ),
                       onPressed: () {
                         auth.resetPassword(email);
-                        Navigator.pushNamed(context, WalkThroughRoute);
+                        Navigator.of(context)
+          .pushNamedAndRemoveUntil(WalkThroughRoute, (Route<dynamic> route) => false);
                       },
                       gradient: LinearGradient(
                         colors: <Color>[

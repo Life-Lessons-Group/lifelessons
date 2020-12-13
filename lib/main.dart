@@ -20,8 +20,10 @@ import 'features/home/presentation/pages/home_screen.dart';
 import 'features/register/presentation/pages/register_screen.dart.dart';
 import 'features/topics/presentation/providers/topics.dart';
 import 'routing/router.dart';
+import 'services/locator_service.dart';
 
 main() {
+  setupLocator();
   runApp(App());
 }
 

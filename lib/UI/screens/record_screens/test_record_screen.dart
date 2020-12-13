@@ -2,8 +2,6 @@ import 'dart:async';
 import 'dart:io';
 import 'dart:math';
 
-import 'package:audioplayers/audio_cache.dart';
-import 'package:audioplayers/audioplayers.dart';
 import 'package:firebase_flutter_life/Services/firebase_service.dart';
 
 import 'package:flutter/material.dart';
@@ -41,7 +39,7 @@ class _TestRecordState extends State<TestRecord> with TickerProviderStateMixin {
       vsync: this,
       duration: Duration(seconds: 180),
     );
-     assetPlayer.load('note4.wav');
+    //  assetPlayer.load('note4.wav');
   }
 
   String recordingTitle = "";
@@ -61,8 +59,8 @@ class _TestRecordState extends State<TestRecord> with TickerProviderStateMixin {
   final random = Random();
   int index = 0;
 
-  AudioPlayer audioPlayer = AudioPlayer();
-  AudioCache assetPlayer = AudioCache(prefix: 'sounds/');
+  // AudioPlayer audioPlayer = AudioPlayer();
+  // AudioCache assetPlayer = AudioCache(prefix: 'sounds/');
 
   Future<bool> checkPermission() async {
     if (!await Permission.microphone.isGranted) {
@@ -77,7 +75,7 @@ class _TestRecordState extends State<TestRecord> with TickerProviderStateMixin {
   void startRecord() async {
     bool hasPermission = await checkPermission();
     if (hasPermission) {
-      assetPlayer.play('note4.wav');
+      // assetPlayer.play('note4.wav');
       statusText = "Recording...";
       recordFilePath = await getFilePath();
       isComplete = false;
@@ -130,7 +128,7 @@ class _TestRecordState extends State<TestRecord> with TickerProviderStateMixin {
 
   void play() {
     if (recordFilePath != null && File(recordFilePath).existsSync()) {
-      audioPlayer.play(recordFilePath, isLocal: true);
+      // audioPlayer.play(recordFilePath, isLocal: true);
     }
   }
 

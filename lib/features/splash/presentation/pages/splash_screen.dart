@@ -1,6 +1,7 @@
 import 'dart:async';
 
 import 'package:firebase_flutter_life/core/size_config.dart';
+import 'package:firebase_flutter_life/features/authentication/data/repositories/firebase_auth_service.dart';
 import 'package:firebase_flutter_life/routing/route_names.dart';
 import 'package:flutter/material.dart';
 import 'package:shared_preferences/shared_preferences.dart';
@@ -11,21 +12,15 @@ class SplashScreen extends StatefulWidget {
 }
 
 class _SplashScreenState extends State<SplashScreen> {
-  startTime() async {
-    SharedPreferences prefs = await SharedPreferences.getInstance();
-    String email = prefs.getString("email");
-    // bool firstTime = prefs.getBool('firstTime');
-    Duration _duration = Duration(milliseconds: 1500);
+  final AuthService _auth = AuthService();
 
-    // if (email == null) {
-    //   // Not first time
-    //   return Timer(_duration, navigationPageWalkthrough);
-    // } else {
-    //   // First time
-    //   return Timer(_duration, navigationPageHome);
-    // }
-return Timer(_duration, navigationPageWalkthrough);
-    
+  startTime() async {
+    var hasLoggedInUser = await _auth.isUserLoggedIn();
+    if (hasLoggedInUser) {
+      navigationPageHome();
+    } else {
+      navigationPageLogin();
+    }
   }
 
   void navigationPageHome() {

@@ -84,6 +84,7 @@ class _MyPublicBookScreenState extends State<MyPublicBookScreen> {
               lessonTitle: posts[i].lessonTitle,
               uid: posts[i].uid,
               lessonTopic: posts[i].lessonTopic,
+              recordingURL: posts[i].recordingURL,
             ),
           );
         }
