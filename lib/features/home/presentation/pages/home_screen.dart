@@ -7,12 +7,11 @@ import 'package:firebase_flutter_life/features/hot_topic/presentation/pages/hot_
 import 'package:firebase_flutter_life/features/notifications/presentation/pages/notifications_screen.dart';
 
 import 'package:firebase_flutter_life/features/topics/presentation/pages/topics_screen.dart';
+import 'package:firebase_messaging/firebase_messaging.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:provider/provider.dart';
-
-
 
 class HomeScreen extends StatefulWidget {
   static const String routeName = '/home';
@@ -30,6 +29,9 @@ class _HomeScreenState extends State<HomeScreen> {
     super.initState();
 
     pageController = PageController();
+    final fbm = FirebaseMessaging();
+    fbm.requestNotificationPermissions();
+    fbm.configure();
   }
 
   @override
