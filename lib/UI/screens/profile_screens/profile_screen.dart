@@ -4,9 +4,6 @@ import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_flutter_life/Services/firebase_service.dart';
 import 'package:firebase_flutter_life/features/authentication/data/models/user.dart';
 
-
-
-
 import 'package:firebase_flutter_life/features/settings/presentation/pages/settings_screen.dart';
 
 import 'package:firebase_flutter_life/features/profile/presentation/widgets/book_tab.dart';
@@ -14,7 +11,6 @@ import 'package:firebase_flutter_life/features/topics/data/datasources/firebase_
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
 import 'package:image_picker/image_picker.dart';
-
 
 class ProfileScreen extends StatefulWidget {
   final User currentUser;
@@ -29,6 +25,7 @@ class ProfileScreen extends StatefulWidget {
 class _ProfileScreenState extends State<ProfileScreen> {
   final followersRef = Firestore.instance.collection('followers');
   final followingRef = Firestore.instance.collection('following');
+  final usersRef = Firestore.instance.collection('users');
 
   int postCount = 0;
   int followerCount = 0;
@@ -44,7 +41,10 @@ class _ProfileScreenState extends State<ProfileScreen> {
     setState(() {
       _image = File(pickedFile.path);
       fire.photoUpload(
-      file: _image, path: pickedFile.path, contentType: 'image/jpeg', userID: widget.currentUser.userID);
+          file: _image,
+          path: pickedFile.path,
+          contentType: 'image/jpeg',
+          userID: widget.currentUser.userID);
     });
   }
 
@@ -67,7 +67,7 @@ class _ProfileScreenState extends State<ProfileScreen> {
       followerCount = snapshot.documents.length;
     });
   }
-
+//GET FOLLOWERS
   getFollowing() async {
     QuerySnapshot snapshot = await followingRef
         .document(widget.currentUser.userID)
@@ -78,9 +78,10 @@ class _ProfileScreenState extends State<ProfileScreen> {
     });
   }
 
+//POST COUNT
   getPostCount() async {
     QuerySnapshot snapshot = await FirebaseCollections.postsCollectionReference
-        .where("userID", isEqualTo: widget.currentUser.userID)
+        .where("uid", isEqualTo: widget.currentUser.userID)
         .getDocuments();
     setState(() {
       postCount = snapshot.documents.length;
@@ -122,7 +123,6 @@ class _ProfileScreenState extends State<ProfileScreen> {
                       color: Colors.transparent,
                       onPressed: () {},
                     ),
-                    
                     Text(
                       "your book",
                       style: TextStyle(
@@ -170,7 +170,6 @@ class _ProfileScreenState extends State<ProfileScreen> {
                       color: Colors.white70,
                       size: 12,
                     ),
-                    
                     Text("United States",
                         style: TextStyle(
                             fontSize: 12,

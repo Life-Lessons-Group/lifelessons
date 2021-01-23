@@ -4,7 +4,7 @@ import 'package:firebase_flutter_life/features/authentication/data/models/user.d
 import 'package:firebase_flutter_life/features/authentication/data/repositories/firebase_user_data_service.dart';
 import 'package:firebase_flutter_life/features/discover/presentation/pages/discover_screen.dart';
 import 'package:firebase_flutter_life/features/hot_topic/presentation/pages/hot_topic_screen.dart';
-import 'package:firebase_flutter_life/features/notifications/presentation/pages/notifications_screen.dart';
+
 
 import 'package:firebase_flutter_life/features/topics/presentation/pages/topics_screen.dart';
 import 'package:firebase_messaging/firebase_messaging.dart';
@@ -31,7 +31,19 @@ class _HomeScreenState extends State<HomeScreen> {
     pageController = PageController();
     final fbm = FirebaseMessaging();
     fbm.requestNotificationPermissions();
-    fbm.configure();
+    fbm.configure(onMessage: (msg) {
+      print(msg);
+      return;
+    },
+    onLaunch: (msg) {
+      print(msg);
+      return;
+    },
+    onResume: (msg) {
+      print(msg);
+      return;
+    }
+    );
   }
 
   @override

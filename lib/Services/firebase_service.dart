@@ -4,6 +4,7 @@ import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 
 import 'package:firebase_flutter_life/features/topics/data/datasources/firebase_collections.dart';
+import 'package:firebase_flutter_life/ui/screens/profile_screens/profile_screen.dart';
 
 import 'package:firebase_storage/firebase_storage.dart';
 import 'package:flutter/material.dart';
@@ -19,8 +20,9 @@ class FirebaseService {
   final _auth = FirebaseAuth.instance;
   final followersRef = Firestore.instance.collection('followers');
   final followingRef = Firestore.instance.collection('following');
+  final usersRef = Firestore.instance.collection('users');
+  final postsRef = Firestore.instance.collection("posts");
 
-  /// Generic file upload for any [path] and [contentType]
   Future<String> publicUpload({
     @required File file,
     @required String title,
@@ -46,9 +48,9 @@ class FirebaseService {
     print('downloadUrl: $downloadUrl');
 
     final user = await FirebaseAuth.instance.currentUser();
-    final userData =
-        await Firestore.instance.collection("users").document(user.uid).get();
-    await Firestore.instance.collection("posts").document(postID).setData({
+    final userData = await usersRef.document(user.uid).get();
+    updatePostsCount(user.uid);
+    await postsRef.document(postID).setData({
       "lessonTitle": title,
       "lessonTopic": topic,
       "postID": postID,
@@ -132,6 +134,27 @@ class FirebaseService {
         .updateData({'profileImageUrl': downloadUrl});
   }
 
+  Future updatePostsCount(String userID) async {
+    await usersRef.document(userID).updateData({
+      "posts": FieldValue.increment(1) ?? getPostCount(userID),
+    });
+  }
+
+  Future<int> getPostCount(String userID) async {
+    QuerySnapshot snapshot = await FirebaseCollections.postsCollectionReference
+        .where("uid", isEqualTo: userID)
+        .getDocuments();
+
+    return snapshot.documents.length;
+  }
+
+  Future updateListensCount() async {
+    final user = await FirebaseAuth.instance.currentUser();
+    await usersRef.document(user.uid).updateData({
+      "listens": FieldValue.increment(1) ?? 1,
+    });
+  }
+
   Future submitAuthForm(
     String email,
     String password,
@@ -164,7 +187,9 @@ class FirebaseService {
           'username': username,
           'email': email,
           'profileImageUrl': url,
-          "userID": user.uid,
+          'userID': user.uid,
+          'listens': 0,
+          'posts': 0,
         });
         return AuthService.userFromFirebaseUser(user);
       }

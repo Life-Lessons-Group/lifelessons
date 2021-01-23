@@ -47,6 +47,12 @@ class _TopicsScreenState extends State<TopicsScreen> {
             Colors.lightBlue[600],
           ],
         ),
+        image: DecorationImage(
+          fit: BoxFit.cover,
+          colorFilter: ColorFilter.mode(
+              Colors.greenAccent.withOpacity(0.4), BlendMode.darken),
+          image: AssetImage('images/logo_screen_shot.png'),
+        ),
       ),
       child: Scaffold(
           backgroundColor: Colors.transparent,
@@ -54,7 +60,7 @@ class _TopicsScreenState extends State<TopicsScreen> {
           appBar: AppBar(
             leading: Container(),
             title: Text(
-              "COVID life lessons",
+              "Pandemic",
               style: TextStyle(
                   color: Colors.white,
                   fontSize: 18.0,

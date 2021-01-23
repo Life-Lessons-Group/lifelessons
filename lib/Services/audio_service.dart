@@ -1,19 +1,17 @@
-// import 'package:assets_audio_player/assets_audio_player.dart';
-// import 'package:audioplayers/audioplayers.dart';
+// import 'package:flutter/material.dart';
 
-// class AudioService {
-//   final assetsAudioPlayer = AssetsAudioPlayer();
+// class FlutterAudioPlayer extends StatefulWidget {
+//   FlutterAudioPlayer({Key key}) : super(key: key);
 
-//   void play(url) {
-//     try {assetsAudioPlayer.open(
-//       Audio.network(url)
-//     );}
-//     catch (t) {
+//   @override
+//   _FlutterAudioPlayerState createState() => _FlutterAudioPlayerState();
+// }
 
-//     }
-//   }
-
-//   void stop() {
-//     audioPlayer.stop();
+// class _FlutterAudioPlayerState extends State<FlutterAudioPlayer> {
+//   @override
+//   Widget build(BuildContext context) {
+//     return Container(
+//        child: child,
+//     );
 //   }
 // }

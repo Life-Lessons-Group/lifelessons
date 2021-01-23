@@ -1,10 +1,10 @@
 import 'package:flutter/material.dart';
 
 const Topics = [
-  Text("Simple Pleasures",
+  Text("Found a New Love For",
       style: TextStyle(
           color: Colors.white, fontSize: 13.0, fontWeight: FontWeight.w300)),
-  Text("Planning for Chaos",
+  Text("Surprisingly What Hurts The Most",
       style: TextStyle(
           color: Colors.white, fontSize: 13.0, fontWeight: FontWeight.w300)),
   Text("Learning About Yourself",

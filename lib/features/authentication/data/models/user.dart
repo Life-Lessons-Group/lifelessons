@@ -7,6 +7,8 @@ class User {
   String profileImageURL;
   final String bio;
   final String location;
+  int listens;
+  int posts;
 
   User({
     this.userID,
@@ -17,6 +19,8 @@ class User {
     this.profileImageURL,
     this.bio,
     this.location,
+    this.listens,
+    this.posts,
   });
 
   factory User.fromMap(Map doc) {
@@ -29,6 +33,8 @@ class User {
       profileImageURL: doc["profileImageURL"],
       bio: doc["bio"],
       location: doc["location"],
+      listens: doc["listens"],
+      posts: doc["posts"],
     );
   }
 }

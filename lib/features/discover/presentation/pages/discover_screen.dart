@@ -38,6 +38,7 @@ class _DiscoverScreenState extends State<DiscoverScreen> {
     return Scaffold(
       extendBodyBehindAppBar: true,
       appBar: AppBar(
+        leading: Container(),
         backgroundColor: Colors.transparent,
         centerTitle: true,
         elevation: 0,

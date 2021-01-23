@@ -3,9 +3,14 @@ import 'dart:io';
 import 'dart:math';
 
 import 'package:firebase_flutter_life/Services/firebase_service.dart';
+import 'package:firebase_flutter_life/features/home/presentation/pages/home_screen.dart';
+import 'package:firebase_flutter_life/routing/route_names.dart';
+import 'package:firebase_flutter_life/services/shared_prefs.dart';
 
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
+import 'package:flutter_sound/flutter_sound.dart';
+import 'package:flutter_sound/public/flutter_sound_player.dart';
 import 'package:flutter_spinkit/flutter_spinkit.dart';
 
 import 'package:flutter_svg/svg.dart';
@@ -26,6 +31,10 @@ class TestRecord extends StatefulWidget {
 class _TestRecordState extends State<TestRecord> with TickerProviderStateMixin {
   AnimationController controller;
   final _formKey = GlobalKey<FormState>();
+  FlutterSoundPlayer _myPlayer = FlutterSoundPlayer();
+  bool _myPlayerIsInit = false;
+  bool isPlaying = false;
+  String recordFilePath;
 
   String get timerString {
     Duration duration = controller.duration * controller.value;
@@ -40,6 +49,25 @@ class _TestRecordState extends State<TestRecord> with TickerProviderStateMixin {
       duration: Duration(seconds: 180),
     );
     //  assetPlayer.load('note4.wav');
+    _myPlayer
+        .openAudioSession(
+      // device: AudioDevice.blueToothA2DP,
+      focus: AudioFocus.requestFocusAndStopOthers,
+      category: SessionCategory.playback,
+    )
+        .then((value) {
+      setState(() {
+        _myPlayerIsInit = true;
+      });
+    });
+  }
+
+  @override
+  void dispose() {
+    // Be careful : you must `close` the audio session when you have finished with it.
+    _myPlayer.closeAudioSession();
+    _myPlayer = null;
+    super.dispose();
   }
 
   String recordingTitle = "";
@@ -47,7 +75,6 @@ class _TestRecordState extends State<TestRecord> with TickerProviderStateMixin {
   bool isComplete = false;
   bool isRecording = false;
   bool isUploading = false;
-  bool isPlaying = false;
   bool isPrivate = false;
   var uuid = Uuid();
   final List<String> entries = <String>[
@@ -58,9 +85,6 @@ class _TestRecordState extends State<TestRecord> with TickerProviderStateMixin {
   ];
   final random = Random();
   int index = 0;
-
-  // AudioPlayer audioPlayer = AudioPlayer();
-  // AudioCache assetPlayer = AudioCache(prefix: 'sounds/');
 
   Future<bool> checkPermission() async {
     if (!await Permission.microphone.isGranted) {
@@ -124,12 +148,25 @@ class _TestRecordState extends State<TestRecord> with TickerProviderStateMixin {
     }
   }
 
-  String recordFilePath;
-
-  void play() {
+  void play() async {
     if (recordFilePath != null && File(recordFilePath).existsSync()) {
-      // audioPlayer.play(recordFilePath, isLocal: true);
+      await _myPlayer.startPlayer(
+          fromURI: recordFilePath,
+          codec: Codec.defaultCodec,
+          numChannels: 1,
+          whenFinished: () {
+            print("finished playing audio");
+          });
+    } else {
+      await _myPlayer.startPlayer(
+          fromURI: recordFilePath,
+          codec: Codec.defaultCodec,
+          whenFinished: () {
+            print("finished playing audio");
+          });
     }
+
+    await _myPlayer.setVolume(1);
   }
 
   int i = 0;
@@ -202,7 +239,8 @@ class _TestRecordState extends State<TestRecord> with TickerProviderStateMixin {
                     ),
                     onPressed: () {
                       _trySubmit();
-                      Navigator.pushReplacementNamed(context, "/root");
+                      SharedPrefs().listenCount = 0;
+                      Navigator.pushReplacementNamed(context, HomeRoute);
                       index = random.nextInt(4);
                       final snackBar = SnackBar(
                         content: Text(

@@ -1,3 +1,4 @@
+import 'package:auto_size_text/auto_size_text.dart';
 import 'package:firebase_flutter_life/UI/screens/record_screens/test_record_screen.dart';
 import 'package:firebase_flutter_life/core/size_config.dart';
 import 'package:firebase_flutter_life/features/hot_topic/presentation/widgets/hot_topic_countdown_timer.dart';
@@ -85,12 +86,12 @@ class HotTopicScreen extends StatelessWidget {
               child: Center(
                 child: Padding(
                   padding: const EdgeInsets.all(8.0),
-                  child: Text(
-                    "In a great leader, have you seen more honesty or bravery?",
+                  child: AutoSizeText(
+                    "In a great leader have you seen more honesty or accountability?",
+                    maxFontSize: 20,
+                    minFontSize: 12,
                     style: TextStyle(
-                        color: Colors.white,
-                        fontSize: 20,
-                        fontWeight: FontWeight.normal),
+                        color: Colors.white, fontWeight: FontWeight.normal),
                     textAlign: TextAlign.center,
                   ),
                 ),

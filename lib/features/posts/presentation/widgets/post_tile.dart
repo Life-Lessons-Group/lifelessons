@@ -3,6 +3,9 @@ import 'dart:async';
 import 'package:auto_size_text/auto_size_text.dart';
 import 'package:firebase_flutter_life/features/authentication/data/models/user.dart';
 import 'package:firebase_flutter_life/features/authentication/data/repositories/firebase_user_data_service.dart';
+import 'package:firebase_flutter_life/services/firebase_service.dart';
+import 'package:firebase_flutter_life/services/internal_notifications.dart';
+import 'package:firebase_flutter_life/services/shared_prefs.dart';
 
 import 'package:flutter/material.dart';
 import 'package:flutter_sound/flutter_sound.dart';
@@ -18,15 +21,15 @@ class PostTile extends StatefulWidget {
   final String recordingURL;
   final String username;
 
-  const PostTile(
-      {Key key,
-      this.lessonTitle,
-      this.lessonTopic,
-      this.postID,
-      this.uid,
-      this.recordingURL,
-      this.username})
-      : super(key: key);
+  const PostTile({
+    Key key,
+    this.lessonTitle,
+    this.lessonTopic,
+    this.postID,
+    this.uid,
+    this.recordingURL,
+    this.username,
+  }) : super(key: key);
 
   @override
   _PostTileState createState() => _PostTileState();
@@ -82,6 +85,7 @@ class _PostTileState extends State<PostTile> {
     }
 
     await _myPlayer.setVolume(1);
+    FirebaseService().updateListensCount();
   }
 
   Future<void> stopPlayer() async {
@@ -133,6 +137,9 @@ class _PostTileState extends State<PostTile> {
           print("Lesson Tapped");
           print(widget.recordingURL);
           print(_myPlayer.playerState);
+          SharedPrefs().listenCount += 1;
+          InternalNotifications().contributionReminder(context);
+          print(SharedPrefs().listenCount);
         },
         child: Card(
           margin: EdgeInsets.fromLTRB(20, 6, 20, 0),

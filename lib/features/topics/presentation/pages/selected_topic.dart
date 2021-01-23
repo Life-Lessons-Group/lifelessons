@@ -22,6 +22,7 @@ class _SelectedTopicScreenState extends State<SelectedTopicScreen> {
   void initState() {
     _getPosts = Posts().getPostsByTopic(widget.topic);
 
+
     super.initState();
   }
 
@@ -48,6 +49,7 @@ class _SelectedTopicScreenState extends State<SelectedTopicScreen> {
                 uid: posts[i].uid,
                 lessonTopic: posts[i].lessonTopic,
                 recordingURL: posts[i].recordingURL,
+              
               ),
             );
           }

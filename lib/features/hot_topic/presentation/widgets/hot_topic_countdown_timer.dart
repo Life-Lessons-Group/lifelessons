@@ -25,7 +25,7 @@ class _HotTopicCountDownTimerState extends State<HotTopicCountDownTimer> {
     _timer = Timer.periodic(Duration(seconds: 1), (timer) {
       setState(() {
         _timeUntil =
-            TimeLeft().timeLeft(DateTime.utc(2020, 12, 15, 11, 59, 59));
+            TimeLeft().timeLeft(DateTime.utc(2021, 02, 15, 11, 59, 59));
         print("Time Until" + _timeUntil.toString()); //timeLeft Function
       });
     });

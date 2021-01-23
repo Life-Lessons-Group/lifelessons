@@ -1,7 +1,7 @@
 import 'package:firebase_flutter_life/Models/topics.dart';
 
 import 'package:flutter/material.dart';
-
+import 'package:flutter_sound/flutter_sound.dart';
 import 'test_record_screen.dart';
 
 class RecordBeginScreen extends StatefulWidget {
@@ -12,6 +12,7 @@ class RecordBeginScreen extends StatefulWidget {
 
 class _RecordBeginScreenState extends State<RecordBeginScreen> {
   var recordingTopic = "Select a Topic";
+
   @override
   Widget build(BuildContext context) {
     return Container(

@@ -9,8 +9,10 @@ import 'package:firebase_flutter_life/features/onboarding_walkthrough/presentati
 import 'package:firebase_flutter_life/features/splash/presentation/pages/splash_screen.dart';
 import 'package:firebase_flutter_life/features/topics/presentation/pages/topics_screen.dart';
 import 'package:firebase_flutter_life/routing/route_names.dart';
+import 'package:firebase_flutter_life/services/shared_prefs.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:overlay_support/overlay_support.dart';
 import 'package:provider/provider.dart';
 import 'UI/screens/profile_screens/profile_screen.dart';
 import 'UI/screens/record_screens/record_begin_screen.dart';
@@ -22,8 +24,11 @@ import 'features/topics/presentation/providers/topics.dart';
 import 'routing/router.dart';
 import 'services/locator_service.dart';
 
-main() {
+Future main() async {
+  WidgetsFlutterBinding.ensureInitialized();
+
   setupLocator();
+  await sharedPrefs.init();
   runApp(App());
 }
 
@@ -39,24 +44,26 @@ class App extends StatelessWidget {
         ChangeNotifierProvider(create: (ctx) => HotTopicProvider()),
         Provider(create: (ctx) => UserDatabaseService()),
       ],
-      child: MaterialApp(
-        debugShowCheckedModeBanner: false,
-        theme: ThemeData(primaryColor: AppColors.accessoryColor),
-        initialRoute: SplashRoute,
-        onGenerateRoute: generateRoute,
-        routes: {
-          HomeRoute: (context) => HomeScreen(),
-          TopicsRoute: (context) => TopicsScreen(),
-          RecordRoute: (context) => RecordBeginScreen(),
-          ProfileRoute: (context) => ProfileScreen(),
-          LoginRoute: (context) => LoginScreen(),
-          RegisterRoute: (context) => RegisterScreen(),
-          ArchiveRoute: (context) => ArchivedTopicsScreen(),
-          WalkThroughRoute: (context) => WalkthroughScreen(),
-          SplashRoute: (context) => SplashScreen(),
-          CategoryRoute: (context) => CategoryScreen(),
-          BookRoute: (context) => BookScreen(),
-        },
+      child: OverlaySupport(
+        child: MaterialApp(
+          debugShowCheckedModeBanner: false,
+          theme: ThemeData(primaryColor: AppColors.accessoryColor),
+          initialRoute: SplashRoute,
+          onGenerateRoute: generateRoute,
+          routes: {
+            HomeRoute: (context) => HomeScreen(),
+            TopicsRoute: (context) => TopicsScreen(),
+            RecordRoute: (context) => RecordBeginScreen(),
+            ProfileRoute: (context) => ProfileScreen(),
+            LoginRoute: (context) => LoginScreen(),
+            RegisterRoute: (context) => RegisterScreen(),
+            ArchiveRoute: (context) => ArchivedTopicsScreen(),
+            WalkThroughRoute: (context) => WalkthroughScreen(),
+            SplashRoute: (context) => SplashScreen(),
+            CategoryRoute: (context) => CategoryScreen(),
+            BookRoute: (context) => BookScreen(),
+          },
+        ),
       ),
     );
   }
