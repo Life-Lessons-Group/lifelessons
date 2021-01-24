@@ -18,6 +18,7 @@ import 'package:path_provider/path_provider.dart';
 import 'package:permission_handler/permission_handler.dart';
 import 'package:record_mp3/record_mp3.dart';
 import 'package:rflutter_alert/rflutter_alert.dart';
+import 'package:showcaseview/showcase_widget.dart';
 import 'package:uuid/uuid.dart';
 
 class TestRecord extends StatefulWidget {
@@ -35,6 +36,8 @@ class _TestRecordState extends State<TestRecord> with TickerProviderStateMixin {
   bool _myPlayerIsInit = false;
   bool isPlaying = false;
   String recordFilePath;
+  final _recordKey = GlobalKey();
+
 
   String get timerString {
     Duration duration = controller.duration * controller.value;
@@ -44,6 +47,8 @@ class _TestRecordState extends State<TestRecord> with TickerProviderStateMixin {
   @override
   void initState() {
     super.initState();
+     WidgetsBinding.instance.addPostFrameCallback((_) =>
+        ShowCaseWidget.of(context).startShowCase([_recordKey]));
     controller = AnimationController(
       vsync: this,
       duration: Duration(seconds: 180),

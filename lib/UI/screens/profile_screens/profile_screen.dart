@@ -11,6 +11,7 @@ import 'package:firebase_flutter_life/features/topics/data/datasources/firebase_
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
 import 'package:image_picker/image_picker.dart';
+import 'package:showcaseview/showcaseview.dart';
 
 class ProfileScreen extends StatefulWidget {
   final User currentUser;
@@ -34,6 +35,7 @@ class _ProfileScreenState extends State<ProfileScreen> {
   File _image;
   final picker = ImagePicker();
   final fire = FirebaseService();
+  final _settingsKey = GlobalKey();
 
   Future getImage() async {
     final pickedFile = await picker.getImage(source: ImageSource.gallery);
@@ -56,6 +58,8 @@ class _ProfileScreenState extends State<ProfileScreen> {
     getPostCount();
     getFollowers();
     getFollowing();
+    WidgetsBinding.instance.addPostFrameCallback(
+        (_) => ShowCaseWidget.of(context).startShowCase([_settingsKey]));
   }
 
   getFollowers() async {
@@ -67,6 +71,7 @@ class _ProfileScreenState extends State<ProfileScreen> {
       followerCount = snapshot.documents.length;
     });
   }
+
 //GET FOLLOWERS
   getFollowing() async {
     QuerySnapshot snapshot = await followingRef
@@ -289,7 +294,11 @@ class _ProfileScreenState extends State<ProfileScreen> {
                           color: Colors.white,
                           fontWeight: FontWeight.w800),
                     ),
-                    AppDrawerButton(),
+                    Showcase(
+                        key: _settingsKey,
+                        title: "",
+                        description: "Tap here to make account changes.",
+                        child: AppDrawerButton()),
                   ],
                 ),
                 SizedBox(height: 20),

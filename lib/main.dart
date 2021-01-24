@@ -14,6 +14,7 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:overlay_support/overlay_support.dart';
 import 'package:provider/provider.dart';
+import 'package:showcaseview/showcase_widget.dart';
 import 'UI/screens/profile_screens/profile_screen.dart';
 import 'UI/screens/record_screens/record_begin_screen.dart';
 import 'features/archived/presentation/pages/archived_topic_screen.dart';
@@ -48,6 +49,7 @@ class App extends StatelessWidget {
         child: MaterialApp(
           debugShowCheckedModeBanner: false,
           theme: ThemeData(primaryColor: AppColors.accessoryColor),
+          
           initialRoute: SplashRoute,
           onGenerateRoute: generateRoute,
           routes: {

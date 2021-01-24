@@ -2,6 +2,8 @@ import 'package:firebase_flutter_life/features/topics/presentation/widgets/topic
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
 import 'package:provider/provider.dart';
+import 'package:showcaseview/showcase.dart';
+import 'package:showcaseview/showcase_widget.dart';
 
 class TopicsScreen extends StatefulWidget {
   static const routeName = '/topic-screen';
@@ -13,11 +15,16 @@ class TopicsScreen extends StatefulWidget {
 class _TopicsScreenState extends State<TopicsScreen> {
   ScrollController _controller;
   bool appTitleVisible = true;
+  final _bookKey = GlobalKey();
+ 
   @override
   void initState() {
     _controller = ScrollController();
     _controller.addListener(_scrollListener);
+
     super.initState();
+    WidgetsBinding.instance.addPostFrameCallback((_) =>
+        ShowCaseWidget.of(context).startShowCase([_bookKey]));
   }
 
   _scrollListener() {
@@ -59,12 +66,22 @@ class _TopicsScreenState extends State<TopicsScreen> {
           extendBodyBehindAppBar: true,
           appBar: AppBar(
             leading: Container(),
-            title: Text(
-              "Pandemic",
-              style: TextStyle(
-                  color: Colors.white,
-                  fontSize: 18.0,
-                  fontWeight: FontWeight.w800),
+            title: Showcase(
+              key: _bookKey,
+              overlayOpacity: 0.8,
+              title: "Welcome to Life Lessons!",
+              description:
+                  'The most recent Book of Lessons will be shown here.\n Tap any lesson below to listen or record lessons!',
+              child: Padding(
+                padding: const EdgeInsets.all(8.0),
+                child: Text(
+                  "Pandemic",
+                  style: TextStyle(
+                      color: Colors.white,
+                      fontSize: 18.0,
+                      fontWeight: FontWeight.w800),
+                ),
+              ),
             ),
             backgroundColor: Colors.transparent,
             elevation: 0,
