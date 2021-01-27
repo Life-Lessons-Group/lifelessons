@@ -1,4 +1,5 @@
 import 'package:firebase_flutter_life/features/topics/presentation/widgets/topics_list.dart';
+import 'package:firebase_flutter_life/services/shared_prefs.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
 import 'package:provider/provider.dart';
@@ -16,15 +17,19 @@ class _TopicsScreenState extends State<TopicsScreen> {
   ScrollController _controller;
   bool appTitleVisible = true;
   final _bookKey = GlobalKey();
- 
+  BuildContext myContext;
+
   @override
   void initState() {
     _controller = ScrollController();
     _controller.addListener(_scrollListener);
 
     super.initState();
-    WidgetsBinding.instance.addPostFrameCallback((_) =>
-        ShowCaseWidget.of(context).startShowCase([_bookKey]));
+    WidgetsBinding.instance.addPostFrameCallback((_) {
+      SharedPrefs.isFirstVisit("homeScreenVisit").then((result) {
+        if (result) ShowCaseWidget.of(context).startShowCase([_bookKey]);
+      });
+    });
   }
 
   _scrollListener() {
@@ -71,7 +76,7 @@ class _TopicsScreenState extends State<TopicsScreen> {
               overlayOpacity: 0.8,
               title: "Welcome to Life Lessons!",
               description:
-                  'The most recent Book of Lessons will be shown here.\n Tap any lesson below to listen or record lessons!',
+                  'The most recent Book of Lessons will be shown here.\nTap any lesson below to listen or record lessons!',
               child: Padding(
                 padding: const EdgeInsets.all(8.0),
                 child: Text(

@@ -3,11 +3,31 @@ import 'package:firebase_flutter_life/UI/screens/record_screens/test_record_scre
 import 'package:firebase_flutter_life/core/size_config.dart';
 import 'package:firebase_flutter_life/features/hot_topic/presentation/widgets/hot_topic_countdown_timer.dart';
 import 'package:firebase_flutter_life/features/hot_topic/presentation/widgets/hot_topic_post_list.dart';
+import 'package:firebase_flutter_life/services/shared_prefs.dart';
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 
-class HotTopicScreen extends StatelessWidget {
+import 'package:showcaseview/showcaseview.dart';
+
+class HotTopicScreen extends StatefulWidget {
   const HotTopicScreen({Key key}) : super(key: key);
+
+  @override
+  _HotTopicScreenState createState() => _HotTopicScreenState();
+}
+
+class _HotTopicScreenState extends State<HotTopicScreen> {
+  final _hotTopicKey = GlobalKey();
+
+  @override
+  void initState() {
+    super.initState();
+    WidgetsBinding.instance.addPostFrameCallback((_) {
+      SharedPrefs.isFirstVisit("hotTopicScreenVisit").then((result) {
+        if (result) ShowCaseWidget.of(context).startShowCase([_hotTopicKey]);
+      });
+    });
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -26,9 +46,19 @@ class HotTopicScreen extends StatelessWidget {
           ),
         ),
         centerTitle: true,
-        title: Text(
-          "hot topic 🔥",
-          style: TextStyle(color: Colors.white, fontWeight: FontWeight.w800),
+        title: Showcase(
+          title: "History doesn’t have to repeat itself!",
+          description:
+              'Here, share your insight to help shape\na different outcome for a better tomorrow',
+          key: _hotTopicKey,
+          child: Padding(
+            padding: const EdgeInsets.all(8.0),
+            child: Text(
+              "hot topic 🔥",
+              style:
+                  TextStyle(color: Colors.white, fontWeight: FontWeight.w800),
+            ),
+          ),
         ),
       ),
       floatingActionButton: FloatingActionButton(

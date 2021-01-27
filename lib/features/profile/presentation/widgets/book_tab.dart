@@ -1,10 +1,11 @@
-
-
 import 'package:firebase_flutter_life/UI/screens/profile_screens/my_favorite_book_screen.dart';
 import 'package:firebase_flutter_life/UI/screens/profile_screens/my_private_book_view.dart';
 import 'package:firebase_flutter_life/UI/screens/profile_screens/my_public_book_view.dart';
 import 'package:firebase_flutter_life/features/authentication/data/models/user.dart';
+import 'package:firebase_flutter_life/services/shared_prefs.dart';
 import 'package:flutter/material.dart';
+import 'package:showcaseview/showcase.dart';
+import 'package:showcaseview/showcase_widget.dart';
 
 class ToggleLessonView extends StatefulWidget {
   final User currentUser;
@@ -18,6 +19,7 @@ class _ToggleLessonViewState extends State<ToggleLessonView>
     with TickerProviderStateMixin {
   List<Tab> tabList = List();
   TabController _tabController;
+  final _privateKey = GlobalKey();
 
   @override
   void initState() {
@@ -35,6 +37,11 @@ class _ToggleLessonViewState extends State<ToggleLessonView>
     ));
     super.initState();
     _tabController = TabController(vsync: this, length: tabList.length);
+    WidgetsBinding.instance.addPostFrameCallback((_) {
+      SharedPrefs.isFirstVisit("profileScreenVisit").then((result) {
+        if (result) ShowCaseWidget.of(context).startShowCase([_privateKey]);
+      });
+    });
   }
 
   @override
@@ -46,27 +53,34 @@ class _ToggleLessonViewState extends State<ToggleLessonView>
   @override
   Widget build(BuildContext context) {
     return Expanded(
-          child: Column(
+      child: Column(
         mainAxisAlignment: MainAxisAlignment.center,
         children: <Widget>[
-          Container(
-            constraints: BoxConstraints.expand(height: 60),
-            child: TabBar(
-              controller: _tabController,
-              unselectedLabelColor: Colors.grey[300],
-              labelColor: Colors.white,
-              indicator: BoxDecoration(
-                borderRadius: BorderRadius.circular(18.0),
-                gradient: LinearGradient(
-                  begin: Alignment.bottomRight,
-                  end: Alignment.topLeft,
-                  colors: <Color>[
-                    Colors.lightGreen[200],
-                    Colors.lightBlue[600],
-                  ],
+          Showcase(
+            contentPadding: EdgeInsets.all(10),
+            title: "Your Private Book.",
+            description:
+                'Here, you can speak on anything you\nwish to share with those near & dear, by invitation.',
+            key: _privateKey,
+            child: Container(
+              constraints: BoxConstraints.expand(height: 60),
+              child: TabBar(
+                controller: _tabController,
+                unselectedLabelColor: Colors.grey[300],
+                labelColor: Colors.white,
+                indicator: BoxDecoration(
+                  borderRadius: BorderRadius.circular(18.0),
+                  gradient: LinearGradient(
+                    begin: Alignment.bottomRight,
+                    end: Alignment.topLeft,
+                    colors: <Color>[
+                      Colors.lightGreen[200],
+                      Colors.lightBlue[600],
+                    ],
+                  ),
                 ),
+                tabs: tabList,
               ),
-              tabs: tabList,
             ),
           ),
           Expanded(
@@ -75,14 +89,19 @@ class _ToggleLessonViewState extends State<ToggleLessonView>
               child: TabBarView(
                 controller: _tabController,
                 children: <Widget>[
-                  MyPublicBookScreen(currentUser: widget.currentUser,),
-                  MyPrivateBookScreen(currentUser: widget.currentUser,),
-                  MyFavoriteBookScreen(currentUser: widget.currentUser,),
+                  MyPublicBookScreen(
+                    currentUser: widget.currentUser,
+                  ),
+                  MyPrivateBookScreen(
+                    currentUser: widget.currentUser,
+                  ),
+                  MyFavoriteBookScreen(
+                    currentUser: widget.currentUser,
+                  ),
                 ],
               ),
             ),
           ),
-      
         ],
       ),
     );

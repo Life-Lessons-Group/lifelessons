@@ -13,6 +13,14 @@ class SharedPrefs {
   set listenCount(int value) {
     _sharedPrefs.setInt('listenCount', value);
   }
+
+  static Future<bool> isFirstVisit(String prefString) async {
+    bool isFirstVisit = _sharedPrefs.getBool(prefString) ?? true;
+    if (isFirstVisit) {
+      _sharedPrefs.setBool(prefString, false);
+    }
+    return isFirstVisit;
+  }
 }
 
 final sharedPrefs = SharedPrefs();
