@@ -1,17 +1,19 @@
-# firebase_flutter_life
+# Life Lessons 
 
-A new Flutter project.
+The premier application by the Life Lessons Group. 
 
-## Getting Started
+## Future Features
 
-This project is a starting point for a Flutter application.
+- Topic Specific Speeches and Interview Recordings of Deceased Legends (Speak to Legal About Getting Cleared)
+- Save User Lessons to Local Storage
+- Allow Users to Create Custom Books
+- Rewrite Entire Application to be Voice Navigable (Revisit Watch Applications?)
+- Voice Comments?? - filter negativity/profanity through ML
 
-A few resources to get you started if this is your first Flutter project:
+## Dev Resources & Tutorials
 
-- [Lab: Write your first Flutter app](https://flutter.dev/docs/get-started/codelab)
-- [Cookbook: Useful Flutter samples](https://flutter.dev/docs/cookbook)
+- [How to Create Android App Release](https://flutter.dev/docs/deployment/android)
+- [How to Create iOS App Release](https://flutter.dev/docs/deployment/ios)
 
-For help getting started with Flutter, view our
-[online documentation](https://flutter.dev/docs), which offers tutorials,
-samples, guidance on mobile development, and a full API reference.
-# social_networking_flutter
+
+## Data Models 
