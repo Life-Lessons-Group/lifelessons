@@ -10,13 +10,15 @@ import 'package:firebase_flutter_life/features/splash/presentation/pages/splash_
 import 'package:firebase_flutter_life/features/topics/presentation/pages/topics_screen.dart';
 import 'package:firebase_flutter_life/routing/route_names.dart';
 import 'package:firebase_flutter_life/services/shared_prefs.dart';
+
+import 'package:firebase_flutter_life/views/profile/screens/profile_screen.dart';
+import 'package:firebase_flutter_life/views/record/record_begin_screen.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:overlay_support/overlay_support.dart';
 import 'package:provider/provider.dart';
-import 'package:showcaseview/showcase_widget.dart';
-import 'UI/screens/profile_screens/profile_screen.dart';
-import 'UI/screens/record_screens/record_begin_screen.dart';
+
+
 import 'features/archived/presentation/pages/archived_topic_screen.dart';
 import 'features/discover/presentation/pages/selected_book_screen.dart';
 import 'features/home/presentation/pages/home_screen.dart';
@@ -24,6 +26,7 @@ import 'features/register/presentation/pages/register_screen.dart.dart';
 import 'features/topics/presentation/providers/topics.dart';
 import 'routing/router.dart';
 import 'services/locator_service.dart';
+import 'views/profile/screens/user_profile_screen.dart';
 
 Future main() async {
   WidgetsFlutterBinding.ensureInitialized();
@@ -43,7 +46,7 @@ class App extends StatelessWidget {
         ),
         ChangeNotifierProvider(create: (ctx) => Topics()),
         ChangeNotifierProvider(create: (ctx) => HotTopicProvider()),
-        Provider(create: (ctx) => UserDatabaseService()),
+        ChangeNotifierProvider(create: (ctx) => UserDatabaseService()),
       ],
       child: OverlaySupport(
         child: MaterialApp(
@@ -56,6 +59,7 @@ class App extends StatelessWidget {
             HomeRoute: (context) => HomeScreen(),
             TopicsRoute: (context) => TopicsScreen(),
             RecordRoute: (context) => RecordBeginScreen(),
+            UserProfileRoute: (context) => UserProfileScreen(),
             ProfileRoute: (context) => ProfileScreen(),
             LoginRoute: (context) => LoginScreen(),
             RegisterRoute: (context) => RegisterScreen(),

@@ -1,8 +1,10 @@
 import 'dart:async';
 
 import 'package:auto_size_text/auto_size_text.dart';
+import 'package:firebase_flutter_life/core/screen_dimensions.dart';
 import 'package:firebase_flutter_life/features/authentication/data/models/user.dart';
 import 'package:firebase_flutter_life/features/authentication/data/repositories/firebase_user_data_service.dart';
+import 'package:firebase_flutter_life/features/posts/presentation/widgets/post_bottom_sheet.dart';
 import 'package:firebase_flutter_life/services/firebase_service.dart';
 import 'package:firebase_flutter_life/services/internal_notifications.dart';
 import 'package:firebase_flutter_life/services/shared_prefs.dart';
@@ -95,6 +97,8 @@ class _PostTileState extends State<PostTile> {
     isPlaying = false;
   }
 
+  
+
   // Function getPlaybackFn() {
   //   if (!_myPlayerIsInit) {
   //     return null;
@@ -157,14 +161,24 @@ class _PostTileState extends State<PostTile> {
               style: TextStyle(fontWeight: FontWeight.w600, fontSize: 12),
               maxLines: 1,
             ),
-            // trailing: GestureDetector(
-            //   onTap: () {},
-            //   child: Icon(
-            //     widget.isFavorite ? Icons.favorite : Icons.favorite_border,
-            //     size: 28.0,
-            //     color: Colors.lightGreen[100],
-            //   ),
-            // ),
+            trailing: GestureDetector(
+              onTap: () {
+                showBottomSheet(
+                  // elevation:1,
+                  context: context,
+                  builder: (context) => LessonBottomSheet(
+                    postID: widget.postID,
+                    userID: widget.uid,
+                    
+                  ),
+                );
+              },
+              child: Icon(
+                Icons.more_horiz_outlined,
+                size: 28.0,
+                color: Colors.grey[350],
+              ),
+            ),
           ),
         ),
       ),

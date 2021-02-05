@@ -1,5 +1,6 @@
 const String HomeRoute = 'home-screen';
 const String ProfileRoute = 'profile-screen';
+const String UserProfileRoute = 'user-profile-screen';
 const String RecordRoute = 'record-screen';
 const String ArchiveRoute = 'archive-screen';
 const String LoginRoute = 'login-screen';

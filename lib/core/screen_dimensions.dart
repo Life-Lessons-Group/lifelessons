@@ -4,16 +4,14 @@ class ScreenDimensions {
   final BuildContext context;
 
   ScreenDimensions(this.context);
-  
-  get screenWidth{
+
+  get screenWidth {
     double width = MediaQuery.of(context).size.width;
     return width;
   }
 
-  get screenHeight{
+  get screenHeight {
     double height = MediaQuery.of(context).size.height;
     return height;
   }
-
-
 }

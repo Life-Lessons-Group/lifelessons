@@ -1,29 +1,28 @@
-import 'package:cloud_firestore/cloud_firestore.dart';
-import 'package:firebase_auth/firebase_auth.dart';
+
 import 'package:firebase_flutter_life/features/authentication/data/models/user.dart';
 import 'package:firebase_flutter_life/features/posts/presentation/provider/posts.dart';
-import 'package:firebase_flutter_life/features/posts/presentation/widgets/post_list.dart';
+
 import 'package:firebase_flutter_life/features/posts/presentation/widgets/post_tile.dart';
-import 'package:firebase_flutter_life/features/topics/data/datasources/firebase_collections.dart';
+
 import 'package:firebase_flutter_life/features/posts/data/models/post_model.dart';
 import 'package:flutter/material.dart';
-import 'package:provider/provider.dart';
 
-class MyPublicBookScreen extends StatefulWidget {
-  final User currentUser;
 
-  const MyPublicBookScreen({Key key, this.currentUser}) : super(key: key);
+class PublicBookScreen extends StatefulWidget {
+  final User user;
+
+  const PublicBookScreen({Key key, this.user}) : super(key: key);
 
   @override
-  _MyPublicBookScreenState createState() => _MyPublicBookScreenState();
+  _PublicBookScreenState createState() => _PublicBookScreenState();
 }
 
-class _MyPublicBookScreenState extends State<MyPublicBookScreen> {
+class _PublicBookScreenState extends State<PublicBookScreen> {
   Future _getPosts;
 
   @override
   void initState() {
-    _getPosts = Posts().getPostsByUser(widget.currentUser.userID);
+    _getPosts = Posts().getPostsByUser(widget.user.userID);
     super.initState();
   }
 

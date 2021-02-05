@@ -1,36 +1,38 @@
+
 import 'dart:io';
 
-import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:firebase_auth/firebase_auth.dart';
+
 import 'package:firebase_flutter_life/Services/firebase_service.dart';
 import 'package:firebase_flutter_life/features/authentication/data/models/user.dart';
+import 'package:firebase_flutter_life/features/authentication/data/repositories/firebase_auth_service.dart';
+import 'package:firebase_flutter_life/features/authentication/data/repositories/firebase_user_data_service.dart';
 
 import 'package:firebase_flutter_life/features/settings/presentation/pages/settings_screen.dart';
 
-import 'package:firebase_flutter_life/features/profile/presentation/widgets/book_tab.dart';
-import 'package:firebase_flutter_life/features/topics/data/datasources/firebase_collections.dart';
+
+import 'package:firebase_flutter_life/views/profile/screens/user_profile_header.dart';
+import 'package:firebase_flutter_life/views/profile/widgets/book_tab.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
 import 'package:image_picker/image_picker.dart';
-import 'package:showcaseview/showcaseview.dart';
+
 
 class ProfileScreen extends StatefulWidget {
-  final User currentUser;
-  static const routeName = 'profile-screen';
+  final User user;
 
-  const ProfileScreen({Key key, this.currentUser}) : super(key: key);
+  const ProfileScreen({Key key, this.user}) : super(key: key);
 
   @override
   _ProfileScreenState createState() => _ProfileScreenState();
 }
 
 class _ProfileScreenState extends State<ProfileScreen> {
-  final followersRef = Firestore.instance.collection('followers');
-  final followingRef = Firestore.instance.collection('following');
-  final usersRef = Firestore.instance.collection('users');
-
   int postCount = 0;
   int followerCount = 0;
   int followingCount = 0;
+  bool isCurrentUser = false;
+
 
   File _image;
   final picker = ImagePicker();
@@ -46,53 +48,26 @@ class _ProfileScreenState extends State<ProfileScreen> {
           file: _image,
           path: pickedFile.path,
           contentType: 'image/jpeg',
-          userID: widget.currentUser.userID);
+          userID: widget.user.userID);
     });
   }
 
   @override
   void initState() {
     super.initState();
-    print('CURRENT USER:');
-    print(widget.currentUser.username);
-    getPostCount();
-    getFollowers();
-    getFollowing();
-    
+
   }
 
-  getFollowers() async {
-    QuerySnapshot snapshot = await followersRef
-        .document(widget.currentUser.userID)
-        .collection('userFollowers')
-        .getDocuments();
-    setState(() {
-      followerCount = snapshot.documents.length;
-    });
-  }
 
-//GET FOLLOWERS
-  getFollowing() async {
-    QuerySnapshot snapshot = await followingRef
-        .document(widget.currentUser.userID)
-        .collection('userFollowing')
-        .getDocuments();
-    setState(() {
-      followingCount = snapshot.documents.length;
-    });
-  }
 
-//POST COUNT
-  getPostCount() async {
-    QuerySnapshot snapshot = await FirebaseCollections.postsCollectionReference
-        .where("uid", isEqualTo: widget.currentUser.userID)
-        .getDocuments();
-    setState(() {
-      postCount = snapshot.documents.length;
-    });
-  }
+  // Future<void> userDetails() async {
+  //   final userDetails = await UserDatabaseService().getUserByID(widget.user.userID);
+  //   setState(() {
+  //     widget.user = userDetails;
+  //   });
+  // }
 
-  buildProfileHeader() {
+  Widget buildProfileHeader(BuildContext context) {
     return Container(
       height: 320,
       width: double.infinity,
@@ -123,7 +98,7 @@ class _ProfileScreenState extends State<ProfileScreen> {
                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
                   children: <Widget>[
                     IconButton(
-                      icon: Icon(Icons.inbox),
+                      icon: Icon(Icons.nat),
                       color: Colors.transparent,
                       onPressed: () {},
                     ),
@@ -144,9 +119,8 @@ class _ProfileScreenState extends State<ProfileScreen> {
                     children: <Widget>[
                       CircleAvatar(
                         radius: 40.0,
-                        backgroundImage: widget.currentUser.profileImageURL !=
-                                null
-                            ? NetworkImage(widget.currentUser.profileImageURL)
+                        backgroundImage: widget.user.profileImageURL != null
+                            ? NetworkImage(widget.user.profileImageURL)
                             : AssetImage('assets/images/logo.jpeg'),
                       ),
                       Positioned(
@@ -162,7 +136,7 @@ class _ProfileScreenState extends State<ProfileScreen> {
                 ),
                 SizedBox(height: 10),
                 Text(
-                  widget.currentUser.username,
+                  "test",
                   style: TextStyle(fontSize: 16, color: Colors.white),
                 ),
                 SizedBox(height: 5),
@@ -249,7 +223,7 @@ class _ProfileScreenState extends State<ProfileScreen> {
     );
   }
 
-  skeletonHeader() {
+  Widget skeletonHeader() {
     // Skeleton Header while connecting to network
     return Container(
       height: 320,
@@ -337,26 +311,20 @@ class _ProfileScreenState extends State<ProfileScreen> {
     );
   }
 
-  toggleBookView() {
-    return  ToggleLessonView(currentUser: widget.currentUser);
-  }
 
-  buildProfileScreen() {
+
+  @override
+  Widget build(BuildContext context) {
     return Container(
       color: Colors.white24,
       child: Column(
         children: <Widget>[
-          buildProfileHeader(),
+          buildProfileHeader(context),
           SizedBox(height: 10),
-          toggleBookView(),
+          ToggleLessonView(user: widget.user)
         ],
       ),
     );
-  }
-
-  @override
-  Widget build(BuildContext context) {
-    return buildProfileScreen();
   }
 }
 

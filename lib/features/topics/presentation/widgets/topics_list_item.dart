@@ -1,7 +1,8 @@
 import 'package:auto_size_text/auto_size_text.dart';
-import 'package:firebase_flutter_life/UI/screens/record_screens/test_record_screen.dart';
+
 import 'package:firebase_flutter_life/core/AppColors.dart';
 import 'package:firebase_flutter_life/features/topics/presentation/pages/selected_topic.dart';
+import 'package:firebase_flutter_life/views/record/test_record_screen.dart';
 
 import 'package:flutter/material.dart';
 

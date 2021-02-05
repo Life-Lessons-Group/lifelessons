@@ -6,5 +6,5 @@ class FirebasePaths {
   static final favoritesPath = "favorites";
   static final topicsPath = "topics";
   static final hotTopicsPath = "hotTopics";
-  
+  static final usersPath = "users";
 }

@@ -7,6 +7,7 @@ class User {
   String profileImageURL;
   final String bio;
   final String location;
+  Map memberAccess;
   int listens;
   int posts;
 
@@ -19,6 +20,7 @@ class User {
     this.profileImageURL,
     this.bio,
     this.location,
+    this.memberAccess,
     this.listens,
     this.posts,
   });
@@ -33,6 +35,7 @@ class User {
       profileImageURL: doc["profileImageURL"],
       bio: doc["bio"],
       location: doc["location"],
+      memberAccess: doc["memberAccess"],
       listens: doc["listens"],
       posts: doc["posts"],
     );

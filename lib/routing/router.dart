@@ -1,5 +1,3 @@
-import 'package:firebase_flutter_life/UI/screens/profile_screens/profile_screen.dart';
-import 'package:firebase_flutter_life/UI/screens/record_screens/record_begin_screen.dart';
 import 'package:firebase_flutter_life/features/archived/presentation/pages/archived_topic_screen.dart';
 
 import 'package:firebase_flutter_life/features/home/presentation/pages/home_screen.dart';
@@ -9,60 +7,38 @@ import 'package:firebase_flutter_life/features/register/presentation/pages/regis
 import 'package:firebase_flutter_life/features/splash/presentation/pages/splash_screen.dart';
 import 'package:firebase_flutter_life/features/topics/presentation/pages/topics_screen.dart';
 
+import 'package:firebase_flutter_life/views/profile/screens/profile_screen.dart';
+import 'package:firebase_flutter_life/views/profile/screens/user_profile_screen.dart';
+import 'package:firebase_flutter_life/views/record/record_begin_screen.dart';
+
 import 'package:flutter/material.dart';
 
 import 'route_names.dart';
 
-class _FadeRoute extends PageRouteBuilder {
-  final Widget child;
-  final String routeName;
-  _FadeRoute({this.child, this.routeName})
-      : super(
-          settings: RouteSettings(name: routeName),
-          pageBuilder: (
-            BuildContext context,
-            Animation<double> animation,
-            Animation<double> secondaryAnimation,
-          ) =>
-              child,
-          transitionsBuilder: (
-            BuildContext context,
-            Animation<double> animation,
-            Animation<double> secondaryAnimation,
-            Widget child,
-          ) =>
-              FadeTransition(
-            opacity: animation,
-            child: child,
-          ),
-        );
-}
-
-PageRoute _getPageRoute(Widget child, RouteSettings settings) {
-  return _FadeRoute(child: child, routeName: settings.name);
-}
-
 Route<dynamic> generateRoute(RouteSettings settings) {
   switch (settings.name) {
     case HomeRoute:
-      return _getPageRoute(HomeScreen(), settings);
+      return MaterialPageRoute(builder: (context) => HomeScreen());
     case ProfileRoute:
-      return _getPageRoute(ProfileScreen(), settings);
+      return MaterialPageRoute(builder: (context) => ProfileScreen());
+    case UserProfileRoute:
+      var userProfileArgs = settings.arguments;
+      return MaterialPageRoute(builder: (context) => UserProfileScreen(userID: userProfileArgs));
     case RecordRoute:
-      return _getPageRoute(RecordBeginScreen(), settings);
+      return MaterialPageRoute(builder: (context) => RecordBeginScreen());
     case ArchiveRoute:
-      return _getPageRoute(ArchivedTopicsScreen(), settings);
+      return MaterialPageRoute(builder: (context) => ArchivedTopicsScreen());
     case LoginRoute:
-      return _getPageRoute(LoginScreen(), settings);
+      return MaterialPageRoute(builder: (context) => LoginScreen());
     case RegisterRoute:
-      return _getPageRoute(RegisterScreen(), settings);
+      return MaterialPageRoute(builder: (context) => RegisterScreen());
     case TopicsRoute:
-      return _getPageRoute(TopicsScreen(), settings);
+      return MaterialPageRoute(builder: (context) => TopicsScreen());
     case WalkThroughRoute:
-      return _getPageRoute(WalkthroughScreen(), settings);
+      return MaterialPageRoute(builder: (context) => WalkthroughScreen());
     case SplashRoute:
-      return _getPageRoute(SplashScreen(), settings);
+      return MaterialPageRoute(builder: (context) => SplashScreen());
     default:
-      return _getPageRoute(WalkthroughScreen(), settings);
+      return MaterialPageRoute(builder: (context) => WalkthroughScreen());
   }
 }

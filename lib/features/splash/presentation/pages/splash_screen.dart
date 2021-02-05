@@ -18,8 +18,10 @@ class _SplashScreenState extends State<SplashScreen> {
     var hasLoggedInUser = await _auth.isUserLoggedIn();
     if (hasLoggedInUser) {
       navigationPageHome();
+      print("Home Page Navigated");
     } else {
       navigationPageLogin();
+      print("Login Page Navigated");
     }
   }
 

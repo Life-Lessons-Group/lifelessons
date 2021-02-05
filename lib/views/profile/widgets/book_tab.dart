@@ -1,16 +1,17 @@
-import 'package:firebase_flutter_life/UI/screens/profile_screens/my_favorite_book_screen.dart';
-import 'package:firebase_flutter_life/UI/screens/profile_screens/my_private_book_view.dart';
-import 'package:firebase_flutter_life/UI/screens/profile_screens/my_public_book_view.dart';
+
 import 'package:firebase_flutter_life/features/authentication/data/models/user.dart';
 import 'package:firebase_flutter_life/services/shared_prefs.dart';
+import 'package:firebase_flutter_life/views/profile/screens/private_book_view.dart';
+import 'package:firebase_flutter_life/views/profile/screens/public_book_view.dart';
+
 import 'package:flutter/material.dart';
 import 'package:showcaseview/showcase.dart';
 import 'package:showcaseview/showcase_widget.dart';
 
 class ToggleLessonView extends StatefulWidget {
-  final User currentUser;
+  final User user;
 
-  const ToggleLessonView({Key key, this.currentUser}) : super(key: key);
+  const ToggleLessonView({Key key, this.user}) : super(key: key);
   @override
   _ToggleLessonViewState createState() => _ToggleLessonViewState();
 }
@@ -31,10 +32,10 @@ class _ToggleLessonViewState extends State<ToggleLessonView>
       text: 'Private',
       icon: Icon(Icons.lock_outline),
     ));
-    tabList.add(Tab(
-      text: 'Favorite',
-      icon: Icon(Icons.favorite_border),
-    ));
+    // tabList.add(Tab(
+    //   text: 'Favorite',
+    //   icon: Icon(Icons.favorite_border),
+    // ));
     super.initState();
     _tabController = TabController(vsync: this, length: tabList.length);
     WidgetsBinding.instance.addPostFrameCallback((_) {
@@ -89,15 +90,15 @@ class _ToggleLessonViewState extends State<ToggleLessonView>
               child: TabBarView(
                 controller: _tabController,
                 children: <Widget>[
-                  MyPublicBookScreen(
-                    currentUser: widget.currentUser,
+                  PublicBookScreen(
+                    user: widget.user,
                   ),
-                  MyPrivateBookScreen(
-                    currentUser: widget.currentUser,
+                  PrivateBookScreen(
+                    user: widget.user,
                   ),
-                  MyFavoriteBookScreen(
-                    currentUser: widget.currentUser,
-                  ),
+                  // MyFavoriteBookScreen(
+                  //   currentUser: widget.currentUser,
+                  // ),
                 ],
               ),
             ),

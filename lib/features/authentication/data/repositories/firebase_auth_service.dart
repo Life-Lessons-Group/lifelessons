@@ -2,12 +2,15 @@ import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 
 import 'package:firebase_flutter_life/features/authentication/data/models/user.dart';
+import 'package:flutter/material.dart';
 
 import 'firebase_user_data_service.dart';
 
-class AuthService {
+class AuthService extends ChangeNotifier {
   final FirebaseAuth _auth = FirebaseAuth.instance;
   final CollectionReference usersRef = Firestore.instance.collection('users');
+
+
 
   // create user object based on firebase user
   static User userFromFirebaseUser(FirebaseUser user) {
@@ -23,22 +26,13 @@ class AuthService {
     return _auth.onAuthStateChanged.map(userFromFirebaseUser);
   }
 
-    Future<bool> isUserLoggedIn() async {
+
+  Future<bool> isUserLoggedIn() async {
     var user = await _auth.currentUser();
     return user != null;
   }
 
-  // sign in anonymously
 
-  // Future signInAnon() async {
-  //   try {
-  //     AuthResult result await _auth.signInAnonymously();
-  //     FirebaseUser user = result.user;
-  //     return user;
-  //   } catch(e) {
-
-  //   }
-  // }
 
   // sign in with email & password
   Future signInWithEmailAndPassword(String email, String password) async {
@@ -79,7 +73,7 @@ class AuthService {
     }
   }
 
-   Future<void> resetPassword(String email) async {
+  Future<void> resetPassword(String email) async {
     await _auth.sendPasswordResetEmail(email: email);
   }
 }

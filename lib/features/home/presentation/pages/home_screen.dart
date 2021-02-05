@@ -1,11 +1,13 @@
-import 'package:firebase_flutter_life/UI/screens/profile_screens/profile_screen.dart';
-import 'package:firebase_flutter_life/UI/screens/record_screens/record_begin_screen.dart';
+
 import 'package:firebase_flutter_life/features/authentication/data/models/user.dart';
 import 'package:firebase_flutter_life/features/authentication/data/repositories/firebase_user_data_service.dart';
 import 'package:firebase_flutter_life/features/discover/presentation/pages/discover_screen.dart';
 import 'package:firebase_flutter_life/features/hot_topic/presentation/pages/hot_topic_screen.dart';
 
 import 'package:firebase_flutter_life/features/topics/presentation/pages/topics_screen.dart';
+import 'package:firebase_flutter_life/views/profile/screens/profile_screen.dart';
+
+import 'package:firebase_flutter_life/views/record/record_begin_screen.dart';
 import 'package:firebase_messaging/firebase_messaging.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
@@ -88,7 +90,7 @@ class _HomeScreenState extends State<HomeScreen> {
                         HotTopicScreen(),
                         RecordBeginScreen(),
                         DiscoverScreen(),
-                        ProfileScreen(currentUser: userData),
+                        ProfileScreen(user: userData),
                       ],
                       controller: pageController,
                       onPageChanged: onPageChanged,

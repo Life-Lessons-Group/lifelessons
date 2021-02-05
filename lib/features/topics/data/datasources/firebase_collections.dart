@@ -11,4 +11,6 @@ class FirebaseCollections {
       Firestore.instance.collection(FirebasePaths.favoritesPath);
   static final privateCollectionReference =
       Firestore.instance.collection(FirebasePaths.privatePath);
+  static final userCollectionReference =
+      Firestore.instance.collection(FirebasePaths.usersPath);
 }

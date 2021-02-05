@@ -4,7 +4,7 @@ import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 
 import 'package:firebase_flutter_life/features/topics/data/datasources/firebase_collections.dart';
-import 'package:firebase_flutter_life/ui/screens/profile_screens/profile_screen.dart';
+
 
 import 'package:firebase_storage/firebase_storage.dart';
 import 'package:flutter/material.dart';

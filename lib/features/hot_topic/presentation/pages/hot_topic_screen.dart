@@ -1,9 +1,10 @@
 import 'package:auto_size_text/auto_size_text.dart';
-import 'package:firebase_flutter_life/UI/screens/record_screens/test_record_screen.dart';
+
 import 'package:firebase_flutter_life/core/size_config.dart';
 import 'package:firebase_flutter_life/features/hot_topic/presentation/widgets/hot_topic_countdown_timer.dart';
 import 'package:firebase_flutter_life/features/hot_topic/presentation/widgets/hot_topic_post_list.dart';
 import 'package:firebase_flutter_life/services/shared_prefs.dart';
+import 'package:firebase_flutter_life/views/record/test_record_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 
