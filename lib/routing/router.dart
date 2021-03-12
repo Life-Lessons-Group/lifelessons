@@ -1,11 +1,12 @@
-import 'package:firebase_flutter_life/features/archived/presentation/pages/archived_topic_screen.dart';
+import 'package:firebase_flutter_life/views/authentication/register_screen.dart.dart';
+import 'package:firebase_flutter_life/views/topics/archived_topic_screen.dart';
 
-import 'package:firebase_flutter_life/features/home/presentation/pages/home_screen.dart';
-import 'package:firebase_flutter_life/features/login/presentation/pages/login_screen.dart';
-import 'package:firebase_flutter_life/features/onboarding_walkthrough/presentation/pages/walkthrough_screen.dart';
-import 'package:firebase_flutter_life/features/register/presentation/pages/register_screen.dart.dart';
-import 'package:firebase_flutter_life/features/splash/presentation/pages/splash_screen.dart';
-import 'package:firebase_flutter_life/features/topics/presentation/pages/topics_screen.dart';
+import 'package:firebase_flutter_life/views/home/home_screen.dart';
+import 'package:firebase_flutter_life/views/authentication/login_screen.dart';
+import 'package:firebase_flutter_life/views/authentication/walkthrough_screen.dart';
+
+import 'package:firebase_flutter_life/views/authentication/splash_screen.dart';
+import 'package:firebase_flutter_life/views/topics/topics_screen.dart';
 
 import 'package:firebase_flutter_life/views/profile/screens/profile_screen.dart';
 import 'package:firebase_flutter_life/views/profile/screens/user_profile_screen.dart';

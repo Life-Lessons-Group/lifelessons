@@ -1,4 +1,4 @@
-import 'package:firebase_flutter_life/features/authentication/data/models/user.dart';
+import 'package:firebase_flutter_life/models/user.dart';
 
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';

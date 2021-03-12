@@ -3,7 +3,7 @@ import 'dart:io';
 import 'dart:math';
 
 import 'package:firebase_flutter_life/Services/firebase_service.dart';
-import 'package:firebase_flutter_life/features/home/presentation/pages/home_screen.dart';
+import 'package:firebase_flutter_life/views/home/home_screen.dart';
 import 'package:firebase_flutter_life/routing/route_names.dart';
 import 'package:firebase_flutter_life/services/shared_prefs.dart';
 

@@ -3,11 +3,11 @@ import 'dart:io';
 import 'package:firebase_auth/firebase_auth.dart';
 
 import 'package:firebase_flutter_life/Services/firebase_service.dart';
-import 'package:firebase_flutter_life/features/authentication/data/models/user.dart';
-import 'package:firebase_flutter_life/features/authentication/data/repositories/firebase_auth_service.dart';
-import 'package:firebase_flutter_life/features/authentication/data/repositories/firebase_user_data_service.dart';
+import 'package:firebase_flutter_life/models/user.dart';
+import 'package:firebase_flutter_life/services/firebase_auth_service.dart';
+import 'package:firebase_flutter_life/services/firebase_user_data_service.dart';
 
-import 'package:firebase_flutter_life/features/settings/presentation/pages/settings_screen.dart';
+import 'package:firebase_flutter_life/views/settings/settings_screen.dart';
 
 import 'package:firebase_flutter_life/views/profile/screens/user_profile_header.dart';
 import 'package:firebase_flutter_life/views/profile/widgets/book_tab.dart';

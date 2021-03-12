@@ -2,10 +2,9 @@ import 'package:cloud_firestore/cloud_firestore.dart';
 
 import 'package:firebase_flutter_life/Models/models.dart';
 import 'package:firebase_flutter_life/Services/audio_service.dart';
-import 'package:firebase_flutter_life/features/authentication/data/models/user.dart';
-import 'package:firebase_flutter_life/features/authentication/data/repositories/firebase_user_data_service.dart';
+import 'package:firebase_flutter_life/models/user.dart';
+import 'package:firebase_flutter_life/services/firebase_user_data_service.dart';
 
-import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 
 class PrivatePost extends StatefulWidget {

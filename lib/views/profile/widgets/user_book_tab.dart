@@ -1,4 +1,4 @@
-import 'package:firebase_flutter_life/features/authentication/data/models/user.dart';
+import 'package:firebase_flutter_life/models/user.dart';
 import 'package:firebase_flutter_life/views/profile/screens/private_book_view.dart';
 import 'package:firebase_flutter_life/views/profile/screens/public_book_view.dart';
 

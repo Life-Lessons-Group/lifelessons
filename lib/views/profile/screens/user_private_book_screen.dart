@@ -1,9 +1,9 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
-import 'package:firebase_flutter_life/features/authentication/data/datasources/firebase_user.dart';
-import 'package:firebase_flutter_life/features/authentication/data/models/user.dart';
+import 'package:firebase_flutter_life/data/firebase_user.dart';
+import 'package:firebase_flutter_life/models/user.dart';
 import 'package:firebase_flutter_life/Models/private_post_model.dart';
-import 'package:firebase_flutter_life/features/topics/data/datasources/firebase_collections.dart';
+import 'package:firebase_flutter_life/data/firebase_collections.dart';
 import 'package:flutter/material.dart';
 
 class UserPrivateBookScreen extends StatefulWidget {

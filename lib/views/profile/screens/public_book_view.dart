@@ -1,10 +1,10 @@
 
-import 'package:firebase_flutter_life/features/authentication/data/models/user.dart';
-import 'package:firebase_flutter_life/features/posts/presentation/provider/posts.dart';
+import 'package:firebase_flutter_life/models/user.dart';
+import 'package:firebase_flutter_life/providers/posts.dart';
 
-import 'package:firebase_flutter_life/features/posts/presentation/widgets/post_tile.dart';
+import 'package:firebase_flutter_life/views/posts/post_tile.dart';
 
-import 'package:firebase_flutter_life/features/posts/data/models/post_model.dart';
+import 'package:firebase_flutter_life/models/post_model.dart';
 import 'package:flutter/material.dart';
 
 

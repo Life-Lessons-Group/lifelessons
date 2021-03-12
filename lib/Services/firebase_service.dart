@@ -2,8 +2,9 @@ import 'dart:io';
 
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
+import 'package:firebase_flutter_life/data/firebase_collections.dart';
 
-import 'package:firebase_flutter_life/features/topics/data/datasources/firebase_collections.dart';
+
 
 import 'package:firebase_storage/firebase_storage.dart';
 import 'package:flutter/material.dart';
@@ -12,9 +13,12 @@ import 'package:meta/meta.dart';
 
 import 'package:uuid/uuid.dart';
 
-import '../features/authentication/data/repositories/firebase_auth_service.dart';
+import 'firebase_auth_service.dart';
+
 
 class FirebaseService {
+
+
   var postID = Uuid().v4();
   final _auth = FirebaseAuth.instance;
   final followersRef = Firestore.instance.collection('followers');
@@ -244,3 +248,5 @@ class FirebaseService {
     }
   }
 }
+
+
