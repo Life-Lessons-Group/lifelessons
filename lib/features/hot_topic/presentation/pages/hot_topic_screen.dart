@@ -4,6 +4,7 @@ import 'package:firebase_flutter_life/core/size_config.dart';
 import 'package:firebase_flutter_life/features/hot_topic/presentation/widgets/hot_topic_countdown_timer.dart';
 import 'package:firebase_flutter_life/features/hot_topic/presentation/widgets/hot_topic_post_list.dart';
 import 'package:firebase_flutter_life/services/shared_prefs.dart';
+import 'package:firebase_flutter_life/views/record/hot_topic_record.dart';
 import 'package:firebase_flutter_life/views/record/test_record_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
@@ -19,6 +20,7 @@ class HotTopicScreen extends StatefulWidget {
 
 class _HotTopicScreenState extends State<HotTopicScreen> {
   final _hotTopicKey = GlobalKey();
+  final _hotTopic = "In a great leader have you seen more honesty or accountability?";
 
   @override
   void initState() {
@@ -84,7 +86,7 @@ class _HotTopicScreenState extends State<HotTopicScreen> {
         ),
         onPressed: () {
           var learnRoute = MaterialPageRoute(
-            builder: (BuildContext context) => TestRecord(topic: "Hot Topic"),
+            builder: (BuildContext context) => HotTopicRecord(topic: _hotTopic),
           );
           Navigator.of(context).push(learnRoute);
         },
@@ -118,7 +120,7 @@ class _HotTopicScreenState extends State<HotTopicScreen> {
                 child: Padding(
                   padding: const EdgeInsets.all(8.0),
                   child: AutoSizeText(
-                    "In a great leader have you seen more honesty or accountability?",
+                    _hotTopic,
                     maxFontSize: 20,
                     minFontSize: 12,
                     style: TextStyle(
@@ -144,7 +146,7 @@ class _HotTopicScreenState extends State<HotTopicScreen> {
             ),
             SizedBox(height: 10),
             Expanded(
-              child: HotTopicPostList(),
+              child: HotTopicPostList(topic: _hotTopic),
             ),
           ],
         ),

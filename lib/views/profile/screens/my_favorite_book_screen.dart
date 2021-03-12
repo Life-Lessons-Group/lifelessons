@@ -6,7 +6,7 @@ import 'package:firebase_flutter_life/features/posts/presentation/provider/posts
 import 'package:firebase_flutter_life/features/posts/presentation/widgets/post_tile.dart';
 
 import 'package:flutter/material.dart';
-import 'package:provider/provider.dart';
+
 
 class MyFavoriteBookScreen extends StatefulWidget {
   final User currentUser;

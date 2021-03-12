@@ -103,6 +103,12 @@ class Posts with ChangeNotifier {
     return snapshots.documents.map((doc) => Post.fromMap(doc.data)).toList();
   }
 
+  Future<List<Post>> getHotPostsByTopic(String topic) async {
+    var snapshots = await FirebaseCollections.postsCollectionReference
+        .where("lessonTopic", isEqualTo: topic)
+        .getDocuments();
+    return snapshots.documents.map((doc) => Post.fromMap(doc.data)).toList();
+  }
 
   
 }

@@ -7,6 +7,8 @@ class FirebaseCollections {
       Firestore.instance.collection(FirebasePaths.topicsPath);
   static final postsCollectionReference =
       Firestore.instance.collection(FirebasePaths.postsPath);
+        static final hotPostsCollectionReference =
+      Firestore.instance.collection(FirebasePaths.hotPostsPath);
   static final favoritesCollectionReference =
       Firestore.instance.collection(FirebasePaths.favoritesPath);
   static final privateCollectionReference =

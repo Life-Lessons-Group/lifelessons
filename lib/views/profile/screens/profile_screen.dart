@@ -1,4 +1,3 @@
-
 import 'dart:io';
 
 import 'package:firebase_auth/firebase_auth.dart';
@@ -10,13 +9,11 @@ import 'package:firebase_flutter_life/features/authentication/data/repositories/
 
 import 'package:firebase_flutter_life/features/settings/presentation/pages/settings_screen.dart';
 
-
 import 'package:firebase_flutter_life/views/profile/screens/user_profile_header.dart';
 import 'package:firebase_flutter_life/views/profile/widgets/book_tab.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
 import 'package:image_picker/image_picker.dart';
-
 
 class ProfileScreen extends StatefulWidget {
   final User user;
@@ -33,11 +30,9 @@ class _ProfileScreenState extends State<ProfileScreen> {
   int followingCount = 0;
   bool isCurrentUser = false;
 
-
   File _image;
   final picker = ImagePicker();
   final fire = FirebaseService();
-  
 
   Future getImage() async {
     final pickedFile = await picker.getImage(source: ImageSource.gallery);
@@ -55,10 +50,8 @@ class _ProfileScreenState extends State<ProfileScreen> {
   @override
   void initState() {
     super.initState();
-
+    print("THIS USER'S USERID:" + widget.user.userID);
   }
-
-
 
   // Future<void> userDetails() async {
   //   final userDetails = await UserDatabaseService().getUserByID(widget.user.userID);
@@ -310,8 +303,6 @@ class _ProfileScreenState extends State<ProfileScreen> {
       ),
     );
   }
-
-
 
   @override
   Widget build(BuildContext context) {

@@ -5,7 +5,6 @@ import 'package:firebase_auth/firebase_auth.dart';
 
 import 'package:firebase_flutter_life/features/topics/data/datasources/firebase_collections.dart';
 
-
 import 'package:firebase_storage/firebase_storage.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
@@ -22,6 +21,7 @@ class FirebaseService {
   final followingRef = Firestore.instance.collection('following');
   final usersRef = Firestore.instance.collection('users');
   final postsRef = Firestore.instance.collection("posts");
+  final hotPostsRef = Firestore.instance.collection("hotPosts");
 
   Future<String> publicUpload({
     @required File file,
@@ -60,6 +60,41 @@ class FirebaseService {
       "likes": {},
     });
   }
+
+    Future<String> hotTopicUpload({
+    @required File file,
+    @required String topic,
+  }) async {
+    print("recording uploaded");
+    final storageReference = FirebaseStorage.instance
+        .ref()
+        .child("recordings")
+        .child(topic)
+        .child(postID);
+    final uploadTask = storageReference.putFile(
+        file, StorageMetadata(contentType: "audio/mp3"));
+    final snapshot = await uploadTask.onComplete;
+
+    if (snapshot.error != null) {
+      print('upload error code: ${snapshot.error}');
+      throw snapshot.error;
+    }
+
+    // Url used to download file/image
+    final downloadUrl = await snapshot.ref.getDownloadURL();
+    print('downloadUrl: $downloadUrl');
+    final user = await FirebaseAuth.instance.currentUser();
+    final userData = await usersRef.document(user.uid).get();
+    await hotPostsRef.document(postID).setData({
+      "lessonTopic": topic,
+      "postID": postID,
+      "uid": user.uid,
+      "recordingURL": downloadUrl.toString(),
+      "username": userData["username"],
+      "likes": {},
+    });
+  }
+
 
   /// Generic file upload for any [path] and [contentType]
   Future<String> privateUpload({
@@ -131,7 +166,7 @@ class FirebaseService {
     await Firestore.instance
         .collection('users')
         .document(userID)
-        .updateData({'profileImageUrl': downloadUrl});
+        .updateData({'profileImageURL': downloadUrl});
   }
 
   Future updatePostsCount(String userID) async {

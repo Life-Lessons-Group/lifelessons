@@ -1,15 +1,13 @@
-import 'package:cloud_firestore/cloud_firestore.dart';
-import 'package:firebase_auth/firebase_auth.dart';
-import 'package:firebase_flutter_life/features/authentication/data/models/user.dart';
 import 'package:firebase_flutter_life/features/posts/presentation/provider/posts.dart';
-import 'package:firebase_flutter_life/features/posts/presentation/widgets/post_list.dart';
-import 'package:firebase_flutter_life/features/posts/presentation/widgets/post_tile.dart';
-import 'package:firebase_flutter_life/features/topics/data/datasources/firebase_collections.dart';
+import 'package:firebase_flutter_life/features/posts/presentation/widgets/hot_topic_post_tile.dart';
+
 import 'package:firebase_flutter_life/features/posts/data/models/post_model.dart';
 import 'package:flutter/material.dart';
-import 'package:provider/provider.dart';
 
 class HotTopicPostList extends StatefulWidget {
+  final String topic;
+
+  const HotTopicPostList({this.topic});
   @override
   _HotTopicPostListState createState() => _HotTopicPostListState();
 }
@@ -19,7 +17,7 @@ class _HotTopicPostListState extends State<HotTopicPostList> {
 
   @override
   void initState() {
-    _getPosts = Posts().getPostsByTopic("Hot Topic");
+    _getPosts = Posts().getHotPostsByTopic(widget.topic);
     super.initState();
   }
 
@@ -53,22 +51,6 @@ class _HotTopicPostListState extends State<HotTopicPostList> {
                 Text("Click the microphone to start recording!",
                     style: TextStyle(color: Colors.white, fontSize: 16.0)),
                 SizedBox(height: 20),
-                // SizedBox(
-                //   height: 50,
-                //   width: 250,
-                //   child: FlatButton(
-                //     shape: RoundedRectangleBorder(
-                //       borderRadius: BorderRadius.circular(20),
-                //     ),
-                //     color: Colors.indigo[300],
-                //          onPressed: () {
-                //     },
-                //     child: Text(
-                //       "Record your first lesson!",
-                //       style: TextStyle(color: Colors.white),
-                //     ),
-                //   ),
-                // ),
               ],
             ),
           );
@@ -76,10 +58,8 @@ class _HotTopicPostListState extends State<HotTopicPostList> {
           child = ListView.builder(
             key: ValueKey(1),
             itemCount: posts.length,
-            itemBuilder: (ctx, i) => PostTile(
-              lessonTitle: posts[i].lessonTitle,
+            itemBuilder: (ctx, i) => HotTopicPostTile(
               uid: posts[i].uid,
-              lessonTopic: posts[i].lessonTopic,
             ),
           );
         }

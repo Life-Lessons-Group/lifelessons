@@ -4,7 +4,7 @@ import 'package:firebase_flutter_life/core/size_config.dart';
 import 'package:firebase_flutter_life/features/authentication/data/repositories/firebase_auth_service.dart';
 import 'package:firebase_flutter_life/routing/route_names.dart';
 import 'package:flutter/material.dart';
-import 'package:shared_preferences/shared_preferences.dart';
+
 
 class SplashScreen extends StatefulWidget {
   @override
