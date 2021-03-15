@@ -8,9 +8,10 @@ class HotTopicCountDownTimer extends StatefulWidget {
   final String hours;
   final String minutes;
   final String seconds;
+  final DateTime endDate;
 
   const HotTopicCountDownTimer(
-      {this.days, this.hours, this.minutes, this.seconds});
+      {this.days, this.hours, this.minutes, this.seconds, this.endDate});
 
   @override
   _HotTopicCountDownTimerState createState() => _HotTopicCountDownTimerState();
@@ -24,8 +25,7 @@ class _HotTopicCountDownTimerState extends State<HotTopicCountDownTimer> {
   void _startTimer() async {
     _timer = Timer.periodic(Duration(seconds: 1), (timer) {
       setState(() {
-        _timeUntil =
-            TimeLeft().timeLeft(DateTime.utc(2021, 04, 15, 11, 59, 59));
+        _timeUntil = TimeLeft().timeLeft(widget.endDate);
         print("Time Until" + _timeUntil.toString()); //timeLeft Function
       });
     });
@@ -57,13 +57,9 @@ class _HotTopicCountDownTimerState extends State<HotTopicCountDownTimer> {
           mainAxisAlignment: MainAxisAlignment.center,
           crossAxisAlignment: CrossAxisAlignment.center,
           children: [
-            AnimatedOpacity(
-              opacity: _timeUntil[0] == null ? 0 : 1.0,
-              duration: Duration(milliseconds: 500),
-              child: Text(
-                _timeUntil[0] ?? "",
-                style: countDownTextStyle,
-              ),
+            Text(
+              _timeUntil[0] ?? "",
+              style: countDownTextStyle,
             ),
             Text(
               "DAYS",
@@ -75,13 +71,9 @@ class _HotTopicCountDownTimerState extends State<HotTopicCountDownTimer> {
           mainAxisAlignment: MainAxisAlignment.center,
           crossAxisAlignment: CrossAxisAlignment.center,
           children: [
-            AnimatedOpacity(
-              opacity: _timeUntil[1] == null ? 0 : 1.0,
-              duration: Duration(milliseconds: 500),
-              child: Text(
-                _timeUntil[1] ?? "",
-                style: countDownTextStyle,
-              ),
+            Text(
+              _timeUntil[1] ?? "",
+              style: countDownTextStyle,
             ),
             Text(
               "HOURS",
@@ -93,13 +85,9 @@ class _HotTopicCountDownTimerState extends State<HotTopicCountDownTimer> {
           mainAxisAlignment: MainAxisAlignment.center,
           crossAxisAlignment: CrossAxisAlignment.center,
           children: [
-            AnimatedOpacity(
-              opacity: _timeUntil[2] == null ? 0 : 1.0,
-              duration: Duration(milliseconds: 500),
-              child: Text(
-                _timeUntil[2] ?? "",
-                style: countDownTextStyle,
-              ),
+            Text(
+              _timeUntil[2] ?? "",
+              style: countDownTextStyle,
             ),
             Text(
               "MINUTES",
@@ -111,13 +99,9 @@ class _HotTopicCountDownTimerState extends State<HotTopicCountDownTimer> {
           mainAxisAlignment: MainAxisAlignment.center,
           crossAxisAlignment: CrossAxisAlignment.center,
           children: [
-            AnimatedOpacity(
-              opacity: _timeUntil[3] == null ? 0 : 1.0,
-              duration: Duration(milliseconds: 500),
-              child: Text(
-                _timeUntil[3] ?? "",
-                style: countDownTextStyle,
-              ),
+            Text(
+              _timeUntil[3] ?? "",
+              style: countDownTextStyle,
             ),
             Text(
               "SECONDS",

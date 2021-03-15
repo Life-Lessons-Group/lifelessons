@@ -4,8 +4,6 @@ import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:firebase_flutter_life/data/firebase_collections.dart';
 
-
-
 import 'package:firebase_storage/firebase_storage.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
@@ -13,12 +11,10 @@ import 'package:meta/meta.dart';
 
 import 'package:uuid/uuid.dart';
 
+import '../models/hot_topic_model.dart';
 import 'firebase_auth_service.dart';
 
-
 class FirebaseService {
-
-
   var postID = Uuid().v4();
   final _auth = FirebaseAuth.instance;
   final followersRef = Firestore.instance.collection('followers');
@@ -65,15 +61,15 @@ class FirebaseService {
     });
   }
 
-    Future<String> hotTopicUpload({
+  Future<String> hotTopicUpload({
     @required File file,
-    @required String topic,
+    @required HotTopic topic,
   }) async {
     print("recording uploaded");
     final storageReference = FirebaseStorage.instance
         .ref()
         .child("recordings")
-        .child(topic)
+        .child(topic.title)
         .child(postID);
     final uploadTask = storageReference.putFile(
         file, StorageMetadata(contentType: "audio/mp3"));
@@ -88,17 +84,17 @@ class FirebaseService {
     final downloadUrl = await snapshot.ref.getDownloadURL();
     print('downloadUrl: $downloadUrl');
     final user = await FirebaseAuth.instance.currentUser();
-    final userData = await usersRef.document(user.uid).get();
-    await hotPostsRef.document(postID).setData({
-      "lessonTopic": topic,
+    await FirebaseCollections.hotTopicCollectionReference
+        .document(topic.id)
+        .collection("hotPosts")
+        .document(postID)
+        .setData({
+      "lessonTitle": topic.title,
       "postID": postID,
       "uid": user.uid,
       "recordingURL": downloadUrl.toString(),
-      "username": userData["username"],
-      "likes": {},
     });
   }
-
 
   /// Generic file upload for any [path] and [contentType]
   Future<String> privateUpload({
@@ -248,5 +244,3 @@ class FirebaseService {
     }
   }
 }
-
-

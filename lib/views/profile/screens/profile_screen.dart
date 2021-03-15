@@ -53,12 +53,7 @@ class _ProfileScreenState extends State<ProfileScreen> {
     print("THIS USER'S USERID:" + widget.user.userID);
   }
 
-  // Future<void> userDetails() async {
-  //   final userDetails = await UserDatabaseService().getUserByID(widget.user.userID);
-  //   setState(() {
-  //     widget.user = userDetails;
-  //   });
-  // }
+
 
   Widget buildProfileHeader(BuildContext context) {
     return Container(

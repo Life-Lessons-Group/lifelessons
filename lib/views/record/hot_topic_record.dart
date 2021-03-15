@@ -21,8 +21,10 @@ import 'package:rflutter_alert/rflutter_alert.dart';
 import 'package:showcaseview/showcase_widget.dart';
 import 'package:uuid/uuid.dart';
 
+import '../../models/hot_topic_model.dart';
+
 class HotTopicRecord extends StatefulWidget {
-  final String topic;
+  final HotTopic topic;
   HotTopicRecord({Key key, @required this.topic}) : super(key: key);
 
   @override
@@ -219,7 +221,7 @@ class _HotTopicRecordState extends State<HotTopicRecord>
             onPressed: () {
               return Alert(
                 context: context,
-                title: widget.topic,
+                title: widget.topic.title,
                 buttons: [
                   DialogButton(
                     child: Text(
@@ -440,7 +442,7 @@ class _HotTopicRecordState extends State<HotTopicRecord>
                 ],
               ),
               Text(
-                widget.topic,
+                widget.topic.title,
                 style: TextStyle(fontSize: 30.0, color: Colors.white),
                 textAlign: TextAlign.center,
               ),

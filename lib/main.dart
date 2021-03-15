@@ -19,6 +19,10 @@ import 'package:overlay_support/overlay_support.dart';
 import 'package:provider/provider.dart';
 
 
+import 'models/hot_post_model.dart';
+import 'models/hot_topic_model.dart';
+import 'providers/posts.dart';
+import 'providers/topics.dart';
 import 'views/topics/archived_topic_screen.dart';
 import 'views/discover/selected_book_screen.dart';
 import 'views/home/home_screen.dart';
@@ -44,7 +48,12 @@ class App extends StatelessWidget {
         StreamProvider<User>.value(
           value: AuthService().user,
         ),
-        ChangeNotifierProvider(create: (ctx) => Topics()),
+         StreamProvider<HotTopic>.value(
+          value: TopicsProvider().hotTopic("jXYzPl4ytOKN4wWXoqZk"),
+        ),
+      
+        
+        ChangeNotifierProvider(create: (ctx) => TopicsProvider()),
         ChangeNotifierProvider(create: (ctx) => UserDatabaseService()),
       ],
       child: OverlaySupport(

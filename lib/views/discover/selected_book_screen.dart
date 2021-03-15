@@ -3,15 +3,15 @@ import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
 import 'package:provider/provider.dart';
 
-class BookScreen extends StatefulWidget {
+import '../../models/topic_model.dart';
+import '../../providers/topics.dart';
+
+class BookScreen extends StatelessWidget {
   final String book;
 
   const BookScreen({Key key, this.book}) : super(key: key);
-  @override
-  _BookScreenState createState() => _BookScreenState();
-}
 
-class _BookScreenState extends State<BookScreen> {
+
   @override
   Widget build(BuildContext context) {
     return Container(
@@ -37,7 +37,7 @@ class _BookScreenState extends State<BookScreen> {
               ),
             ),
             title: Text(
-              widget.book,
+              book,
               style: TextStyle(
                   color: Colors.white,
                   fontSize: 18.0,
@@ -50,9 +50,12 @@ class _BookScreenState extends State<BookScreen> {
           body: Column(
             children: [
               Expanded(
-                  child: TopicsList(
-                book: widget.book,
-              )),
+                  child: StreamProvider<List<Topic>>.value(
+                    value: TopicsProvider().getTopicsByBookStream(book),
+                                      child: TopicsList(
+                
+              ),
+                  )),
             ],
           )),
     );

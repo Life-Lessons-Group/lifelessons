@@ -1,18 +1,40 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_flutter_life/data/firebase_collections.dart';
+import 'package:firebase_flutter_life/models/hot_post_model.dart';
 import 'package:firebase_flutter_life/models/post_model.dart';
 import 'package:flutter/widgets.dart';
 
-class Posts with ChangeNotifier {
-  List<Post> _posts = [];
+import '../data/firebase_collections.dart';
+import '../models/hot_topic_model.dart';
+import '../models/topic_model.dart';
 
-  List<Post> findByTopic(String topic) {
-    return _posts.where((post) => post.lessonTopic == topic).toList();
+class Posts with ChangeNotifier {
+ 
+
+  Stream<List<HotPost>> getHotPost(HotTopic topic) {
+    var ref = FirebaseCollections.hotTopicCollectionReference
+        .document(topic.id)
+        .collection("hotPosts");
+
+    return ref.snapshots().map(
+        (list) => list.documents.map((doc) => HotPost.fromMap(doc.data)).toList());
   }
 
-  // Stream<List<Post>> findByUser(String uid) {
-  //   return posts.where((post) => post.uid == uid);
-  // }
+  Stream<List<Post>> getPostsByUser(String userID) {
+    return FirebaseCollections.postsCollectionReference
+        .where("uid", isEqualTo: userID)
+        .snapshots()
+        .map((list) =>
+            list.documents.map((doc) => Post.fromMap(doc.data)).toList());
+  }
+
+    Stream<List<Post>> getPrivatePostsByUser(String userID) {
+    return FirebaseCollections.privateCollectionReference
+        .where("uid", isEqualTo: userID)
+        .snapshots()
+        .map((list) =>
+            list.documents.map((doc) => Post.fromMap(doc.data)).toList());
+  }
 
   // Future<void> getPosts() async {
   //   var snapshots =
@@ -89,26 +111,10 @@ class Posts with ChangeNotifier {
     return snapshots.documents.map((doc) => Post.fromMap(doc.data)).toList();
   }
 
-  Future<List<Post>> getPostsByUser(String userID) async {
-    var snapshots = await FirebaseCollections.postsCollectionReference
-        .where("uid", isEqualTo: userID)
-        .getDocuments();
-    return snapshots.documents.map((doc) => Post.fromMap(doc.data)).toList();
-  }
-
   Future<List<Post>> getPostsByTopic(String topic) async {
     var snapshots = await FirebaseCollections.postsCollectionReference
         .where("lessonTopic", isEqualTo: topic)
         .getDocuments();
     return snapshots.documents.map((doc) => Post.fromMap(doc.data)).toList();
   }
-
-  Future<List<Post>> getHotPostsByTopic(String topic) async {
-    var snapshots = await FirebaseCollections.postsCollectionReference
-        .where("lessonTopic", isEqualTo: topic)
-        .getDocuments();
-    return snapshots.documents.map((doc) => Post.fromMap(doc.data)).toList();
-  }
-
-  
 }

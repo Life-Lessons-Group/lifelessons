@@ -1,15 +1,16 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 
 class HotTopic {
-  final String topicTitle;
-
+  final String title;
+  final String id;
   final Timestamp endDate;
 
-  HotTopic({this.topicTitle, this.endDate});
+  HotTopic({this.title, this.endDate, this.id});
 
   factory HotTopic.fromMap(Map data) {
     return HotTopic(
-      topicTitle: data["title"],
+      title: data["title"],
+      id: data["id"],
       endDate: data["endDate"],
     );
   }

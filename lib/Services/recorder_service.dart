@@ -1,64 +1,64 @@
-import 'dart:io';
+// import 'dart:io';
 
 
-import 'package:path_provider/path_provider.dart';
-import 'package:permission_handler/permission_handler.dart';
-import 'package:record_mp3/record_mp3.dart';
+// import 'package:path_provider/path_provider.dart';
+// import 'package:permission_handler/permission_handler.dart';
+// import 'package:record_mp3/record_mp3.dart';
 
-class RecorderService {
-  Future<bool> checkPermission() async {
-    if (!await Permission.microphone.isGranted) {
-      PermissionStatus status = await Permission.microphone.request();
-      if (status != PermissionStatus.granted) {
-        return false;
-      }
-    }
-    return true;
-  }
+// class RecorderService {
+//   Future<bool> checkPermission() async {
+//     if (!await Permission.microphone.isGranted) {
+//       PermissionStatus status = await Permission.microphone.request();
+//       if (status != PermissionStatus.granted) {
+//         return false;
+//       }
+//     }
+//     return true;
+//   }
 
-  void startRecord() async {
-    bool hasPermission = await checkPermission();
-    if (hasPermission) {
-      recordFilePath = await getFilePath();
+//   void startRecord() async {
+//     bool hasPermission = await checkPermission();
+//     if (hasPermission) {
+//       recordFilePath = await getFilePath();
 
-      RecordMp3.instance.start(recordFilePath, (type) {
-        print(type);
-        print("recording started");
-      });
-    } else {
-      print("No microphone permission");
-    }
-  }
+//       RecordMp3.instance.start(recordFilePath, (type) {
+//         print(type);
+//         print("recording started");
+//       });
+//     } else {
+//       print("No microphone permission");
+//     }
+//   }
 
-  void pauseRecord() {
-    RecordMp3.instance.pause();
-  }
+//   void pauseRecord() {
+//     RecordMp3.instance.pause();
+//   }
 
-  void stopRecord() {
-    RecordMp3.instance.stop();
-  }
+//   void stopRecord() {
+//     RecordMp3.instance.stop();
+//   }
 
-  void resumeRecord() {
-    RecordMp3.instance.resume();
-  }
+//   void resumeRecord() {
+//     RecordMp3.instance.resume();
+//   }
 
-  String recordFilePath;
+//   String recordFilePath;
 
-  void play() {
-    if (recordFilePath != null && File(recordFilePath).existsSync()) {
+//   void play() {
+//     if (recordFilePath != null && File(recordFilePath).existsSync()) {
       
-    }
-  }
+//     }
+//   }
 
-  int i = 0;
+//   int i = 0;
 
-  Future<String> getFilePath() async {
-    Directory storageDirectory = await getApplicationDocumentsDirectory();
-    String sdPath = storageDirectory.path + "/record";
-    var d = Directory(sdPath);
-    if (!d.existsSync()) {
-      d.createSync(recursive: true);
-    }
-    return sdPath + "/test_${i++}.mp3";
-  }
-}
+//   Future<String> getFilePath() async {
+//     Directory storageDirectory = await getApplicationDocumentsDirectory();
+//     String sdPath = storageDirectory.path + "/record";
+//     var d = Directory(sdPath);
+//     if (!d.existsSync()) {
+//       d.createSync(recursive: true);
+//     }
+//     return sdPath + "/test_${i++}.mp3";
+//   }
+// }

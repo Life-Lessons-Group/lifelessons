@@ -6,6 +6,9 @@ import 'package:provider/provider.dart';
 import 'package:showcaseview/showcase.dart';
 import 'package:showcaseview/showcase_widget.dart';
 
+import '../../models/topic_model.dart';
+import '../../providers/topics.dart';
+
 class TopicsScreen extends StatefulWidget {
   static const routeName = '/topic-screen';
 
@@ -92,8 +95,10 @@ class _TopicsScreenState extends State<TopicsScreen> {
             elevation: 0,
             centerTitle: true,
           ),
-          body: TopicsList(
-            book: "Pandemic",
+          body: StreamProvider<List<Topic>>.value(
+            initialData: [],
+            value: TopicsProvider().getTopicsByBookStream("Pandemic"),
+            child: TopicsList(),
           )),
     );
   }

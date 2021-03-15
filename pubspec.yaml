@@ -14,7 +14,7 @@ description: A new Flutter project.
 version: 2.0.2+18
 
 environment:
-  sdk: ">=2.2.2 <3.0.0"
+  sdk: ">=2.7.0 <3.0.0"
 
 dependencies:
   flutter:
@@ -38,16 +38,9 @@ dependencies:
   intl: ^0.16.1
   get_it: ^5.0.3
 
-  overlay_support: ^1.0.5
+  overlay_support: ^1.2.0
   showcaseview: ^0.1.6
 
-
-  
-  
-
-
-  
- 
 
   #Firebase Packages
   firebase_core: ^0.4.5
@@ -59,7 +52,7 @@ dependencies:
   
 
   #UI Packages
-  flutter_svg: ^0.19.1
+  flutter_svg: ^0.19.2
   font_awesome_flutter: ^8.10.1
   rflutter_alert: ^1.1.0
   flutter_spinkit: ^4.1.2+1

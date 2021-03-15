@@ -137,7 +137,7 @@ class _HotTopicPostTileState extends State<HotTopicPostTile> {
           child: ListTile(
             leading: userPhoto(),
             title: AutoSizeText(
-              widget.username,
+              "widget.username",
               style: TextStyle(fontWeight: FontWeight.w300, fontSize: 13),
               maxLines: 1,
             ),
