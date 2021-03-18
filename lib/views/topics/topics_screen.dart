@@ -29,9 +29,10 @@ class _TopicsScreenState extends State<TopicsScreen> {
 
     super.initState();
     WidgetsBinding.instance.addPostFrameCallback((_) {
-      SharedPrefs.isFirstVisit("homeScreenVisit").then((result) {
-        if (result) ShowCaseWidget.of(context).startShowCase([_bookKey]);
-      });
+      ShowCaseWidget.of(context).startShowCase([_bookKey]);
+      // SharedPrefs.isFirstVisit("homeScreenVisit").then((result) {
+
+      // });
     });
   }
 

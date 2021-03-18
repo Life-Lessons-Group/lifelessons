@@ -21,6 +21,14 @@ class SharedPrefs {
     }
     return isFirstVisit;
   }
+
+    static Future<bool> onInitialStart(String prefString) async {
+    bool initialStart = _sharedPrefs.getBool(prefString) ?? true;
+    if (initialStart) {
+      _sharedPrefs.setBool(prefString, false);
+    }
+    return initialStart;
+  }
 }
 
 final sharedPrefs = SharedPrefs();

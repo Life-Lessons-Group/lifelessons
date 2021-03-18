@@ -38,7 +38,6 @@ class _TestRecordState extends State<TestRecord> with TickerProviderStateMixin {
   String recordFilePath;
   final _recordKey = GlobalKey();
 
-
   String get timerString {
     Duration duration = controller.duration * controller.value;
     return '${duration.inMinutes}:${(duration.inSeconds % 60).toString().padLeft(2, '0')}';
@@ -47,8 +46,8 @@ class _TestRecordState extends State<TestRecord> with TickerProviderStateMixin {
   @override
   void initState() {
     super.initState();
-     WidgetsBinding.instance.addPostFrameCallback((_) =>
-        ShowCaseWidget.of(context).startShowCase([_recordKey]));
+    WidgetsBinding.instance.addPostFrameCallback(
+        (_) => ShowCaseWidget.of(context).startShowCase([_recordKey]));
     controller = AnimationController(
       vsync: this,
       duration: Duration(seconds: 180),
