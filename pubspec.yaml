@@ -28,8 +28,8 @@ dependencies:
   permission_handler: ^5.0.0
   record_mp3: ^2.1.0
   shared_preferences: ^0.5.12
-  equatable: ^1.2.0
-  bloc: ^6.0.0
+  equatable: ^2.0.0
+  bloc: ^7.0.0
   flutter_swiper: ^1.1.6
   flutter_sound: ^6.1.1
   flutter_email_sender: ^3.0.1

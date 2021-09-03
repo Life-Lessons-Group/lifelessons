@@ -33,4 +33,6 @@ class TopicsProvider with ChangeNotifier {
         .snapshots()
         .map((snap) => HotTopic.fromMap(snap.data));
   }
+
+  Stream<HotTopic> 
 }
